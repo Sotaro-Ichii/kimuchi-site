@@ -1,20 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
-  db,
-  auth,
-  loginWithGoogle,
-  loginAnonymously,
-  logout,
-  onAuthChange
+  db, auth, loginWithGoogle, loginAnonymously, logout, onAuthChange
 } from '../firebase';
 import {
-  collection,
-  getDocs,
-  addDoc,
-  query,
-  orderBy,
-  Timestamp
+  collection, getDocs, addDoc, query, orderBy, Timestamp
 } from 'firebase/firestore';
 
 function normalize(text) {
@@ -37,48 +27,36 @@ function Home() {
   useEffect(() => {
     fetchCourses();
     fetchComments();
-    onAuthChange(currentUser => {
-      console.log("🟢 ログイン状態:", currentUser);
-      setUser(currentUser);
-    });
+    onAuthChange(setUser);
   }, []);
 
   const fetchCourses = async () => {
     const snapshot = await getDocs(collection(db, 'courses'));
-    const data = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-    setCourses(data);
+    setCourses(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
   };
 
   const fetchComments = async () => {
     const q = query(collection(db, 'comments'), orderBy('timestamp', 'desc'));
     const snapshot = await getDocs(q);
-    const data = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-    setComments(data);
+    setComments(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
   };
 
   const handleSearch = (e) => {
     e.preventDefault();
-    const normalizedInput = normalize(searchInput);
-    const matched = courses.filter(course =>
-      normalize(course.name).includes(normalizedInput)
-    );
-    setResultCourses(matched);
+    const normalized = normalize(searchInput);
+    setResultCourses(courses.filter(c => normalize(c.name).includes(normalized)));
   };
 
   const handleCommentSubmit = async (e) => {
     e.preventDefault();
     if (!commentText || !commentCourseId) return;
-
     await addDoc(collection(db, 'comments'), {
       name: commentName || (user?.isAnonymous ? '匿名' : user?.displayName || 'ユーザー'),
       text: commentText,
       courseId: commentCourseId,
       timestamp: Timestamp.now()
     });
-
-    setCommentText('');
-    setCommentName('');
-    setCommentCourseId('');
+    setCommentText(''); setCommentName(''); setCommentCourseId('');
     fetchComments();
   };
 
@@ -91,19 +69,14 @@ function Home() {
       description: newDescription,
       id
     });
-
-    setNewCourseName('');
-    setNewProfessor('');
-    setNewDescription('');
+    setNewCourseName(''); setNewProfessor(''); setNewDescription('');
     fetchCourses();
   };
 
   return (
     <div style={{ backgroundColor: '#fff4e6', minHeight: '100vh', padding: '20px', fontFamily: 'sans-serif' }}>
-      <h1 style={{ color: '#c92a2a' }}>Kimuchiへようこそ</h1>
-
-      {/* 🔐 ログインバー */}
-      <div style={{ marginBottom: '20px' }}>
+      {/* 🔐 ログインバー右上 */}
+      <div style={{ position: 'absolute', top: 20, right: 20 }}>
         {user ? (
           <div>
             <span>ログイン中: {user.isAnonymous ? '匿名ユーザー' : user.displayName || 'ユーザー'}</span>
@@ -117,13 +90,16 @@ function Home() {
         )}
       </div>
 
+      <h1 style={{ color: '#c92a2a', marginTop: '60px' }}>Kimuchiへようこそ</h1>
+
+      {/* 🔍 検索 */}
       <form onSubmit={handleSearch} style={{ marginBottom: '20px' }}>
         <input
           type="text"
           placeholder="授業名を検索（例：econ 170）"
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
-          style={{ padding: '8px', width: '250px', marginRight: '10px' }}
+          style={{ padding: '8px', width: '80%', maxWidth: '300px', marginRight: '10px' }}
         />
         <button style={{ backgroundColor: '#2f9e44', color: 'white', padding: '8px 12px', border: 'none' }}>
           検索
@@ -132,7 +108,7 @@ function Home() {
 
       {resultCourses.length > 0 && (
         <div style={{ marginBottom: '30px' }}>
-          <h3>検索結果（楽単授業）:</h3>
+          <h2 style={{ borderBottom: '2px solid #c92a2a' }}>検索結果（楽単授業）</h2>
           <ul>
             {resultCourses.map(course => (
               <li key={course.id} style={{ marginBottom: '10px' }}>
@@ -146,18 +122,24 @@ function Home() {
         </div>
       )}
 
-      <h2 style={{ color: '#c92a2a' }}>全体コメント一覧</h2>
-      <ul>
+      {/* 💬 コメント一覧 */}
+      <h2 style={{ borderBottom: '2px solid #c92a2a' }}>全体コメント一覧</h2>
+      <div style={{ display: 'grid', gap: '10px' }}>
         {comments.map(comment => (
-          <li key={comment.id} style={{ marginBottom: '12px' }}>
+          <div key={comment.id} style={{
+            backgroundColor: 'white',
+            border: '1px solid #ccc',
+            borderRadius: '8px',
+            padding: '12px'
+          }}>
             <strong>{comment.name || "匿名"}</strong>（{comment.courseId}）<br />
             {comment.text}
-            <hr />
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
 
-      <h2 style={{ color: '#c92a2a' }}>コメント投稿</h2>
+      {/* 💬 コメント投稿 */}
+      <h2 style={{ borderBottom: '2px solid #c92a2a', marginTop: '40px' }}>コメント投稿</h2>
       <form onSubmit={handleCommentSubmit} style={{ marginBottom: '30px' }}>
         <input
           type="text"
@@ -183,7 +165,8 @@ function Home() {
         </button>
       </form>
 
-      <h2 style={{ color: '#2f9e44' }}>楽単授業を提案する</h2>
+      {/* ✍️ 楽単提案 */}
+      <h2 style={{ borderBottom: '2px solid #2f9e44' }}>楽単授業を提案する</h2>
       <form onSubmit={handleAddCourse}>
         <input
           type="text"
@@ -208,11 +191,6 @@ function Home() {
           提案を送信
         </button>
       </form>
-
-      {/* 🔗 法的事項リンク */}
-      <div style={{ marginTop: '40px' }}>
-        <Link to="/legal" style={{ color: '#555' }}>法的事項</Link>
-      </div>
     </div>
   );
 }
