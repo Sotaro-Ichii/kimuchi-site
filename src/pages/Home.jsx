@@ -1,13 +1,20 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { db } from '../firebase';
+import {
+  db,
+  auth,
+  loginWithGoogle,
+  loginAnonymously,
+  logout,
+  onAuthChange
+} from '../firebase';
 import {
   collection,
   getDocs,
   addDoc,
   query,
   orderBy,
-  Timestamp,
+  Timestamp
 } from 'firebase/firestore';
 
 function normalize(text) {
@@ -25,6 +32,16 @@ function Home() {
   const [newProfessor, setNewProfessor] = useState('');
   const [newDescription, setNewDescription] = useState('');
   const [resultCourses, setResultCourses] = useState([]);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    fetchCourses();
+    fetchComments();
+    onAuthChange(currentUser => {
+      console.log("🟢 ログイン状態:", currentUser);
+      setUser(currentUser);
+    });
+  }, []);
 
   const fetchCourses = async () => {
     const snapshot = await getDocs(collection(db, 'courses'));
@@ -38,11 +55,6 @@ function Home() {
     const data = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
     setComments(data);
   };
-
-  useEffect(() => {
-    fetchCourses();
-    fetchComments();
-  }, []);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -58,10 +70,10 @@ function Home() {
     if (!commentText || !commentCourseId) return;
 
     await addDoc(collection(db, 'comments'), {
-      name: commentName,
+      name: commentName || (user?.isAnonymous ? '匿名' : user?.displayName || 'ユーザー'),
       text: commentText,
       courseId: commentCourseId,
-      timestamp: Timestamp.now(),
+      timestamp: Timestamp.now()
     });
 
     setCommentText('');
@@ -77,7 +89,7 @@ function Home() {
       name: newCourseName,
       professor: newProfessor,
       description: newDescription,
-      id,
+      id
     });
 
     setNewCourseName('');
@@ -89,6 +101,21 @@ function Home() {
   return (
     <div style={{ backgroundColor: '#fff4e6', minHeight: '100vh', padding: '20px', fontFamily: 'sans-serif' }}>
       <h1 style={{ color: '#c92a2a' }}>Kimuchiへようこそ</h1>
+
+      {/* 🔐 ログインバー */}
+      <div style={{ marginBottom: '20px' }}>
+        {user ? (
+          <div>
+            <span>ログイン中: {user.isAnonymous ? '匿名ユーザー' : user.displayName || 'ユーザー'}</span>
+            <button onClick={logout} style={{ marginLeft: '10px', padding: '6px 10px' }}>ログアウト</button>
+          </div>
+        ) : (
+          <div>
+            <button onClick={loginWithGoogle} style={{ marginRight: '10px', padding: '6px 10px' }}>Googleでログイン</button>
+            <button onClick={loginAnonymously} style={{ padding: '6px 10px' }}>匿名ログイン</button>
+          </div>
+        )}
+      </div>
 
       <form onSubmit={handleSearch} style={{ marginBottom: '20px' }}>
         <input
@@ -186,6 +213,7 @@ function Home() {
 }
 
 export default Home;
+
 
 
 
