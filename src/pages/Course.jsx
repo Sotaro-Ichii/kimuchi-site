@@ -84,7 +84,7 @@ function Course() {
 
         <input
           type="text"
-          placeholder="例：Fall 2024"
+          placeholder="例：Spring 2025"
           value={semester}
           onChange={(e) => setSemester(e.target.value)}
         /><br /><br />
