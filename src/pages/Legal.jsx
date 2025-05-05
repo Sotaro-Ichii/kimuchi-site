@@ -33,7 +33,7 @@ function Legal() {
         <h2>お問い合わせ</h2>
         <p>
           サイトに関するご質問・ご要望は、以下のメールアドレスまでご連絡ください：<br />
-          <strong>sotaro.ichii@gmail.com</strong>
+          <strong>sotta.san17@gmail.com</strong>
         </p>
       </section>
     </div>
