@@ -5,6 +5,8 @@ import Home from './pages/Home.jsx';
 import Semester from './pages/Semester.jsx';
 import Comments from './pages/Comments.jsx';
 import CourseDetail from './pages/CourseDetail.jsx'; // ← 詳細ページとして採用
+import Legal from './pages/Legal.jsx';
+
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -14,6 +16,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/semester/:id" element={<Semester />} />
         <Route path="/comments" element={<Comments />} />
         <Route path="/course/:id" element={<CourseDetail />} /> {/* ← ここをCourseDetailで統一 */}
+        <Route path="/legal" element={<Legal />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
