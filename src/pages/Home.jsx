@@ -191,6 +191,13 @@ function Home() {
           提案を送信
         </button>
       </form>
+
+      {/* 🔗 法的事項ページへのリンク */}
+      <footer style={{ marginTop: '60px', borderTop: '1px solid #ccc', paddingTop: '20px', textAlign: 'center' }}>
+        <Link to="/legal" style={{ color: '#888', textDecoration: 'none' }}>
+          法的事項
+        </Link>
+      </footer>
     </div>
   );
 }
