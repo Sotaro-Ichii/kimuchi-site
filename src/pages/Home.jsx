@@ -208,6 +208,11 @@ function Home() {
           提案を送信
         </button>
       </form>
+
+      {/* 🔗 法的事項リンク */}
+      <div style={{ marginTop: '40px' }}>
+        <Link to="/legal" style={{ color: '#555' }}>法的事項</Link>
+      </div>
     </div>
   );
 }
