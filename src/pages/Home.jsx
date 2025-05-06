@@ -1,3 +1,5 @@
+// Home.jsx
+
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
@@ -60,7 +62,9 @@ function Home() {
       courseId: commentCourseId,
       timestamp: Timestamp.now()
     });
-    setCommentText(''); setCommentName(''); setCommentCourseId('');
+    setCommentText('');
+    setCommentName('');
+    setCommentCourseId('');
     fetchComments();
   };
 
@@ -73,7 +77,9 @@ function Home() {
       description: newDescription,
       id
     });
-    setNewCourseName(''); setNewProfessor(''); setNewDescription('');
+    setNewCourseName('');
+    setNewProfessor('');
+    setNewDescription('');
     fetchCourses();
   };
 
@@ -86,9 +92,10 @@ function Home() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ courseId })
     });
+
     const session = await res.json();
-    if (session?.id) {
-      await stripe.redirectToCheckout({ sessionId: session.id });
+    if (session?.url) {
+      window.location.href = session.url;
     } else {
       alert('課金セッションの作成に失敗しました。');
     }
@@ -226,7 +233,6 @@ function Home() {
 }
 
 export default Home;
-
 
 
 
