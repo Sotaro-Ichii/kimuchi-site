@@ -6,6 +6,9 @@ import {
 import {
   collection, getDocs, addDoc, query, orderBy, Timestamp
 } from 'firebase/firestore';
+import { loadStripe } from '@stripe/stripe-js';
+
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
 function normalize(text) {
   return text.toLowerCase().replace(/\s+/g, '');
@@ -23,6 +26,7 @@ function Home() {
   const [newDescription, setNewDescription] = useState('');
   const [resultCourses, setResultCourses] = useState([]);
   const [user, setUser] = useState(null);
+  const [unlockedCourses, setUnlockedCourses] = useState([]);
 
   useEffect(() => {
     fetchCourses();
@@ -73,9 +77,25 @@ function Home() {
     fetchCourses();
   };
 
+  const hasUnlocked = (courseId) => unlockedCourses.includes(courseId);
+
+  const handleUnlock = async (courseId) => {
+    const stripe = await stripePromise;
+    const res = await fetch('/api/create-checkout-session', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ courseId })
+    });
+    const session = await res.json();
+    if (session?.id) {
+      await stripe.redirectToCheckout({ sessionId: session.id });
+    } else {
+      alert('課金セッションの作成に失敗しました。');
+    }
+  };
+
   return (
     <div style={{ backgroundColor: '#fff4e6', minHeight: '100vh', padding: '20px', fontFamily: 'sans-serif' }}>
-      {/* 🔐 ログインバー右上 */}
       <div style={{ position: 'absolute', top: 20, right: 20 }}>
         {user ? (
           <div>
@@ -92,7 +112,6 @@ function Home() {
 
       <h1 style={{ color: '#c92a2a', marginTop: '60px' }}>Kimuchiへようこそ</h1>
 
-      {/* 🔍 検索 */}
       <form onSubmit={handleSearch} style={{ marginBottom: '20px' }}>
         <input
           type="text"
@@ -112,17 +131,24 @@ function Home() {
           <ul>
             {resultCourses.map(course => (
               <li key={course.id} style={{ marginBottom: '10px' }}>
-                <Link to={`/course/${course.id}`} style={{ color: '#c92a2a', fontWeight: 'bold', textDecoration: 'none' }}>
-                  {course.name} / {course.professor}
-                </Link><br />
-                {course.description}
+                <strong>{course.name}</strong><br />
+                {hasUnlocked(course.id) ? (
+                  <>
+                    {course.professor}<br />
+                    {course.description}
+                  </>
+                ) : (
+                  <>
+                    <em>※ この情報を見るには課金が必要です</em><br />
+                    <button onClick={() => handleUnlock(course.id)}>アンロック（課金）</button>
+                  </>
+                )}
               </li>
             ))}
           </ul>
         </div>
       )}
 
-      {/* 💬 コメント一覧 */}
       <h2 style={{ borderBottom: '2px solid #c92a2a' }}>全体コメント一覧</h2>
       <div style={{ display: 'grid', gap: '10px' }}>
         {comments.map(comment => (
@@ -138,7 +164,6 @@ function Home() {
         ))}
       </div>
 
-      {/* 💬 コメント投稿 */}
       <h2 style={{ borderBottom: '2px solid #c92a2a', marginTop: '40px' }}>コメント投稿</h2>
       <form onSubmit={handleCommentSubmit} style={{ marginBottom: '30px' }}>
         <input
@@ -165,7 +190,6 @@ function Home() {
         </button>
       </form>
 
-      {/* ✍️ 楽単提案 */}
       <h2 style={{ borderBottom: '2px solid #2f9e44' }}>楽単授業を提案する</h2>
       <form onSubmit={handleAddCourse}>
         <input
@@ -192,7 +216,6 @@ function Home() {
         </button>
       </form>
 
-      {/* 🔗 法的事項ページへのリンク */}
       <footer style={{ marginTop: '60px', borderTop: '1px solid #ccc', paddingTop: '20px', textAlign: 'center' }}>
         <Link to="/legal" style={{ color: '#888', textDecoration: 'none' }}>
           法的事項
@@ -203,6 +226,8 @@ function Home() {
 }
 
 export default Home;
+
+
 
 
 
