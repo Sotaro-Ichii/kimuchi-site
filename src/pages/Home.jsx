@@ -1,5 +1,3 @@
-// Home.jsx
-
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
@@ -224,8 +222,11 @@ function Home() {
       </form>
 
       <footer style={{ marginTop: '60px', borderTop: '1px solid #ccc', paddingTop: '20px', textAlign: 'center' }}>
-        <Link to="/legal" style={{ color: '#888', textDecoration: 'none' }}>
+        <Link to="/legal" style={{ color: '#888', marginRight: '20px', textDecoration: 'none' }}>
           法的事項
+        </Link>
+        <Link to="/tokushoho" style={{ color: '#888', textDecoration: 'none' }}>
+          特定商取引法に基づく表記
         </Link>
       </footer>
     </div>
