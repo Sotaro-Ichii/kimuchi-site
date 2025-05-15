@@ -11,6 +11,7 @@ import { loadStripe } from '@stripe/stripe-js';
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
 function normalize(text) {
+  if(typeof text != 'string') return '';
   return text.toLowerCase().replace(/\s+/g, '');
 }
 
