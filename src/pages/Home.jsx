@@ -85,20 +85,26 @@ function Home() {
   const hasUnlocked = (courseId) => unlockedCourses.includes(courseId);
 
   const handleUnlock = async (courseId) => {
-    const stripe = await stripePromise;
-    const res = await fetch('/api/create-checkout-session', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ courseId })
-    });
+    try {
+      const res = await fetch('/api/create-checkout-session', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ courseId }),
+      });
 
-    const session = await res.json();
-    if (session?.url) {
-      window.location.href = session.url;
-    } else {
-      alert('課金セッションの作成に失敗しました。');
+      const session = await res.json();
+
+      if (session?.url) {
+        window.location.href = session.url; // ✅ ここが重要
+      } else {
+        alert('課金セッションの作成に失敗しました。');
+      }
+    } catch (err) {
+      console.error('課金エラー:', err);
+      alert('Stripe通信エラーが発生しました。');
     }
   };
+
 
   return (
     <div style={{ backgroundColor: '#fff4e6', minHeight: '100vh', padding: '20px', fontFamily: 'sans-serif' }}>
