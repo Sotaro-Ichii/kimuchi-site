@@ -11,7 +11,7 @@ import { loadStripe } from '@stripe/stripe-js';
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
 function normalize(text) {
-  if(typeof text != 'string') return '';
+  if (typeof text !== 'string') return '';
   return text.toLowerCase().replace(/\s+/g, '');
 }
 
@@ -93,9 +93,8 @@ function Home() {
       });
 
       const session = await res.json();
-
       if (session?.url) {
-        window.location.href = session.url; // ✅ ここが重要
+        window.location.href = session.url;
       } else {
         alert('課金セッションの作成に失敗しました。');
       }
@@ -104,7 +103,6 @@ function Home() {
       alert('Stripe通信エラーが発生しました。');
     }
   };
-
 
   return (
     <div style={{ backgroundColor: '#fff4e6', minHeight: '100vh', padding: '20px', fontFamily: 'sans-serif' }}>
@@ -241,6 +239,7 @@ function Home() {
 }
 
 export default Home;
+
 
 
 
