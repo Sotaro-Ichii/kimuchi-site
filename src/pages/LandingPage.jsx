@@ -1,17 +1,14 @@
 // src/pages/LandingPage.jsx
+
 import { useEffect } from 'react';
-import { auth, logout, onAuthChange } from '../firebase';
-import { useNavigate } from 'react-router-dom';
+import { logout, onAuthChange } from '../firebase';
 
 function LandingPage() {
-  const navigate = useNavigate();
-
   useEffect(() => {
-    const unsubscribe = onAuthChange((user) => {
+    const unsubscribe = onAuthChange(async (user) => {
       if (user) {
-        // ログインしているユーザーがいたら強制ログアウト（未承認とみなす）
-        logout();
-        alert("このページは承認前のユーザーのみ閲覧可能です。");
+        await logout();
+        alert("このページは承認前のユーザーのみが閲覧できます。ログアウトしました。");
       }
     });
     return () => unsubscribe();
@@ -45,7 +42,7 @@ function LandingPage() {
         </div>
 
         <a
-          href="https://your-form-url.com" // ← GoogleフォームのURLに変更
+          href="https://your-form-url.com" // ← GoogleフォームURLに差し替えてください
           target="_blank"
           rel="noopener noreferrer"
           className="mt-6 inline-block bg-[#2f9e44] text-white rounded-full px-6 py-3 text-lg font-medium hover:bg-[#28a745] transition"
@@ -62,3 +59,4 @@ function LandingPage() {
 }
 
 export default LandingPage;
+
