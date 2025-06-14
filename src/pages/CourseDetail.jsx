@@ -10,13 +10,15 @@ import {
   addDoc,
   Timestamp
 } from 'firebase/firestore';
+import { stripePromise } from '../lib/stripe'; // ✅ Stripe 読み込み
 
 function CourseDetail() {
-  const { id } = useParams();  // courseId をURLから取得
+  const { id } = useParams();
   const [course, setCourse] = useState(null);
   const [comments, setComments] = useState([]);
   const [name, setName] = useState('');
   const [text, setText] = useState('');
+  const [isPaid, setIsPaid] = useState(false); // ✅ 課金完了フラグ
 
   const fetchCourse = async () => {
     const snapshot = await getDocs(query(collection(db, 'courses'), where('id', '==', id)));
@@ -32,8 +34,7 @@ function CourseDetail() {
       orderBy('timestamp', 'desc')
     );
     const snapshot = await getDocs(q);
-    const result = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-    setComments(result);
+    setComments(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
   };
 
   const handleSubmit = async (e) => {
@@ -52,19 +53,50 @@ function CourseDetail() {
     fetchComments();
   };
 
+  const handleCheckout = async () => {
+    const stripe = await stripePromise;
+    const res = await fetch('/api/create-checkout-session', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ courseId: id })
+    });
+    const session = await res.json();
+    await stripe.redirectToCheckout({ sessionId: session.id });
+  };
+
   useEffect(() => {
     fetchCourse();
     fetchComments();
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("paid") === "true") {
+      setIsPaid(true);
+    }
   }, [id]);
 
-  if (!course) return <div>Loading...</div>;
+  if (!course) return <div style={{ padding: '20px' }}>Loading...</div>;
 
   return (
-    <div style={{ backgroundColor: '#fff4e6', padding: '20px' }}>
-      <h2 style={{ color: '#c92a2a' }}>{course.name} / {course.professor}</h2>
-      <p>{course.description}</p>
+    <div style={{ backgroundColor: '#fff4e6', padding: '20px', fontFamily: 'sans-serif' }}>
+      <h2 style={{ color: '#c92a2a' }}>{course.name}</h2>
 
-      <h3 style={{ color: '#2f9e44' }}>この授業のコメント</h3>
+      {isPaid ? (
+        <>
+          <p><strong>教授:</strong> {course.professor}</p>
+          <p>{course.description}</p>
+        </>
+      ) : (
+        <>
+          <p>この授業の詳細を表示するには課金が必要です。</p>
+          <button
+            onClick={handleCheckout}
+            style={{ padding: '10px', backgroundColor: '#2f9e44', color: 'white', border: 'none' }}
+          >
+            表示する（¥300）
+          </button>
+        </>
+      )}
+
+      <h3 style={{ color: '#2f9e44', marginTop: '30px' }}>この授業のコメント</h3>
       <ul>
         {comments.map(comment => (
           <li key={comment.id} style={{ marginBottom: '10px' }}>
