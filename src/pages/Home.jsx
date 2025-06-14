@@ -6,9 +6,9 @@ import {
 import {
   collection, getDocs, addDoc, query, orderBy, Timestamp
 } from 'firebase/firestore';
-import { loadStripe } from '@stripe/stripe-js';
+//import { loadStripe } from '@stripe/stripe-js';
 
-const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
+//const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
 function normalize(text) {
   if (typeof text !== 'string') return '';
@@ -82,27 +82,27 @@ function Home() {
     fetchCourses();
   };
 
-  const hasUnlocked = (courseId) => unlockedCourses.includes(courseId);
+  //const hasUnlocked = (courseId) => unlockedCourses.includes(courseId);
 
-  const handleUnlock = async (courseId) => {
-    try {
-      const res = await fetch('/api/create-checkout-session', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ courseId }),
-      });
+  //const handleUnlock = async (courseId) => {
+    //try {
+      //const res = await fetch('/api/create-checkout-session', {
+        //method: 'POST',
+        //headers: { 'Content-Type': 'application/json' },
+        //body: JSON.stringify({ courseId }),
+      //});
 
-      const session = await res.json();
-      if (session?.url) {
-        window.location.href = session.url;
-      } else {
-        alert('課金セッションの作成に失敗しました。');
-      }
-    } catch (err) {
-      console.error('課金エラー:', err);
-      alert('Stripe通信エラーが発生しました。');
-    }
-  };
+      //const session = await res.json();
+      //if (session?.url) {
+        //window.location.href = session.url;
+      //} else {
+        //alert('課金セッションの作成に失敗しました。');
+      //}
+    //} catch (err) {
+      //console.error('課金エラー:', err);
+      //alert('Stripe通信エラーが発生しました。');
+    //}
+  //};
 
   return (
     <div style={{ backgroundColor: '#fff4e6', minHeight: '100vh', padding: '20px', fontFamily: 'sans-serif' }}>
@@ -142,17 +142,8 @@ function Home() {
             {resultCourses.map(course => (
               <li key={course.id} style={{ marginBottom: '10px' }}>
                 <strong>{course.name}</strong><br />
-                {hasUnlocked(course.id) ? (
-                  <>
-                    {course.professor}<br />
-                    {course.description}
-                  </>
-                ) : (
-                  <>
-                    <em>※ この情報を見るには課金が必要です</em><br />
-                    <button onClick={() => handleUnlock(course.id)}>アンロック（課金）</button>
-                  </>
-                )}
+                {course.professor}<br />
+                {course.discription}
               </li>
             ))}
           </ul>
