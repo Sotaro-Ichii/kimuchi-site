@@ -1,13 +1,23 @@
-import { useEffect } from "react";
+// ✅ 完成版 LandingPage.jsx
+
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
-import { loginWithGoogle, logout } from "../firebase";
-import { db } from "../firebase";
+import {
+  loginWithGoogle,
+  loginWithEmail,
+  registerWithEmail,
+  logout,
+  db,
+} from "../firebase";
 import { doc, getDoc } from "firebase/firestore";
 
 function LandingPage() {
   const navigate = useNavigate();
   const { user, loading } = useAuth();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [isRegistering, setIsRegistering] = useState(false);
 
   useEffect(() => {
     const checkApproval = async () => {
@@ -16,7 +26,7 @@ function LandingPage() {
           const ref = doc(db, "approvedUsers", user.email);
           const snap = await getDoc(ref);
           if (snap.exists() && snap.data().status === "approved") {
-            navigate("/home"); // ✅ 承認されていれば /home へ
+            navigate("/home");
           } else {
             await logout();
             alert("まだ承認されていません。Zelle送金と申請が完了しているかご確認ください。");
@@ -27,9 +37,20 @@ function LandingPage() {
         }
       }
     };
-
     checkApproval();
   }, [user, loading]);
+
+  const handleEmailAuth = async () => {
+    try {
+      if (isRegistering) {
+        await registerWithEmail(email, password);
+      } else {
+        await loginWithEmail(email, password);
+      }
+    } catch (error) {
+      alert("ログイン/登録エラー: " + error.message);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-[#fff4e6] text-center px-6 py-12 font-sans">
@@ -44,7 +65,7 @@ function LandingPage() {
       <div className="bg-white rounded-2xl shadow-md p-6 max-w-lg mx-auto mt-8">
         <h2 className="text-2xl font-semibold text-[#2f9e44] mb-2">ご利用条件</h2>
         <ul className="text-left text-gray-800 list-disc pl-6 space-y-1">
-          <li>承認制（Googleログイン＋申請必須）</li>
+          <li>承認制（GoogleまたはEmailログイン＋申請必須）</li>
           <li>Zelleで一括支払い（$49.9 / 3ヶ月）</li>
           <li>ログイン情報・内容の外部共有は<strong>厳禁</strong></li>
         </ul>
@@ -71,10 +92,39 @@ function LandingPage() {
           <p className="text-gray-700 mb-2">すでに申請済みの方はこちらからログイン</p>
           <button
             onClick={loginWithGoogle}
-            className="bg-[#2f9e44] hover:bg-[#22863a] text-white px-6 py-2 rounded-full font-medium transition"
+            className="bg-[#2f9e44] hover:bg-[#22863a] text-white px-6 py-2 rounded-full font-medium transition mb-4"
           >
             Googleでログイン
           </button>
+
+          <div className="mt-4">
+            <input
+              type="email"
+              placeholder="メールアドレス"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="block w-full px-4 py-2 mb-2 border rounded"
+            />
+            <input
+              type="password"
+              placeholder="パスワード"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="block w-full px-4 py-2 mb-2 border rounded"
+            />
+            <button
+              onClick={handleEmailAuth}
+              className="bg-[#c92a2a] hover:bg-[#a82727] text-white px-6 py-2 rounded-full font-medium w-full"
+            >
+              {isRegistering ? "新規登録" : "ログイン"}
+            </button>
+            <button
+              onClick={() => setIsRegistering(!isRegistering)}
+              className="text-sm text-blue-600 mt-2 underline"
+            >
+              {isRegistering ? "ログインへ切り替え" : "新規登録へ切り替え"}
+            </button>
+          </div>
         </div>
       </div>
 
@@ -86,6 +136,7 @@ function LandingPage() {
 }
 
 export default LandingPage;
+
 
 
 

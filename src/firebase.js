@@ -1,4 +1,4 @@
-// src/firebase.js
+// ✅ 完成版 firebase.js
 
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
@@ -10,9 +10,10 @@ import {
   signInAnonymously,
   signOut,
   onAuthStateChanged,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
 } from "firebase/auth";
 
-// Firebase設定
 const firebaseConfig = {
   apiKey: "AIzaSyB99CXoH-GoRB2gQvH1Li-eCmK-aPuQ5c4",
   authDomain: "kimuchi-47d24.firebaseapp.com",
@@ -23,7 +24,6 @@ const firebaseConfig = {
   measurementId: "G-QW410GGPL9",
 };
 
-// 初期化
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
@@ -31,7 +31,6 @@ const analytics = getAnalytics(app);
 
 const googleProvider = new GoogleAuthProvider();
 
-// ログイン関数
 const loginWithGoogle = async () => {
   try {
     await signInWithPopup(auth, googleProvider);
@@ -41,7 +40,6 @@ const loginWithGoogle = async () => {
   }
 };
 
-// 匿名ログイン（未使用でもOK）
 const loginAnonymously = async () => {
   try {
     await signInAnonymously(auth);
@@ -51,7 +49,24 @@ const loginAnonymously = async () => {
   }
 };
 
-// ログアウト関数
+const loginWithEmail = async (email, password) => {
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
+  } catch (error) {
+    console.error("Emailログイン失敗:", error);
+    throw error;
+  }
+};
+
+const registerWithEmail = async (email, password) => {
+  try {
+    await createUserWithEmailAndPassword(auth, email, password);
+  } catch (error) {
+    console.error("Email登録失敗:", error);
+    throw error;
+  }
+};
+
 const logout = async () => {
   try {
     await signOut(auth);
@@ -61,17 +76,16 @@ const logout = async () => {
   }
 };
 
-// 認証状態変化の監視
 const onAuthChange = (callback) => onAuthStateChanged(auth, callback);
 
-// エクスポート
 export {
   auth,
   db,
   analytics,
   loginWithGoogle,
   loginAnonymously,
+  loginWithEmail,
+  registerWithEmail,
   logout,
   onAuthChange,
 };
-
