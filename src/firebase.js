@@ -1,5 +1,3 @@
-// src/firebase.js
-
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getAnalytics } from "firebase/analytics";
@@ -53,6 +51,28 @@ const loginAnonymously = async () => {
   }
 };
 
+// ✅ メールでログイン
+const loginWithEmail = async (email, password) => {
+  try {
+    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    return userCredential.user;
+  } catch (error) {
+    console.error("ログインエラー:", error);
+    throw error;
+  }
+};
+
+// ✅ メールで登録（registerWithEmail を LandingPage 用に別名で）
+const registerWithEmail = async (email, password) => {
+  try {
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    return userCredential.user;
+  } catch (error) {
+    console.error("登録エラー:", error);
+    throw error;
+  }
+};
+
 // ✅ ログアウト
 const logout = async () => {
   try {
@@ -66,28 +86,6 @@ const logout = async () => {
 // ✅ 認証状態変化の監視
 const onAuthChange = (callback) => onAuthStateChanged(auth, callback);
 
-// ✅ メールで登録（新規アカウント作成）
-const signUpWithEmail = async (email, password) => {
-  try {
-    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-    return userCredential.user;
-  } catch (error) {
-    console.error("登録エラー:", error);
-    throw error;
-  }
-};
-
-// ✅ メールでログイン
-const loginWithEmail = async (email, password) => {
-  try {
-    const userCredential = await signInWithEmailAndPassword(auth, email, password);
-    return userCredential.user;
-  } catch (error) {
-    console.error("ログインエラー:", error);
-    throw error;
-  }
-};
-
 // ✅ エクスポート
 export {
   auth,
@@ -97,6 +95,6 @@ export {
   loginAnonymously,
   logout,
   onAuthChange,
-  signUpWithEmail,
   loginWithEmail,
+  registerWithEmail, // ← これが追加されたことで Vercel エラー解決！
 };
