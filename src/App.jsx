@@ -1,3 +1,4 @@
+// src/App.jsx
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 
@@ -11,7 +12,7 @@ import Tokushoho from './pages/Tokushoho';
 function PrivateRoute({ children }) {
   const { user, loading } = useAuth();
 
-  if (loading) return <div>認証確認中...</div>;
+  if (loading) return <div style={{ padding: '2rem', textAlign: 'center' }}>認証確認中...</div>;
   return user ? children : <Navigate to="/" />;
 }
 
@@ -19,33 +20,12 @@ function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<LandingPage />} />
-      <Route
-        path="/home"
-        element={
-          <PrivateRoute>
-            <Home />
-          </PrivateRoute>
-        }
-      />
-      <Route
-        path="/semester/:id"
-        element={
-          <PrivateRoute>
-            <SemesterPage />
-          </PrivateRoute>
-        }
-      />
-      <Route
-        path="/comments"
-        element={
-          <PrivateRoute>
-            <CommentsPage />
-          </PrivateRoute>
-        }
-      />
+      <Route path="/home" element={<PrivateRoute><Home /></PrivateRoute>} />
+      <Route path="/semester/:id" element={<PrivateRoute><SemesterPage /></PrivateRoute>} />
+      <Route path="/comments" element={<PrivateRoute><CommentsPage /></PrivateRoute>} />
       <Route path="/legal" element={<Legal />} />
       <Route path="/tokushoho" element={<Tokushoho />} />
-      <Route path="*" element={<div>404 Not Found</div>} />
+      <Route path="*" element={<div style={{ textAlign: 'center', padding: '2rem' }}>404 Not Found</div>} />
     </Routes>
   );
 }
