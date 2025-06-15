@@ -1,6 +1,9 @@
+/* ✅ Tailwind 基本セットアップ */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-/* index.css */
-
+/* ✅ 既存のカスタムCSSを上書きされないように最後に追加 */
 body {
   background-color: #fff4e6;
   font-family: 'Noto Sans JP', sans-serif;
