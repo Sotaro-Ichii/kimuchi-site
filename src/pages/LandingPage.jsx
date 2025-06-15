@@ -73,7 +73,7 @@ function LandingPage() {
         <div className="mt-6 text-left">
           <h3 className="text-lg font-medium text-[#c92a2a] mb-2">ご利用までの流れ</h3>
           <ol className="list-decimal pl-6 text-gray-700 space-y-1">
-            <li>Zelleに <strong>$49.9</strong> を送金（<strong>送金先:</strong> 657-809-1289）</li>
+            <li>Zelleに <strong>$49.9</strong> を送金（<strong>送金先:</strong> フォームにて確認）</li>
             <li>以下の申請フォームに必要事項を記入</li>
             <li>審査後、24時間以内に結果をご連絡します</li>
           </ol>
