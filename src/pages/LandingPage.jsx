@@ -18,7 +18,7 @@ function LandingPage() {
 
   return (
     <div className="min-h-screen bg-[#fff4e6] text-center px-6 py-12">
-      <h1 className="text-4xl md:text-5xl font-bold text-[#c92a2a] mb-6">
+      <h1 className="text-4xl text-green-600 font-bold">
         Kimuchiへようこそ
       </h1>
       {/* ...申請案内などのLP内容 */}
