@@ -47,7 +47,7 @@ function LandingPage() {
         </div>
 
         <a
-          href="https://your-form-url.com" // ← 必ずあなたのGoogleフォームURLに変更してください
+          href="https://docs.google.com/forms/d/e/1FAIpQLSeiKGlblgkAzjJmbVEno3L5lwWPiVt6ECZgt0OV9Ps6r6SRmw/viewform?usp=header" // ← 必ずあなたのGoogleフォームURLに変更してください
           target="_blank"
           rel="noopener noreferrer"
           className="mt-6 inline-block bg-[#2f9e44] text-white rounded-full px-8 py-3 text-lg font-medium hover:bg-[#22863a] transition duration-300"
