@@ -2,16 +2,33 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import { loginWithGoogle, logout } from "../firebase";
+import { db } from "../firebase";
+import { doc, getDoc } from "firebase/firestore";
 
 function LandingPage() {
   const navigate = useNavigate();
   const { user, loading } = useAuth();
 
   useEffect(() => {
-    if (!loading && user) {
-      // ユーザーがログインした場合 → 認証ステップは次段階で確認
-      console.log("ログイン中のユーザー:", user.email);
-    }
+    const checkApproval = async () => {
+      if (!loading && user) {
+        try {
+          const ref = doc(db, "approvedUsers", user.email);
+          const snap = await getDoc(ref);
+          if (snap.exists() && snap.data().status === "approved") {
+            navigate("/home"); // ✅ 承認されていれば /home へ
+          } else {
+            await logout();
+            alert("まだ承認されていません。Zelle送金と申請が完了しているかご確認ください。");
+          }
+        } catch (error) {
+          console.error("Firestore読み取りエラー:", error);
+          alert("認証中にエラーが発生しました。");
+        }
+      }
+    };
+
+    checkApproval();
   }, [user, loading]);
 
   return (
@@ -42,7 +59,7 @@ function LandingPage() {
         </div>
 
         <a
-          href="https://your-form-url.com" // ✅ GoogleフォームURLを差し替えてください
+          href="https://your-form-url.com"
           target="_blank"
           rel="noopener noreferrer"
           className="mt-6 inline-block bg-[#2f9e44] text-white rounded-full px-6 py-3 text-lg font-medium hover:bg-[#28a745] transition"
@@ -69,6 +86,7 @@ function LandingPage() {
 }
 
 export default LandingPage;
+
 
 
 
