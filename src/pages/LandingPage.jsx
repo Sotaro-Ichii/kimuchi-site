@@ -1,3 +1,4 @@
+// src/pages/LandingPage.jsx
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
@@ -20,11 +21,12 @@ function LandingPage() {
       <h1 className="text-4xl md:text-5xl font-bold text-[#c92a2a] mb-6">
         Kimuchiへようこそ
       </h1>
-      {/* ...以下略（申請案内など） */}
+      {/* ...申請案内などのLP内容 */}
     </div>
   );
 }
 
 export default LandingPage;
+
 
 
