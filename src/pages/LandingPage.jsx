@@ -58,7 +58,7 @@ function LandingPage() {
         Kimuchiへようこそ
       </h1>
       <p className="text-lg text-gray-700 max-w-xl mx-auto mb-4">
-        OCC専用、完全非公開の授業評価コミュニティ。<br />
+        とある大学の、完全非公開の授業評価コミュニティ。<br />
         GPAと時間を守る、選ばれた人だけの楽単情報プラットフォーム。
       </p>
 
