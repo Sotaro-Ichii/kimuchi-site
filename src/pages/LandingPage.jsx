@@ -64,7 +64,7 @@ function LandingPage() {
         先輩方の成功例を下に、Aが取れる授業のみ選別し、掲載しています。
       </p>
 
-      <div className="bg-white rounded-2xl shadow-md p-6 max-w-lg mx-auto mt-8">
+      <div className="bg-white rounded-2xl shadow-md text-center p-6 max-w-lg mx-auto mt-8">
         <h2 className="text-2xl font-semibold text-[#2f9e44] mb-2">ご利用条件</h2>
         <ul className="text-left text-gray-800 list-disc pl-6 space-y-1">
           <li>承認制（GoogleまたはEmailログイン＋申請必須）</li>
@@ -72,7 +72,7 @@ function LandingPage() {
           <li>ログイン情報・内容の外部共有は<strong>厳禁</strong></li>
         </ul>
 
-        <div className="mt-6 text-left">
+        <div className="mt-6 text-left  text-center ">
           <h3 className="text-lg font-medium text-[#c92a2a] mb-2">ご利用までの流れ</h3>
           <ol className="list-decimal pl-6 text-gray-700 space-y-1">
             <li>Zelleで <strong>$49.9</strong> を一括送金（<strong>送金先電話番号:</strong> 657-709-1289）</li>
