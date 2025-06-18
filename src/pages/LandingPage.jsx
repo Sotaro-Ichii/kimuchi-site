@@ -60,6 +60,8 @@ function LandingPage() {
       <p className="text-lg text-gray-700 max-w-xl mx-auto mb-4">
         とある大学の、完全非公開の授業評価コミュニティ。<br />
         GPAと時間を守る、選ばれた人だけの楽単情報プラットフォーム。
+        高GPAを保ちたい、エージェントの履修登録じゃ不安、そんなあなたのためにキムチを作成しました。
+        先輩方の成功例を下に、Aが取れる授業のみ選別し、掲載しています。
       </p>
 
       <div className="bg-white rounded-2xl shadow-md p-6 max-w-lg mx-auto mt-8">
