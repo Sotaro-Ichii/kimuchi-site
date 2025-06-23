@@ -11,6 +11,7 @@ import {
   db,
 } from "../firebase";
 import { doc, getDoc } from "firebase/firestore";
+import { FaCheckCircle, FaUserShield, FaMoneyCheckAlt, FaLock, FaGoogle } from 'react-icons/fa';
 
 function LandingPage() {
   const navigate = useNavigate();
@@ -53,85 +54,91 @@ function LandingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#18181b] text-center px-6 py-12 font-sans text-[#f4f4f5]">
-      <h1 className="text-4xl md:text-5xl font-bold text-[#fbbf24] mb-6">
-        Kimuchiへようこそ
-      </h1>
-      <p className="text-lg text-[#e4e4e7] max-w-xl mx-auto mb-4">
-        とある大学の、完全非公開の授業評価コミュニティ。<br />
-        GPAと時間を守る、選ばれた人だけの楽単情報プラットフォーム。<br />
-        高GPAを保ちたい、エージェントの履修登録じゃ不安、そんなあなたのためにキムチを作成しました。<br />
-        キムチでは、楽単授業、メジャーごとの先輩との相談、メジャーごとの履修コースを紹介いたします。<br />
-        先輩方の成功例を下に、Aが取れる授業のみ選別し、掲載しています。
-      </p>
+    <div className="min-h-screen bg-gradient-to-b from-[#18181b] via-[#232326] to-[#18181b] flex flex-col items-center justify-center px-4 py-8">
+      {/* ヒーローセクション */}
+      <section className="w-full max-w-2xl flex flex-col items-center text-center mb-12">
+        <img src="/logo.png" alt="Kimuchi logo" className="w-20 h-20 rounded-full shadow-lg border-4 border-[#fbbf24] bg-[#18181b] mb-4" />
+        <h1 className="text-5xl md:text-6xl font-extrabold text-[#fbbf24] drop-shadow mb-4 tracking-tight">Kimuchi</h1>
+        <p className="text-xl md:text-2xl text-[#e4e4e7] mb-6 font-light leading-relaxed">
+          とある大学の、完全非公開の授業評価コミュニティ。<br />
+          GPAと時間を守る、選ばれた人だけの楽単情報プラットフォーム。
+        </p>
+        <a
+          href="#apply"
+          className="inline-block bg-gradient-to-r from-[#fbbf24] to-[#f59e42] text-[#18181b] rounded-full px-8 py-4 text-xl font-bold shadow-lg hover:scale-105 hover:shadow-2xl transition-transform duration-200 mb-2"
+        >
+          まずは申請する
+        </a>
+      </section>
 
-      <div className="bg-[#232326] rounded-2xl shadow-md text-center p-6 max-w-lg mx-auto mt-8 border border-[#27272a]">
-        <h2 className="text-2xl font-semibold text-[#2f9e44] mb-2">ご利用条件</h2>
-        <ul className="text-left text-[#e4e4e7] list-disc pl-6 space-y-1">
-          <li>承認制（GoogleまたはEmailログイン＋申請必須）</li>
-          <li>Zelleで一括支払い（$49.9 / 3ヶ月）</li>
-          <li>ログイン情報・内容の外部共有は<strong>厳禁</strong></li>
+      {/* ご利用条件カード */}
+      <section id="apply" className="w-full max-w-xl bg-[#232326] rounded-2xl shadow-xl border border-[#27272a] p-8 mb-10 animate-fade-in">
+        <h2 className="text-2xl font-bold text-[#2f9e44] flex items-center gap-2 mb-4">
+          <FaUserShield className="inline text-[#2f9e44]" /> ご利用条件
+        </h2>
+        <ul className="text-left text-[#e4e4e7] space-y-3 mb-6">
+          <li className="flex items-center gap-2"><FaCheckCircle className="text-[#22d3ee]" /> 承認制（GoogleまたはEmailログイン＋申請必須）</li>
+          <li className="flex items-center gap-2"><FaMoneyCheckAlt className="text-[#fbbf24]" /> Zelleで一括支払い（$49.9 / 3ヶ月）</li>
+          <li className="flex items-center gap-2"><FaLock className="text-[#c92a2a]" /> ログイン情報・内容の外部共有は<strong>厳禁</strong></li>
         </ul>
-
-        <div className="mt-6 text-left  text-center ">
-          <h3 className="text-lg font-medium text-[#fbbf24] mb-2">ご利用までの流れ</h3>
-          <ol className="list-decimal pl-6 text-[#e4e4e7] space-y-1">
+        <div className="bg-[#18181b] rounded-xl p-4 mb-4 border border-[#27272a]">
+          <h3 className="text-lg font-semibold text-[#fbbf24] mb-2">ご利用までの流れ</h3>
+          <ol className="list-decimal pl-6 text-[#e4e4e7] space-y-1 text-left">
             <li>Zelleで <strong>$49.9</strong> を一括zell送金（<strong>送金先電話番号:</strong> 657-709-1289）</li>
             <li>以下の申請フォームに必要事項を記入</li>
             <li>審査後、24時間以内に結果をご連絡します</li>
           </ol>
         </div>
-
         <a
           href="https://docs.google.com/forms/d/e/1FAIpQLSeiKGlblgkAzjJmbVEno3L5lwWPiVt6ECZgt0OV9Ps6r6SRmw/viewform?usp=header"
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-6 inline-block bg-[#2f9e44] text-white rounded-full px-6 py-3 text-lg font-medium hover:bg-[#28a745] transition shadow"
+          className="mt-4 inline-block bg-gradient-to-r from-[#2f9e44] to-[#22d3ee] text-white rounded-full px-6 py-3 text-lg font-bold hover:scale-105 hover:shadow-2xl transition-transform duration-200 shadow"
         >
           申請フォームはこちら
         </a>
+      </section>
 
-        <div className="mt-8">
-          <p className="text-[#e4e4e7] mb-2">すでに申請済みの方はこちらからログイン</p>
+      {/* ログイン・登録フォーム */}
+      <section className="w-full max-w-md bg-[#232326] rounded-2xl shadow-xl border border-[#27272a] p-8 mb-10 animate-fade-in flex flex-col items-center">
+        <p className="text-[#e4e4e7] mb-4 text-center">すでに申請済みの方はこちらからログイン</p>
+        <button
+          onClick={loginWithGoogle}
+          className="flex items-center justify-center gap-2 bg-gradient-to-r from-[#2f9e44] to-[#22d3ee] hover:from-[#22d3ee] hover:to-[#2f9e44] text-white px-6 py-3 rounded-full font-bold text-lg transition mb-4 shadow-lg hover:scale-105"
+        >
+          <FaGoogle className="text-xl" /> Googleでログイン
+        </button>
+        <div className="w-full mt-2">
+          <input
+            type="email"
+            placeholder="メールアドレス"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="block w-full px-4 py-3 mb-3 border rounded-lg bg-[#18181b] text-[#f4f4f5] border-[#27272a] focus:border-[#22d3ee] focus:ring-2 focus:ring-[#22d3ee] transition"
+          />
+          <input
+            type="password"
+            placeholder="パスワード"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="block w-full px-4 py-3 mb-3 border rounded-lg bg-[#18181b] text-[#f4f4f5] border-[#27272a] focus:border-[#22d3ee] focus:ring-2 focus:ring-[#22d3ee] transition"
+          />
           <button
-            onClick={loginWithGoogle}
-            className="bg-[#2f9e44] hover:bg-[#22863a] text-white px-6 py-2 rounded-full font-medium transition mb-4 shadow"
+            onClick={handleEmailAuth}
+            className="w-full bg-gradient-to-r from-[#c92a2a] to-[#fbbf24] hover:from-[#fbbf24] hover:to-[#c92a2a] text-[#18181b] font-bold py-3 rounded-full shadow-lg hover:scale-105 transition mb-2"
           >
-            Googleでログイン
+            {isRegistering ? "新規登録" : "ログイン"}
           </button>
-
-          <div className="mt-4" text-center>
-            <input
-              type="email"
-              placeholder="メールアドレス"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="block w-full px-4 py-2 mb-2 border rounded bg-[#18181b] text-[#f4f4f5] border-[#27272a]"
-            />
-            <input
-              type="password"
-              placeholder="パスワード"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="block w-full px-4 py-2 mb-2 border rounded bg-[#18181b] text-[#f4f4f5] border-[#27272a]"
-            />
-            <button
-              onClick={handleEmailAuth}
-              className="bg-[#c92a2a] hover:bg-[#a82727] text-white px-6 py-2 rounded-full font-medium w-full shadow"
-            >
-              {isRegistering ? "新規登録" : "ログイン"}
-            </button>
-            <button
-              onClick={() => setIsRegistering(!isRegistering)}
-              className="text-sm text-blue-400 mt-2 underline"
-            >
-              {isRegistering ? "ログインへ切り替え" : "新規登録へ切り替え"}
-            </button>
-          </div>
+          <button
+            onClick={() => setIsRegistering(!isRegistering)}
+            className="text-sm text-blue-400 mt-2 underline hover:text-blue-300 transition"
+          >
+            {isRegistering ? "ログインへ切り替え" : "新規登録へ切り替え"}
+          </button>
         </div>
-      </div>
+      </section>
 
-      <footer className="text-[#a1a1aa] text-sm mt-10">
+      <footer className="text-[#a1a1aa] text-sm mt-10 mb-4">
         &copy; 2025 Kimuchi. All rights reserved.
       </footer>
     </div>
