@@ -56,16 +56,16 @@ function LandingPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#18181b] via-[#232326] to-[#18181b] flex flex-col items-center justify-center px-4 py-8">
       {/* ヒーローセクション */}
-      <section className="w-full max-w-2xl flex flex-col items-center text-center mb-12">
-        <img src="/logo.png" alt="Kimuchi logo" className="w-20 h-20 rounded-full shadow-lg border-4 border-[#fbbf24] bg-[#18181b] mb-4" />
+      <section className="w-full max-w-2xl flex flex-col items-center justify-center text-center mb-12 mx-auto">
+        <img src="/logo.png" alt="Kimuchi logo" className="w-16 h-16 md:w-20 md:h-20 rounded-full shadow-lg border-4 border-[#fbbf24] bg-[#18181b] mb-6" />
         <h1 className="text-5xl md:text-6xl font-extrabold text-[#fbbf24] drop-shadow mb-4 tracking-tight">Kimuchi</h1>
-        <p className="text-xl md:text-2xl text-[#e4e4e7] mb-6 font-light leading-relaxed">
+        <p className="text-xl md:text-2xl text-[#e4e4e7] mb-8 font-light leading-relaxed max-w-xl mx-auto text-center">
           とある大学の、完全非公開の授業評価コミュニティ。<br />
           GPAと時間を守る、選ばれた人だけの楽単情報プラットフォーム。
         </p>
         <a
           href="#apply"
-          className="inline-block bg-gradient-to-r from-[#fbbf24] to-[#f59e42] text-[#18181b] rounded-full px-8 py-4 text-xl font-bold shadow-lg hover:scale-105 hover:shadow-2xl transition-transform duration-200 mb-2"
+          className="inline-block bg-gradient-to-r from-[#fbbf24] to-[#f59e42] text-[#18181b] rounded-full px-8 py-4 text-xl font-bold shadow-lg hover:scale-105 hover:shadow-2xl transition-transform duration-200 mb-2 text-center"
         >
           まずは申請する
         </a>
