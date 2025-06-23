@@ -6,8 +6,8 @@
 
 /* ✅ 既存のカスタムCSSを上書きされないように最後に追加 */
 body {
-  background-color: #18181b;
-  color: #f4f4f5;
+  background-color: #18181b !important;
+  color: #f4f4f5 !important;
   font-family: 'Inter', 'Noto Sans JP', sans-serif;
   margin: 0;
   padding: 0;
@@ -168,4 +168,14 @@ footer a {
 footer a:hover {
   color: #fbbf24;
   text-decoration: underline;
+}
+
+/* --- 優先度を最大化するため、ファイル末尾にも再定義 --- */
+body {
+  background-color: #18181b !important;
+  color: #f4f4f5 !important;
+}
+
+#root {
+  background-color: #18181b !important;
 }
