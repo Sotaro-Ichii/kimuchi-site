@@ -57,7 +57,7 @@ function LandingPage() {
     <div className="min-h-screen bg-gradient-to-b from-[#18181b] via-[#232326] to-[#18181b] flex flex-col items-center justify-center px-4 py-8">
       {/* ヒーローセクション */}
       <section className="w-full max-w-2xl flex flex-col items-center justify-center text-center mb-12 mx-auto">
-        <img src="/logo.png" alt="Kimuchi logo" className="w-16 h-16 md:w-20 md:h-20 rounded-full shadow-lg border-4 border-[#fbbf24] bg-[#18181b] mb-6" />
+        <img src="/logo.png" alt="Kimuchi logo" className="w-12 h-12 md:w-16 md:h-16 max-w-xs object-contain object-center rounded-full shadow-lg border-4 border-[#fbbf24] bg-[#18181b] mb-6" />
         <h1 className="text-5xl md:text-6xl font-extrabold text-[#fbbf24] drop-shadow mb-4 tracking-tight">Kimuchi</h1>
         <p className="text-xl md:text-2xl text-[#e4e4e7] mb-8 font-light leading-relaxed max-w-xl mx-auto text-center">
           とある大学の、完全非公開の授業評価コミュニティ。<br />
