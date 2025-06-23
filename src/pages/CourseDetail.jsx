@@ -76,8 +76,8 @@ function CourseDetail() {
   if (!course) return <div style={{ padding: '20px' }}>Loading...</div>;
 
   return (
-    <div style={{ backgroundColor: '#fff4e6', padding: '20px', fontFamily: 'sans-serif' }}>
-      <h2 style={{ color: '#c92a2a' }}>{course.name}</h2>
+    <div style={{ backgroundColor: '#18181b', padding: '20px', fontFamily: 'sans-serif', color: '#f4f4f5' }}>
+      <h2 style={{ color: '#fbbf24' }}>{course.name}</h2>
 
       {isPaid ? (
         <>
@@ -89,17 +89,17 @@ function CourseDetail() {
           <p>この授業の詳細を表示するには課金が必要です。</p>
           <button
             onClick={handleCheckout}
-            style={{ padding: '10px', backgroundColor: '#2f9e44', color: 'white', border: 'none' }}
+            style={{ padding: '10px', backgroundColor: '#2f9e44', color: '#18181b', border: 'none', fontWeight: 700, borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.10)' }}
           >
             表示する（¥300）
           </button>
         </>
       )}
 
-      <h3 style={{ color: '#2f9e44', marginTop: '30px' }}>この授業のコメント</h3>
+      <h3 style={{ color: '#22d3ee', marginTop: '30px' }}>この授業のコメント</h3>
       <ul>
         {comments.map(comment => (
-          <li key={comment.id} style={{ marginBottom: '10px' }}>
+          <li key={comment.id} style={{ marginBottom: '10px', backgroundColor: '#232326', color: '#f4f4f5', border: '1.5px solid #27272a', borderRadius: '12px', padding: '12px', boxShadow: '0 2px 8px rgba(0,0,0,0.10)' }}>
             <strong>{comment.name || "匿名"}</strong><br />
             {comment.text}
             <hr />
@@ -114,6 +114,7 @@ function CourseDetail() {
           placeholder="名前（任意）"
           value={name}
           onChange={(e) => setName(e.target.value)}
+          style={{ background: '#232326', color: '#f4f4f5', border: '1.5px solid #27272a', borderRadius: '8px', padding: '8px' }}
         /><br /><br />
         <textarea
           rows="3"
@@ -121,8 +122,9 @@ function CourseDetail() {
           placeholder="コメント内容"
           value={text}
           onChange={(e) => setText(e.target.value)}
+          style={{ background: '#232326', color: '#f4f4f5', border: '1.5px solid #27272a', borderRadius: '8px', padding: '8px' }}
         /><br />
-        <button type="submit" style={{ backgroundColor: '#c92a2a', color: 'white', padding: '8px 12px', border: 'none' }}>
+        <button type="submit" style={{ backgroundColor: '#c92a2a', color: 'white', padding: '8px 12px', border: 'none', fontWeight: 700, borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.10)' }}>
           投稿
         </button>
       </form>
