@@ -11,7 +11,7 @@ import {
   db,
 } from "../firebase";
 import { doc, getDoc } from "firebase/firestore";
-import { FaCheckCircle, FaUserShield, FaMoneyCheckAlt, FaLock, FaGoogle } from 'react-icons/fa';
+import { FaCheckCircle, FaUserShield, FaMoneyCheckAlt, FaLock, FaGoogle, FaArrowRight } from 'react-icons/fa';
 import { HiOutlineArrowRight } from 'react-icons/hi';
 
 function LandingPage() {
@@ -66,9 +66,13 @@ function LandingPage() {
         </p>
         <a
           href="#apply"
-          className="inline-block bg-gradient-to-r from-[#fbbf24] to-[#f59e42] text-[#18181b] rounded-full px-8 py-4 text-xl font-bold shadow-lg hover:scale-105 hover:shadow-2xl transition-transform duration-200 mb-2 text-center"
+          style={{
+            display:'inline-flex',alignItems:'center',gap:'0.75rem',background:'linear-gradient(90deg,#fbbf24,#f59e42)',color:'#18181b',borderRadius:'9999px',padding:'1.25rem 2.5rem',fontSize:'1.3rem',fontWeight:'bold',boxShadow:'0 4px 24px rgba(0,0,0,0.18)',textDecoration:'none',transition:'transform 0.2s,box-shadow 0.2s',marginBottom:'0.5rem',letterSpacing:'0.02em',position:'relative',overflow:'hidden',border:'none',outline:'none',cursor:'pointer'
+          }}
+          onMouseOver={e=>{e.currentTarget.style.transform='scale(1.06)';e.currentTarget.style.boxShadow='0 8px 32px rgba(0,0,0,0.22)';}}
+          onMouseOut={e=>{e.currentTarget.style.transform='scale(1)';e.currentTarget.style.boxShadow='0 4px 24px rgba(0,0,0,0.18)';}}
         >
-          まずは申請する
+          まずは申請する <FaArrowRight style={{fontSize:'1.3em'}} />
         </a>
       </section>
 
@@ -128,43 +132,53 @@ function LandingPage() {
         </a>
       </section>
 
-      {/* ログイン・登録フォーム */}
-      <section className="w-full max-w-md bg-[#232326] rounded-2xl shadow-xl border border-[#27272a] p-8 mb-10 animate-fade-in flex flex-col items-center">
-        <p className="text-[#e4e4e7] mb-4 text-center">すでに申請済みの方はこちらからログイン</p>
+      {/* ログイン・登録フォーム（カード型・モダンUI） */}
+      <section style={{width:'100%',maxWidth:'420px',background:'#232326',borderRadius:'1.2rem',boxShadow:'0 4px 24px rgba(0,0,0,0.22)',border:'1.5px solid #27272a',padding:'2.5rem 2rem',margin:'0 auto 40px auto',display:'flex',flexDirection:'column',alignItems:'center',gap:'1.2rem'}}>
+        <p style={{color:'#e4e4e7',marginBottom:'0.5rem',fontWeight:'bold',fontSize:'1.08rem',textAlign:'center'}}>すでに申請済みの方はこちらからログイン</p>
         <button
           onClick={loginWithGoogle}
-          className="flex items-center justify-center gap-2 bg-gradient-to-r from-[#2f9e44] to-[#22d3ee] hover:from-[#22d3ee] hover:to-[#2f9e44] text-white px-6 py-3 rounded-full font-bold text-lg transition mb-4 shadow-lg hover:scale-105"
+          style={{display:'flex',alignItems:'center',justifyContent:'center',gap:'0.7rem',background:'linear-gradient(90deg,#2f9e44,#22d3ee)',color:'#fff',borderRadius:'9999px',padding:'0.9rem 2.2rem',fontWeight:'bold',fontSize:'1.1rem',boxShadow:'0 2px 12px rgba(0,0,0,0.18)',border:'none',outline:'none',cursor:'pointer',marginBottom:'1.1rem',transition:'transform 0.2s,box-shadow 0.2s'}}
+          onMouseOver={e=>{e.currentTarget.style.transform='scale(1.05)';e.currentTarget.style.boxShadow='0 6px 24px rgba(0,0,0,0.22)';}}
+          onMouseOut={e=>{e.currentTarget.style.transform='scale(1)';e.currentTarget.style.boxShadow='0 2px 12px rgba(0,0,0,0.18)';}}
         >
-          <FaGoogle className="text-xl" /> Googleでログイン
+          <FaGoogle style={{fontSize:'1.3em'}} /> Googleでログイン
         </button>
-        <div className="w-full mt-2">
+        <form style={{width:'100%',display:'flex',flexDirection:'column',gap:'0.7rem'}} onSubmit={e=>{e.preventDefault();handleEmailAuth();}}>
+          <label htmlFor="email" style={{color:'#e4e4e7',fontWeight:'bold',marginBottom:'0.2rem',textAlign:'left'}}>メールアドレス</label>
           <input
+            id="email"
             type="email"
             placeholder="メールアドレス"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="block w-full px-4 py-3 mb-3 border rounded-lg bg-[#18181b] text-[#f4f4f5] border-[#27272a] focus:border-[#22d3ee] focus:ring-2 focus:ring-[#22d3ee] transition"
+            style={{width:'100%',padding:'0.9rem',borderRadius:'0.7rem',background:'#18181b',color:'#f4f4f5',border:'1.5px solid #27272a',fontSize:'1rem',marginBottom:'0.1rem',outline:'none',boxSizing:'border-box'}}
           />
+          <label htmlFor="password" style={{color:'#e4e4e7',fontWeight:'bold',marginBottom:'0.2rem',textAlign:'left'}}>パスワード</label>
           <input
+            id="password"
             type="password"
             placeholder="パスワード"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="block w-full px-4 py-3 mb-3 border rounded-lg bg-[#18181b] text-[#f4f4f5] border-[#27272a] focus:border-[#22d3ee] focus:ring-2 focus:ring-[#22d3ee] transition"
+            style={{width:'100%',padding:'0.9rem',borderRadius:'0.7rem',background:'#18181b',color:'#f4f4f5',border:'1.5px solid #27272a',fontSize:'1rem',marginBottom:'0.1rem',outline:'none',boxSizing:'border-box'}}
           />
           <button
-            onClick={handleEmailAuth}
-            className="w-full bg-gradient-to-r from-[#c92a2a] to-[#fbbf24] hover:from-[#fbbf24] hover:to-[#c92a2a] text-[#18181b] font-bold py-3 rounded-full shadow-lg hover:scale-105 transition mb-2"
+            type="submit"
+            style={{width:'100%',background:'linear-gradient(90deg,#c92a2a,#fbbf24)',color:'#18181b',fontWeight:'bold',fontSize:'1.1rem',padding:'0.9rem',borderRadius:'9999px',boxShadow:'0 2px 12px rgba(0,0,0,0.18)',border:'none',outline:'none',marginTop:'0.7rem',marginBottom:'0.2rem',cursor:'pointer',transition:'transform 0.2s,box-shadow 0.2s'}}
+            onMouseOver={e=>{e.currentTarget.style.transform='scale(1.03)';e.currentTarget.style.boxShadow='0 6px 24px rgba(0,0,0,0.22)';}}
+            onMouseOut={e=>{e.currentTarget.style.transform='scale(1)';e.currentTarget.style.boxShadow='0 2px 12px rgba(0,0,0,0.18)';}}
           >
             {isRegistering ? "新規登録" : "ログイン"}
           </button>
-          <button
-            onClick={() => setIsRegistering(!isRegistering)}
-            className="text-sm text-blue-400 mt-2 underline hover:text-blue-300 transition"
-          >
-            {isRegistering ? "ログインへ切り替え" : "新規登録へ切り替え"}
-          </button>
-        </div>
+        </form>
+        <button
+          onClick={() => setIsRegistering(!isRegistering)}
+          style={{fontSize:'1rem',color:'#a5b4fc',background:'none',border:'none',textDecoration:'underline',marginTop:'0.5rem',cursor:'pointer',fontWeight:'bold',padding:'0.3rem 0.7rem',borderRadius:'0.5rem',transition:'color 0.2s'}}
+          onMouseOver={e=>{e.currentTarget.style.color='#818cf8';}}
+          onMouseOut={e=>{e.currentTarget.style.color='#a5b4fc';}}
+        >
+          {isRegistering ? "ログインへ切り替え" : "新規登録へ切り替え"}
+        </button>
       </section>
 
       <footer className="text-[#a1a1aa] text-sm mt-10 mb-4">
