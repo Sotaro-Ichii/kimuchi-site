@@ -72,69 +72,57 @@ function LandingPage() {
         </a>
       </section>
 
-      {/* ご利用条件カード（カード型・横並び/スマホは縦） */}
-      <section className="w-full max-w-5xl flex flex-col gap-8 items-center mb-16">
-        <h2 className="text-2xl font-bold text-[#2f9e44] flex items-center gap-2 mb-6">
-          <FaUserShield className="inline text-[#2f9e44]" /> ご利用条件
+      {/* ご利用条件カード（完全インラインstyle） */}
+      <section style={{width:'100%',maxWidth:'1100px',margin:'0 auto 64px auto',display:'flex',flexDirection:'column',alignItems:'center',gap:'32px'}}>
+        <h2 style={{fontSize:'1.5rem',fontWeight:'bold',color:'#2f9e44',display:'flex',alignItems:'center',gap:'0.5rem',marginBottom:'24px'}}>
+          <FaUserShield style={{color:'#2f9e44'}} /> ご利用条件
         </h2>
-        <div className="flex flex-col md:flex-row gap-8 w-full justify-center">
-          <div className="flex-1 bg-gray-800 rounded-2xl shadow-lg border border-gray-700 p-8 flex flex-col items-center text-center transition hover:scale-105 hover:shadow-2xl"
-            style={{backgroundColor:'#232326',borderRadius:'1rem',boxShadow:'0 4px 24px rgba(0,0,0,0.25)',border:'1.5px solid #27272a'}}>
-            <FaCheckCircle className="text-[#22d3ee] text-4xl mb-3" />
-            <div className="font-bold text-lg mb-2">承認制</div>
-            <div className="text-[#e4e4e7] text-base">GoogleまたはEmailログイン＋申請必須</div>
+        <div style={{display:'flex',flexDirection:'row',gap:'32px',width:'100%',justifyContent:'center',flexWrap:'wrap'}}>
+          <div style={{background:'#232326',borderRadius:'1rem',boxShadow:'0 4px 24px rgba(0,0,0,0.25)',border:'1.5px solid #27272a',padding:'2rem',minWidth:'220px',textAlign:'center',flex:'1 1 220px',maxWidth:'340px'}}>
+            <FaCheckCircle style={{color:'#22d3ee',fontSize:'2.2rem',marginBottom:'0.75rem'}} />
+            <div style={{fontWeight:'bold',fontSize:'1.1rem',marginBottom:'0.5rem'}}>承認制</div>
+            <div style={{color:'#e4e4e7',fontSize:'1rem'}}>GoogleまたはEmailログイン＋申請必須</div>
           </div>
-          <div className="flex-1 bg-gray-800 rounded-2xl shadow-lg border border-gray-700 p-8 flex flex-col items-center text-center transition hover:scale-105 hover:shadow-2xl"
-            style={{backgroundColor:'#232326',borderRadius:'1rem',boxShadow:'0 4px 24px rgba(0,0,0,0.25)',border:'1.5px solid #27272a'}}>
-            <FaMoneyCheckAlt className="text-[#fbbf24] text-4xl mb-3" />
-            <div className="font-bold text-lg mb-2">Zelleで一括支払い</div>
-            <div className="text-[#e4e4e7] text-base">$49.9 / 3ヶ月</div>
+          <div style={{background:'#232326',borderRadius:'1rem',boxShadow:'0 4px 24px rgba(0,0,0,0.25)',border:'1.5px solid #27272a',padding:'2rem',minWidth:'220px',textAlign:'center',flex:'1 1 220px',maxWidth:'340px'}}>
+            <FaMoneyCheckAlt style={{color:'#fbbf24',fontSize:'2.2rem',marginBottom:'0.75rem'}} />
+            <div style={{fontWeight:'bold',fontSize:'1.1rem',marginBottom:'0.5rem'}}>Zelleで一括支払い</div>
+            <div style={{color:'#e4e4e7',fontSize:'1rem'}}>$49.9 / 3ヶ月</div>
           </div>
-          <div className="flex-1 bg-gray-800 rounded-2xl shadow-lg border border-gray-700 p-8 flex flex-col items-center text-center transition hover:scale-105 hover:shadow-2xl"
-            style={{backgroundColor:'#232326',borderRadius:'1rem',boxShadow:'0 4px 24px rgba(0,0,0,0.25)',border:'1.5px solid #27272a'}}>
-            <FaLock className="text-[#c92a2a] text-4xl mb-3" />
-            <div className="font-bold text-lg mb-2">外部共有は厳禁</div>
-            <div className="text-[#e4e4e7] text-base">ログイン情報・内容の外部共有は<strong>厳禁</strong></div>
+          <div style={{background:'#232326',borderRadius:'1rem',boxShadow:'0 4px 24px rgba(0,0,0,0.25)',border:'1.5px solid #27272a',padding:'2rem',minWidth:'220px',textAlign:'center',flex:'1 1 220px',maxWidth:'340px'}}>
+            <FaLock style={{color:'#c92a2a',fontSize:'2.2rem',marginBottom:'0.75rem'}} />
+            <div style={{fontWeight:'bold',fontSize:'1.1rem',marginBottom:'0.5rem'}}>外部共有は厳禁</div>
+            <div style={{color:'#e4e4e7',fontSize:'1rem'}}>ログイン情報・内容の外部共有は<strong>厳禁</strong></div>
           </div>
         </div>
       </section>
 
-      {/* ご利用までの流れ（ステップ型カード） */}
-      <section id="apply" className="w-full max-w-4xl bg-gray-800 rounded-2xl shadow-xl border border-gray-700 p-10 mb-16 animate-fade-in flex flex-col items-center"
-        style={{backgroundColor:'#232326',borderRadius:'1rem',boxShadow:'0 4px 24px rgba(0,0,0,0.25)',border:'1.5px solid #27272a'}}>
-        <h3 className="text-2xl font-bold text-[#fbbf24] mb-8 flex items-center gap-2">
-          <HiOutlineArrowRight className="text-[#fbbf24] text-2xl" /> ご利用までの流れ
+      {/* ご利用までの流れ（完全インラインstyleステップ型） */}
+      <section id="apply" style={{width:'100%',maxWidth:'900px',background:'#232326',borderRadius:'1rem',boxShadow:'0 4px 24px rgba(0,0,0,0.25)',border:'1.5px solid #27272a',padding:'2.5rem',margin:'0 auto 64px auto',display:'flex',flexDirection:'column',alignItems:'center'}}>
+        <h3 style={{fontSize:'1.4rem',fontWeight:'bold',color:'#fbbf24',display:'flex',alignItems:'center',gap:'0.5rem',marginBottom:'2rem'}}>
+          <HiOutlineArrowRight style={{color:'#fbbf24',fontSize:'1.5rem'}} /> ご利用までの流れ
         </h3>
-        <div className="flex flex-col md:flex-row gap-8 w-full justify-center items-start mb-8">
-          <div className="flex-1 flex flex-col items-center">
-            <div className="bg-gray-900 border-4 border-[#22d3ee] rounded-full w-16 h-16 flex items-center justify-center text-3xl font-bold text-[#22d3ee] mb-3 shadow-lg"
-              style={{backgroundColor:'#18181b',border:'4px solid #22d3ee',borderRadius:'9999px',boxShadow:'0 2px 12px rgba(0,0,0,0.18)'}}>
-              1
-            </div>
-            <div className="text-[#e4e4e7] text-center text-base">Zelleで <strong>$49.9</strong> を一括zell送金<br /><span className="text-xs">（送金先電話番号: 657-709-1289）</span></div>
+        <div style={{display:'flex',flexDirection:'row',gap:'32px',width:'100%',justifyContent:'center',flexWrap:'wrap',marginBottom:'2rem'}}>
+          {/* ステップ1 */}
+          <div style={{flex:'1 1 220px',maxWidth:'260px',display:'flex',flexDirection:'column',alignItems:'center'}}>
+            <div style={{background:'#18181b',border:'4px solid #22d3ee',borderRadius:'9999px',boxShadow:'0 2px 12px rgba(0,0,0,0.18)',width:'64px',height:'64px',display:'flex',alignItems:'center',justifyContent:'center',fontSize:'2rem',fontWeight:'bold',color:'#22d3ee',marginBottom:'0.75rem'}}>1</div>
+            <div style={{color:'#e4e4e7',textAlign:'center',fontSize:'1rem'}}>Zelleで <strong>$49.9</strong> を一括zell送金<br /><span style={{fontSize:'0.9rem'}}>（送金先電話番号: 657-709-1289）</span></div>
           </div>
-          <div className="hidden md:flex items-center justify-center text-4xl text-[#6366f1]">→</div>
-          <div className="flex-1 flex flex-col items-center">
-            <div className="bg-gray-900 border-4 border-[#22d3ee] rounded-full w-16 h-16 flex items-center justify-center text-3xl font-bold text-[#22d3ee] mb-3 shadow-lg"
-              style={{backgroundColor:'#18181b',border:'4px solid #22d3ee',borderRadius:'9999px',boxShadow:'0 2px 12px rgba(0,0,0,0.18)'}}>
-              2
-            </div>
-            <div className="text-[#e4e4e7] text-center text-base">申請フォームに必要事項を記入</div>
+          {/* ステップ2 */}
+          <div style={{flex:'1 1 220px',maxWidth:'260px',display:'flex',flexDirection:'column',alignItems:'center'}}>
+            <div style={{background:'#18181b',border:'4px solid #22d3ee',borderRadius:'9999px',boxShadow:'0 2px 12px rgba(0,0,0,0.18)',width:'64px',height:'64px',display:'flex',alignItems:'center',justifyContent:'center',fontSize:'2rem',fontWeight:'bold',color:'#22d3ee',marginBottom:'0.75rem'}}>2</div>
+            <div style={{color:'#e4e4e7',textAlign:'center',fontSize:'1rem'}}>申請フォームに必要事項を記入</div>
           </div>
-          <div className="hidden md:flex items-center justify-center text-4xl text-[#6366f1]">→</div>
-          <div className="flex-1 flex flex-col items-center">
-            <div className="bg-gray-900 border-4 border-[#22d3ee] rounded-full w-16 h-16 flex items-center justify-center text-3xl font-bold text-[#22d3ee] mb-3 shadow-lg"
-              style={{backgroundColor:'#18181b',border:'4px solid #22d3ee',borderRadius:'9999px',boxShadow:'0 2px 12px rgba(0,0,0,0.18)'}}>
-              3
-            </div>
-            <div className="text-[#e4e4e7] text-center text-base">審査後、24時間以内に結果をご連絡</div>
+          {/* ステップ3 */}
+          <div style={{flex:'1 1 220px',maxWidth:'260px',display:'flex',flexDirection:'column',alignItems:'center'}}>
+            <div style={{background:'#18181b',border:'4px solid #22d3ee',borderRadius:'9999px',boxShadow:'0 2px 12px rgba(0,0,0,0.18)',width:'64px',height:'64px',display:'flex',alignItems:'center',justifyContent:'center',fontSize:'2rem',fontWeight:'bold',color:'#22d3ee',marginBottom:'0.75rem'}}>3</div>
+            <div style={{color:'#e4e4e7',textAlign:'center',fontSize:'1rem'}}>審査後、24時間以内に結果をご連絡</div>
           </div>
         </div>
         <a
           href="https://docs.google.com/forms/d/e/1FAIpQLSeiKGlblgkAzjJmbVEno3L5lwWPiVt6ECZgt0OV9Ps6r6SRmw/viewform?usp=header"
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-4 inline-block bg-gradient-to-r from-[#2f9e44] to-[#22d3ee] text-white rounded-full px-8 py-4 text-lg font-bold hover:scale-105 hover:shadow-2xl transition-transform duration-200 shadow"
+          style={{marginTop:'1rem',display:'inline-block',background:'linear-gradient(90deg,#2f9e44,#22d3ee)',color:'#fff',borderRadius:'9999px',padding:'1rem 2.5rem',fontSize:'1.1rem',fontWeight:'bold',boxShadow:'0 2px 12px rgba(0,0,0,0.18)',textDecoration:'none',transition:'transform 0.2s,box-shadow 0.2s'}}
         >
           申請フォームはこちら
         </a>
