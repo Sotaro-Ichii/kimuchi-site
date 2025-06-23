@@ -76,108 +76,343 @@ function LandingPage() {
         </a>
       </section>
 
-      {/* ご利用条件カード（完全インラインstyle） */}
-      <section style={{width:'100%',maxWidth:'1100px',margin:'0 auto 64px auto',display:'flex',flexDirection:'column',alignItems:'center',gap:'32px'}}>
-        <h2 style={{fontSize:'1.5rem',fontWeight:'bold',color:'#2f9e44',display:'flex',alignItems:'center',gap:'0.5rem',marginBottom:'24px'}}>
-          <FaUserShield style={{color:'#2f9e44'}} /> ご利用条件
+      {/* ご利用条件カード（完全インラインstyle, レスポンシブ対応） */}
+      <section
+        style={{
+          width: '100%',
+          maxWidth: '1100px',
+          margin: '0 auto 64px auto',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: '32px',
+        }}
+      >
+        <h2
+          style={{
+            fontSize: '1.5rem',
+            fontWeight: 'bold',
+            color: '#2f9e44',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.5rem',
+            marginBottom: '24px',
+          }}
+        >
+          <FaUserShield style={{ color: '#2f9e44' }} /> ご利用条件
         </h2>
-        <div style={{display:'flex',flexDirection:'row',gap:'32px',width:'100%',justifyContent:'center',flexWrap:'wrap'}}>
-          <div style={{background:'#232326',borderRadius:'1rem',boxShadow:'0 4px 24px rgba(0,0,0,0.25)',border:'1.5px solid #27272a',padding:'2rem',minWidth:'220px',textAlign:'center',flex:'1 1 220px',maxWidth:'340px'}}>
-            <FaCheckCircle style={{color:'#22d3ee',fontSize:'2.2rem',marginBottom:'0.75rem'}} />
-            <div style={{fontWeight:'bold',fontSize:'1.1rem',marginBottom:'0.5rem'}}>承認制</div>
-            <div style={{color:'#e4e4e7',fontSize:'1rem'}}>GoogleまたはEmailログイン＋申請必須</div>
-          </div>
-          <div style={{background:'#232326',borderRadius:'1rem',boxShadow:'0 4px 24px rgba(0,0,0,0.25)',border:'1.5px solid #27272a',padding:'2rem',minWidth:'220px',textAlign:'center',flex:'1 1 220px',maxWidth:'340px'}}>
-            <FaMoneyCheckAlt style={{color:'#fbbf24',fontSize:'2.2rem',marginBottom:'0.75rem'}} />
-            <div style={{fontWeight:'bold',fontSize:'1.1rem',marginBottom:'0.5rem'}}>Zelleで一括支払い</div>
-            <div style={{color:'#e4e4e7',fontSize:'1rem'}}>$49.9 / 3ヶ月</div>
-          </div>
-          <div style={{background:'#232326',borderRadius:'1rem',boxShadow:'0 4px 24px rgba(0,0,0,0.25)',border:'1.5px solid #27272a',padding:'2rem',minWidth:'220px',textAlign:'center',flex:'1 1 220px',maxWidth:'340px'}}>
-            <FaLock style={{color:'#c92a2a',fontSize:'2.2rem',marginBottom:'0.75rem'}} />
-            <div style={{fontWeight:'bold',fontSize:'1.1rem',marginBottom:'0.5rem'}}>外部共有は厳禁</div>
-            <div style={{color:'#e4e4e7',fontSize:'1rem'}}>ログイン情報・内容の外部共有は<strong>厳禁</strong></div>
-          </div>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            gap: '32px',
+            width: '100%',
+            justifyContent: 'center',
+            flexWrap: 'wrap',
+            ...(window.innerWidth <= 600
+              ? { flexDirection: 'column', gap: '20px', alignItems: 'center' }
+              : {}),
+          }}
+        >
+          {[{
+            icon: <FaCheckCircle style={{ color: '#22d3ee', fontSize: '2.2rem', marginBottom: '0.75rem' }} />, title: '承認制', desc: 'GoogleまたはEmailログイン＋申請必須'
+          }, {
+            icon: <FaMoneyCheckAlt style={{ color: '#fbbf24', fontSize: '2.2rem', marginBottom: '0.75rem' }} />, title: 'Zelleで一括支払い', desc: '$49.9 / 3ヶ月'
+          }, {
+            icon: <FaLock style={{ color: '#c92a2a', fontSize: '2.2rem', marginBottom: '0.75rem' }} />, title: '外部共有は厳禁', desc: 'ログイン情報・内容の外部共有は厳禁'
+          }].map((item, i) => (
+            <div
+              key={i}
+              style={{
+                background: '#232326',
+                borderRadius: '1rem',
+                boxShadow: '0 4px 24px rgba(0,0,0,0.25)',
+                border: '1.5px solid #27272a',
+                padding: window.innerWidth <= 600 ? '1.2rem' : '2rem',
+                minWidth: window.innerWidth <= 600 ? '0' : '220px',
+                width: window.innerWidth <= 600 ? '90vw' : 'auto',
+                maxWidth: '340px',
+                textAlign: 'center',
+                flex: '1 1 220px',
+                margin: window.innerWidth <= 600 ? '0 auto' : undefined,
+              }}
+            >
+              {item.icon}
+              <div style={{ fontWeight: 'bold', fontSize: '1.1rem', marginBottom: '0.5rem' }}>{item.title}</div>
+              <div style={{ color: '#e4e4e7', fontSize: '1rem' }}>{item.desc}</div>
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* ご利用までの流れ（完全インラインstyleステップ型） */}
-      <section id="apply" style={{width:'100%',maxWidth:'900px',background:'#232326',borderRadius:'1rem',boxShadow:'0 4px 24px rgba(0,0,0,0.25)',border:'1.5px solid #27272a',padding:'2.5rem',margin:'0 auto 64px auto',display:'flex',flexDirection:'column',alignItems:'center'}}>
-        <h3 style={{fontSize:'1.4rem',fontWeight:'bold',color:'#fbbf24',display:'flex',alignItems:'center',gap:'0.5rem',marginBottom:'2rem'}}>
-          <HiOutlineArrowRight style={{color:'#fbbf24',fontSize:'1.5rem'}} /> ご利用までの流れ
+      {/* ご利用までの流れ（完全インラインstyleステップ型, レスポンシブ対応） */}
+      <section
+        id="apply"
+        style={{
+          width: '100%',
+          maxWidth: '900px',
+          background: '#232326',
+          borderRadius: '1rem',
+          boxShadow: '0 4px 24px rgba(0,0,0,0.25)',
+          border: '1.5px solid #27272a',
+          padding: window.innerWidth <= 600 ? '1.5rem 0.5rem' : '2.5rem',
+          margin: '0 auto 64px auto',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <h3
+          style={{
+            fontSize: window.innerWidth <= 600 ? '1.1rem' : '1.4rem',
+            fontWeight: 'bold',
+            color: '#fbbf24',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.5rem',
+            marginBottom: window.innerWidth <= 600 ? '1.2rem' : '2rem',
+          }}
+        >
+          <HiOutlineArrowRight style={{ color: '#fbbf24', fontSize: '1.5rem' }} /> ご利用までの流れ
         </h3>
-        <div style={{display:'flex',flexDirection:'row',gap:'32px',width:'100%',justifyContent:'center',flexWrap:'wrap',marginBottom:'2rem'}}>
-          {/* ステップ1 */}
-          <div style={{flex:'1 1 220px',maxWidth:'260px',display:'flex',flexDirection:'column',alignItems:'center'}}>
-            <div style={{background:'#18181b',border:'4px solid #22d3ee',borderRadius:'9999px',boxShadow:'0 2px 12px rgba(0,0,0,0.18)',width:'64px',height:'64px',display:'flex',alignItems:'center',justifyContent:'center',fontSize:'2rem',fontWeight:'bold',color:'#22d3ee',marginBottom:'0.75rem'}}>1</div>
-            <div style={{color:'#e4e4e7',textAlign:'center',fontSize:'1rem'}}>Zelleで <strong>$49.9</strong> を一括zell送金<br /><span style={{fontSize:'0.9rem'}}>（送金先電話番号: 657-709-1289）</span></div>
-          </div>
-          {/* ステップ2 */}
-          <div style={{flex:'1 1 220px',maxWidth:'260px',display:'flex',flexDirection:'column',alignItems:'center'}}>
-            <div style={{background:'#18181b',border:'4px solid #22d3ee',borderRadius:'9999px',boxShadow:'0 2px 12px rgba(0,0,0,0.18)',width:'64px',height:'64px',display:'flex',alignItems:'center',justifyContent:'center',fontSize:'2rem',fontWeight:'bold',color:'#22d3ee',marginBottom:'0.75rem'}}>2</div>
-            <div style={{color:'#e4e4e7',textAlign:'center',fontSize:'1rem'}}>申請フォームに必要事項を記入</div>
-          </div>
-          {/* ステップ3 */}
-          <div style={{flex:'1 1 220px',maxWidth:'260px',display:'flex',flexDirection:'column',alignItems:'center'}}>
-            <div style={{background:'#18181b',border:'4px solid #22d3ee',borderRadius:'9999px',boxShadow:'0 2px 12px rgba(0,0,0,0.18)',width:'64px',height:'64px',display:'flex',alignItems:'center',justifyContent:'center',fontSize:'2rem',fontWeight:'bold',color:'#22d3ee',marginBottom:'0.75rem'}}>3</div>
-            <div style={{color:'#e4e4e7',textAlign:'center',fontSize:'1rem'}}>審査後、24時間以内に結果をご連絡</div>
-          </div>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: window.innerWidth <= 600 ? 'column' : 'row',
+            gap: window.innerWidth <= 600 ? '20px' : '32px',
+            width: '100%',
+            justifyContent: 'center',
+            flexWrap: 'wrap',
+            marginBottom: window.innerWidth <= 600 ? '1.2rem' : '2rem',
+            alignItems: 'center',
+          }}
+        >
+          {[{
+            num: '1',
+            desc: <>Zelleで <strong>$49.9</strong> を一括zell送金<br /><span style={{ fontSize: '0.9rem' }}>（送金先電話番号: 657-709-1289）</span></>
+          }, {
+            num: '2',
+            desc: <>申請フォームに必要事項を記入</>
+          }, {
+            num: '3',
+            desc: <>審査後、24時間以内に結果をご連絡</>
+          }].map((item, i) => (
+            <div
+              key={i}
+              style={{
+                flex: '1 1 220px',
+                maxWidth: '260px',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                margin: window.innerWidth <= 600 ? '0 auto' : undefined,
+              }}
+            >
+              <div
+                style={{
+                  background: '#18181b',
+                  border: '4px solid #22d3ee',
+                  borderRadius: '9999px',
+                  boxShadow: '0 2px 12px rgba(0,0,0,0.18)',
+                  width: window.innerWidth <= 600 ? '48px' : '64px',
+                  height: window.innerWidth <= 600 ? '48px' : '64px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: window.innerWidth <= 600 ? '1.2rem' : '2rem',
+                  fontWeight: 'bold',
+                  color: '#22d3ee',
+                  marginBottom: '0.75rem',
+                }}
+              >
+                {item.num}
+              </div>
+              <div style={{ color: '#e4e4e7', textAlign: 'center', fontSize: window.innerWidth <= 600 ? '0.98rem' : '1rem' }}>{item.desc}</div>
+            </div>
+          ))}
         </div>
         <a
           href="https://docs.google.com/forms/d/e/1FAIpQLSeiKGlblgkAzjJmbVEno3L5lwWPiVt6ECZgt0OV9Ps6r6SRmw/viewform?usp=header"
           target="_blank"
           rel="noopener noreferrer"
-          style={{marginTop:'1rem',display:'inline-block',background:'linear-gradient(90deg,#2f9e44,#22d3ee)',color:'#fff',borderRadius:'9999px',padding:'1rem 2.5rem',fontSize:'1.1rem',fontWeight:'bold',boxShadow:'0 2px 12px rgba(0,0,0,0.18)',textDecoration:'none',transition:'transform 0.2s,box-shadow 0.2s'}}
+          style={{
+            marginTop: '1rem',
+            display: 'inline-block',
+            background: 'linear-gradient(90deg,#2f9e44,#22d3ee)',
+            color: '#fff',
+            borderRadius: '9999px',
+            padding: window.innerWidth <= 600 ? '0.8rem 1.5rem' : '1rem 2.5rem',
+            fontSize: window.innerWidth <= 600 ? '1rem' : '1.1rem',
+            fontWeight: 'bold',
+            boxShadow: '0 2px 12px rgba(0,0,0,0.18)',
+            textDecoration: 'none',
+            transition: 'transform 0.2s,box-shadow 0.2s',
+          }}
         >
           申請フォームはこちら
         </a>
       </section>
 
-      {/* ログイン・登録フォーム（カード型・モダンUI） */}
-      <section style={{width:'100%',maxWidth:'420px',background:'#232326',borderRadius:'1.2rem',boxShadow:'0 4px 24px rgba(0,0,0,0.22)',border:'1.5px solid #27272a',padding:'2.5rem 2rem',margin:'0 auto 40px auto',display:'flex',flexDirection:'column',alignItems:'center',gap:'1.2rem'}}>
-        <p style={{color:'#e4e4e7',marginBottom:'0.5rem',fontWeight:'bold',fontSize:'1.08rem',textAlign:'center'}}>すでに申請済みの方はこちらからログイン</p>
+      {/* ログイン・登録フォーム（カード型・モダンUI, レスポンシブ対応） */}
+      <section
+        style={{
+          width: '100%',
+          maxWidth: window.innerWidth <= 600 ? '98vw' : '420px',
+          background: '#232326',
+          borderRadius: '1.2rem',
+          boxShadow: '0 4px 24px rgba(0,0,0,0.22)',
+          border: '1.5px solid #27272a',
+          padding: window.innerWidth <= 600 ? '1.5rem 0.5rem' : '2.5rem 2rem',
+          margin: '0 auto 40px auto',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: '1.2rem',
+        }}
+      >
+        <p style={{ color: '#e4e4e7', marginBottom: '0.5rem', fontWeight: 'bold', fontSize: window.innerWidth <= 600 ? '1rem' : '1.08rem', textAlign: 'center' }}>
+          すでに申請済みの方はこちらからログイン
+        </p>
         <button
           onClick={loginWithGoogle}
-          style={{display:'flex',alignItems:'center',justifyContent:'center',gap:'0.7rem',background:'linear-gradient(90deg,#2f9e44,#22d3ee)',color:'#fff',borderRadius:'9999px',padding:'0.9rem 2.2rem',fontWeight:'bold',fontSize:'1.1rem',boxShadow:'0 2px 12px rgba(0,0,0,0.18)',border:'none',outline:'none',cursor:'pointer',marginBottom:'1.1rem',transition:'transform 0.2s,box-shadow 0.2s'}}
-          onMouseOver={e=>{e.currentTarget.style.transform='scale(1.05)';e.currentTarget.style.boxShadow='0 6px 24px rgba(0,0,0,0.22)';}}
-          onMouseOut={e=>{e.currentTarget.style.transform='scale(1)';e.currentTarget.style.boxShadow='0 2px 12px rgba(0,0,0,0.18)';}}
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '0.7rem',
+            background: 'linear-gradient(90deg,#2f9e44,#22d3ee)',
+            color: '#fff',
+            borderRadius: '9999px',
+            padding: window.innerWidth <= 600 ? '0.7rem 1.2rem' : '0.9rem 2.2rem',
+            fontWeight: 'bold',
+            fontSize: window.innerWidth <= 600 ? '1rem' : '1.1rem',
+            boxShadow: '0 2px 12px rgba(0,0,0,0.18)',
+            border: 'none',
+            outline: 'none',
+            cursor: 'pointer',
+            marginBottom: '1.1rem',
+            transition: 'transform 0.2s,box-shadow 0.2s',
+          }}
+          onMouseOver={e => {
+            e.currentTarget.style.transform = 'scale(1.05)';
+            e.currentTarget.style.boxShadow = '0 6px 24px rgba(0,0,0,0.22)';
+          }}
+          onMouseOut={e => {
+            e.currentTarget.style.transform = 'scale(1)';
+            e.currentTarget.style.boxShadow = '0 2px 12px rgba(0,0,0,0.18)';
+          }}
         >
-          <FaGoogle style={{fontSize:'1.3em'}} /> Googleでログイン
+          <FaGoogle style={{ fontSize: '1.3em' }} /> Googleでログイン
         </button>
-        <form style={{width:'100%',display:'flex',flexDirection:'column',gap:'0.7rem'}} onSubmit={e=>{e.preventDefault();handleEmailAuth();}}>
-          <label htmlFor="email" style={{color:'#e4e4e7',fontWeight:'bold',marginBottom:'0.2rem',textAlign:'left'}}>メールアドレス</label>
+        <form
+          style={{
+            width: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '0.7rem',
+          }}
+          onSubmit={e => {
+            e.preventDefault();
+            handleEmailAuth();
+          }}
+        >
+          <label htmlFor="email" style={{ color: '#e4e4e7', fontWeight: 'bold', marginBottom: '0.2rem', textAlign: 'left', fontSize: window.innerWidth <= 600 ? '0.98rem' : '1rem' }}>
+            メールアドレス
+          </label>
           <input
             id="email"
             type="email"
             placeholder="メールアドレス"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            style={{width:'100%',padding:'0.9rem',borderRadius:'0.7rem',background:'#18181b',color:'#f4f4f5',border:'1.5px solid #27272a',fontSize:'1rem',marginBottom:'0.1rem',outline:'none',boxSizing:'border-box'}}
+            onChange={e => setEmail(e.target.value)}
+            style={{
+              width: '100%',
+              padding: window.innerWidth <= 600 ? '0.7rem' : '0.9rem',
+              borderRadius: '0.7rem',
+              background: '#18181b',
+              color: '#f4f4f5',
+              border: '1.5px solid #27272a',
+              fontSize: window.innerWidth <= 600 ? '0.98rem' : '1rem',
+              marginBottom: '0.1rem',
+              outline: 'none',
+              boxSizing: 'border-box',
+            }}
           />
-          <label htmlFor="password" style={{color:'#e4e4e7',fontWeight:'bold',marginBottom:'0.2rem',textAlign:'left'}}>パスワード</label>
+          <label htmlFor="password" style={{ color: '#e4e4e7', fontWeight: 'bold', marginBottom: '0.2rem', textAlign: 'left', fontSize: window.innerWidth <= 600 ? '0.98rem' : '1rem' }}>
+            パスワード
+          </label>
           <input
             id="password"
             type="password"
             placeholder="パスワード"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            style={{width:'100%',padding:'0.9rem',borderRadius:'0.7rem',background:'#18181b',color:'#f4f4f5',border:'1.5px solid #27272a',fontSize:'1rem',marginBottom:'0.1rem',outline:'none',boxSizing:'border-box'}}
+            onChange={e => setPassword(e.target.value)}
+            style={{
+              width: '100%',
+              padding: window.innerWidth <= 600 ? '0.7rem' : '0.9rem',
+              borderRadius: '0.7rem',
+              background: '#18181b',
+              color: '#f4f4f5',
+              border: '1.5px solid #27272a',
+              fontSize: window.innerWidth <= 600 ? '0.98rem' : '1rem',
+              marginBottom: '0.1rem',
+              outline: 'none',
+              boxSizing: 'border-box',
+            }}
           />
           <button
             type="submit"
-            style={{width:'100%',background:'linear-gradient(90deg,#c92a2a,#fbbf24)',color:'#18181b',fontWeight:'bold',fontSize:'1.1rem',padding:'0.9rem',borderRadius:'9999px',boxShadow:'0 2px 12px rgba(0,0,0,0.18)',border:'none',outline:'none',marginTop:'0.7rem',marginBottom:'0.2rem',cursor:'pointer',transition:'transform 0.2s,box-shadow 0.2s'}}
-            onMouseOver={e=>{e.currentTarget.style.transform='scale(1.03)';e.currentTarget.style.boxShadow='0 6px 24px rgba(0,0,0,0.22)';}}
-            onMouseOut={e=>{e.currentTarget.style.transform='scale(1)';e.currentTarget.style.boxShadow='0 2px 12px rgba(0,0,0,0.18)';}}
+            style={{
+              width: '100%',
+              background: 'linear-gradient(90deg,#c92a2a,#fbbf24)',
+              color: '#18181b',
+              fontWeight: 'bold',
+              fontSize: window.innerWidth <= 600 ? '1rem' : '1.1rem',
+              padding: window.innerWidth <= 600 ? '0.7rem' : '0.9rem',
+              borderRadius: '9999px',
+              boxShadow: '0 2px 12px rgba(0,0,0,0.18)',
+              border: 'none',
+              outline: 'none',
+              marginTop: '0.7rem',
+              marginBottom: '0.2rem',
+              cursor: 'pointer',
+              transition: 'transform 0.2s,box-shadow 0.2s',
+            }}
+            onMouseOver={e => {
+              e.currentTarget.style.transform = 'scale(1.03)';
+              e.currentTarget.style.boxShadow = '0 6px 24px rgba(0,0,0,0.22)';
+            }}
+            onMouseOut={e => {
+              e.currentTarget.style.transform = 'scale(1)';
+              e.currentTarget.style.boxShadow = '0 2px 12px rgba(0,0,0,0.18)';
+            }}
           >
-            {isRegistering ? "新規登録" : "ログイン"}
+            {isRegistering ? '新規登録' : 'ログイン'}
           </button>
         </form>
         <button
           onClick={() => setIsRegistering(!isRegistering)}
-          style={{fontSize:'1rem',color:'#a5b4fc',background:'none',border:'none',textDecoration:'underline',marginTop:'0.5rem',cursor:'pointer',fontWeight:'bold',padding:'0.3rem 0.7rem',borderRadius:'0.5rem',transition:'color 0.2s'}}
-          onMouseOver={e=>{e.currentTarget.style.color='#818cf8';}}
-          onMouseOut={e=>{e.currentTarget.style.color='#a5b4fc';}}
+          style={{
+            fontSize: window.innerWidth <= 600 ? '0.98rem' : '1rem',
+            color: '#a5b4fc',
+            background: 'none',
+            border: 'none',
+            textDecoration: 'underline',
+            marginTop: '0.5rem',
+            cursor: 'pointer',
+            fontWeight: 'bold',
+            padding: '0.3rem 0.7rem',
+            borderRadius: '0.5rem',
+            transition: 'color 0.2s',
+          }}
+          onMouseOver={e => {
+            e.currentTarget.style.color = '#818cf8';
+          }}
+          onMouseOut={e => {
+            e.currentTarget.style.color = '#a5b4fc';
+          }}
         >
-          {isRegistering ? "ログインへ切り替え" : "新規登録へ切り替え"}
+          {isRegistering ? 'ログインへ切り替え' : '新規登録へ切り替え'}
         </button>
       </section>
 
