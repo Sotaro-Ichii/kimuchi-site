@@ -78,17 +78,20 @@ function LandingPage() {
           <FaUserShield className="inline text-[#2f9e44]" /> ご利用条件
         </h2>
         <div className="flex flex-col md:flex-row gap-8 w-full justify-center">
-          <div className="flex-1 bg-[#232326] rounded-2xl shadow-lg border border-[#27272a] p-8 flex flex-col items-center text-center transition hover:scale-105 hover:shadow-2xl">
+          <div className="flex-1 bg-gray-800 rounded-2xl shadow-lg border border-gray-700 p-8 flex flex-col items-center text-center transition hover:scale-105 hover:shadow-2xl"
+            style={{backgroundColor:'#232326',borderRadius:'1rem',boxShadow:'0 4px 24px rgba(0,0,0,0.25)',border:'1.5px solid #27272a'}}>
             <FaCheckCircle className="text-[#22d3ee] text-4xl mb-3" />
             <div className="font-bold text-lg mb-2">承認制</div>
             <div className="text-[#e4e4e7] text-base">GoogleまたはEmailログイン＋申請必須</div>
           </div>
-          <div className="flex-1 bg-[#232326] rounded-2xl shadow-lg border border-[#27272a] p-8 flex flex-col items-center text-center transition hover:scale-105 hover:shadow-2xl">
+          <div className="flex-1 bg-gray-800 rounded-2xl shadow-lg border border-gray-700 p-8 flex flex-col items-center text-center transition hover:scale-105 hover:shadow-2xl"
+            style={{backgroundColor:'#232326',borderRadius:'1rem',boxShadow:'0 4px 24px rgba(0,0,0,0.25)',border:'1.5px solid #27272a'}}>
             <FaMoneyCheckAlt className="text-[#fbbf24] text-4xl mb-3" />
             <div className="font-bold text-lg mb-2">Zelleで一括支払い</div>
             <div className="text-[#e4e4e7] text-base">$49.9 / 3ヶ月</div>
           </div>
-          <div className="flex-1 bg-[#232326] rounded-2xl shadow-lg border border-[#27272a] p-8 flex flex-col items-center text-center transition hover:scale-105 hover:shadow-2xl">
+          <div className="flex-1 bg-gray-800 rounded-2xl shadow-lg border border-gray-700 p-8 flex flex-col items-center text-center transition hover:scale-105 hover:shadow-2xl"
+            style={{backgroundColor:'#232326',borderRadius:'1rem',boxShadow:'0 4px 24px rgba(0,0,0,0.25)',border:'1.5px solid #27272a'}}>
             <FaLock className="text-[#c92a2a] text-4xl mb-3" />
             <div className="font-bold text-lg mb-2">外部共有は厳禁</div>
             <div className="text-[#e4e4e7] text-base">ログイン情報・内容の外部共有は<strong>厳禁</strong></div>
@@ -97,23 +100,33 @@ function LandingPage() {
       </section>
 
       {/* ご利用までの流れ（ステップ型カード） */}
-      <section id="apply" className="w-full max-w-4xl bg-[#232326] rounded-2xl shadow-xl border border-[#27272a] p-10 mb-16 animate-fade-in flex flex-col items-center">
+      <section id="apply" className="w-full max-w-4xl bg-gray-800 rounded-2xl shadow-xl border border-gray-700 p-10 mb-16 animate-fade-in flex flex-col items-center"
+        style={{backgroundColor:'#232326',borderRadius:'1rem',boxShadow:'0 4px 24px rgba(0,0,0,0.25)',border:'1.5px solid #27272a'}}>
         <h3 className="text-2xl font-bold text-[#fbbf24] mb-8 flex items-center gap-2">
           <HiOutlineArrowRight className="text-[#fbbf24] text-2xl" /> ご利用までの流れ
         </h3>
         <div className="flex flex-col md:flex-row gap-8 w-full justify-center items-start mb-8">
           <div className="flex-1 flex flex-col items-center">
-            <div className="bg-[#18181b] border-4 border-[#22d3ee] rounded-full w-16 h-16 flex items-center justify-center text-3xl font-bold text-[#22d3ee] mb-3 shadow-lg">1</div>
+            <div className="bg-gray-900 border-4 border-[#22d3ee] rounded-full w-16 h-16 flex items-center justify-center text-3xl font-bold text-[#22d3ee] mb-3 shadow-lg"
+              style={{backgroundColor:'#18181b',border:'4px solid #22d3ee',borderRadius:'9999px',boxShadow:'0 2px 12px rgba(0,0,0,0.18)'}}>
+              1
+            </div>
             <div className="text-[#e4e4e7] text-center text-base">Zelleで <strong>$49.9</strong> を一括zell送金<br /><span className="text-xs">（送金先電話番号: 657-709-1289）</span></div>
           </div>
           <div className="hidden md:flex items-center justify-center text-4xl text-[#6366f1]">→</div>
           <div className="flex-1 flex flex-col items-center">
-            <div className="bg-[#18181b] border-4 border-[#22d3ee] rounded-full w-16 h-16 flex items-center justify-center text-3xl font-bold text-[#22d3ee] mb-3 shadow-lg">2</div>
+            <div className="bg-gray-900 border-4 border-[#22d3ee] rounded-full w-16 h-16 flex items-center justify-center text-3xl font-bold text-[#22d3ee] mb-3 shadow-lg"
+              style={{backgroundColor:'#18181b',border:'4px solid #22d3ee',borderRadius:'9999px',boxShadow:'0 2px 12px rgba(0,0,0,0.18)'}}>
+              2
+            </div>
             <div className="text-[#e4e4e7] text-center text-base">申請フォームに必要事項を記入</div>
           </div>
           <div className="hidden md:flex items-center justify-center text-4xl text-[#6366f1]">→</div>
           <div className="flex-1 flex flex-col items-center">
-            <div className="bg-[#18181b] border-4 border-[#22d3ee] rounded-full w-16 h-16 flex items-center justify-center text-3xl font-bold text-[#22d3ee] mb-3 shadow-lg">3</div>
+            <div className="bg-gray-900 border-4 border-[#22d3ee] rounded-full w-16 h-16 flex items-center justify-center text-3xl font-bold text-[#22d3ee] mb-3 shadow-lg"
+              style={{backgroundColor:'#18181b',border:'4px solid #22d3ee',borderRadius:'9999px',boxShadow:'0 2px 12px rgba(0,0,0,0.18)'}}>
+              3
+            </div>
             <div className="text-[#e4e4e7] text-center text-base">審査後、24時間以内に結果をご連絡</div>
           </div>
         </div>
