@@ -206,9 +206,6 @@ function Home() {
         <Link to="/legal" style={{ color: '#a1a1aa', marginRight: '20px', textDecoration: 'none' }}>
           法的事項
         </Link>
-        <Link to="/tokushoho" style={{ color: '#a1a1aa', textDecoration: 'none' }}>
-          特定商取引法に基づく表記
-        </Link>
       </footer>
     </div>
   );
