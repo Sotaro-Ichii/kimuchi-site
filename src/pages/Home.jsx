@@ -196,7 +196,8 @@ function Home() {
       name: commentName || (user?.isAnonymous ? '匿名' : user?.displayName || 'ユーザー'),
       text: commentText,
       courseId: commentCourseId,
-      timestamp: Timestamp.now()
+      timestamp: Timestamp.now(),
+      uid: user?.uid || null
     });
     setCommentText('');
     setCommentName('');
@@ -241,17 +242,19 @@ function Home() {
     return 'other';
   };
 
-  // コメント投稿者のバッジを取得
-  const getBadgeForName = async (name) => {
-    if (!name) return 'Member';
-    if (badgeCache[name]) return badgeCache[name];
-    // 名前からuidは取得できないため、ここでは「Founder」や「Gold」など特別な名前だけ手動で割り当てる例
-    if (name === '管理者') {
-      setBadgeCache((prev) => ({ ...prev, [name]: 'Founder' }));
-      return 'Founder';
+  // コメント投稿者のバッジを取得（uidベース）
+  const getBadgeForUid = async (uid) => {
+    if (!uid) return 'Member';
+    if (badgeCache[uid]) return badgeCache[uid];
+    try {
+      const badgeDoc = await getDoc(doc(db, 'userBadges', uid));
+      const badge = badgeDoc.exists() ? badgeDoc.data().badge : 'Member';
+      setBadgeCache((prev) => ({ ...prev, [uid]: badge }));
+      return badge;
+    } catch {
+      setBadgeCache((prev) => ({ ...prev, [uid]: 'Member' }));
+      return 'Member';
     }
-    setBadgeCache((prev) => ({ ...prev, [name]: 'Member' }));
-    return 'Member';
   };
 
   return (
@@ -895,7 +898,7 @@ function Home() {
                 paddingRight: '8px'
               }}>
                 {comments.map(comment => (
-                  <CommentWithBadge key={comment.id} comment={comment} getBadgeForName={getBadgeForName} />
+                  <CommentWithBadge key={comment.id} comment={comment} getBadgeForUid={getBadgeForUid} />
                 ))}
               </div>
             </div>
@@ -1233,14 +1236,14 @@ function Home() {
 }
 
 // コメント＋バッジ表示用コンポーネント
-function CommentWithBadge({ comment, getBadgeForName }) {
+function CommentWithBadge({ comment, getBadgeForUid }) {
   const [badge, setBadge] = useState('Member');
   useEffect(() => {
     (async () => {
-      const b = await getBadgeForName(comment.name);
+      const b = await getBadgeForUid(comment.uid);
       setBadge(b);
     })();
-  }, [comment.name]);
+  }, [comment.uid]);
   return (
     <div style={{
       background: '#18181b',
