@@ -11,6 +11,7 @@ import {
   FaBook, FaGraduationCap, FaLightbulb, FaEnvelope, FaArrowRight, FaFilter,
   FaSort, FaCheck, FaTimes, FaUsers, FaStar, FaClock, FaThumbsUp, FaExternalLinkAlt
 } from 'react-icons/fa';
+import { useAuth } from '../contexts/AuthContext';
 
 function normalize(text) {
   if (typeof text !== 'string') return '';
@@ -37,6 +38,8 @@ function Home() {
   const [userEnrollments, setUserEnrollments] = useState({});
   const [courseStats, setCourseStats] = useState({});
   const navigate = useNavigate();
+  const { userBadge } = useAuth();
+  const [badgeCache, setBadgeCache] = useState({});
 
   useEffect(() => {
     fetchCourses();
@@ -238,6 +241,19 @@ function Home() {
     return 'other';
   };
 
+  // コメント投稿者のバッジを取得
+  const getBadgeForName = async (name) => {
+    if (!name) return 'Member';
+    if (badgeCache[name]) return badgeCache[name];
+    // 名前からuidは取得できないため、ここでは「Founder」や「Gold」など特別な名前だけ手動で割り当てる例
+    if (name === '管理者') {
+      setBadgeCache((prev) => ({ ...prev, [name]: 'Founder' }));
+      return 'Founder';
+    }
+    setBadgeCache((prev) => ({ ...prev, [name]: 'Member' }));
+    return 'Member';
+  };
+
   return (
     <div style={{ 
       backgroundColor: '#18181b', 
@@ -283,8 +299,23 @@ function Home() {
               <FaUser />
             </div>
             <div>
-              <div style={{ color: '#fbbf24', fontWeight: 'bold', fontSize: '1.1rem' }}>
+              <div style={{ color: '#fbbf24', fontWeight: 'bold', fontSize: '1.1rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
                 {user ? (user.isAnonymous ? '匿名ユーザー' : user.displayName || 'ユーザー') : 'ゲスト'}
+                {/* バッジ表示 */}
+                <span style={{
+                  background: userBadge === 'Gold' ? '#fbbf24' : userBadge === 'Founder' ? '#8b5cf6' : '#22d3ee',
+                  color: '#18181b',
+                  borderRadius: '8px',
+                  padding: '2px 10px',
+                  fontWeight: 'bold',
+                  fontSize: '0.85rem',
+                  marginLeft: '4px',
+                  letterSpacing: '0.03em',
+                  border: '1.5px solid #27272a',
+                  boxShadow: '0 1px 4px rgba(0,0,0,0.10)'
+                }}>
+                  {userBadge}
+                </span>
               </div>
               <div style={{ color: '#a1a1aa', fontSize: '0.9rem' }}>
                 {user ? 'ログイン中' : 'ログインしてください'}
@@ -864,47 +895,7 @@ function Home() {
                 paddingRight: '8px'
               }}>
                 {comments.map(comment => (
-                  <div key={comment.id} style={{
-                    background: '#18181b',
-                    padding: '20px',
-                    borderRadius: '16px',
-                    border: '1.5px solid #27272a',
-                    boxShadow: '0 4px 16px rgba(0,0,0,0.2)'
-                  }}>
-                    <div style={{
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      alignItems: 'center',
-                      marginBottom: '12px'
-                    }}>
-                      <div style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '8px'
-                      }}>
-                        <FaUser style={{ color: '#fbbf24', fontSize: '1rem' }} />
-                        <strong style={{ color: '#fbbf24' }}>
-                          {comment.name || "匿名"}
-                        </strong>
-                      </div>
-                      <div style={{
-                        background: '#27272a',
-                        padding: '4px 12px',
-                        borderRadius: '20px',
-                        fontSize: '0.9rem',
-                        color: '#a1a1aa'
-                      }}>
-                        {comment.courseId}
-                      </div>
-                    </div>
-                    <div style={{ 
-                      color: '#e4e4e7', 
-                      lineHeight: '1.6',
-                      fontSize: '1rem'
-                    }}>
-                      {comment.text}
-                    </div>
-                  </div>
+                  <CommentWithBadge key={comment.id} comment={comment} getBadgeForName={getBadgeForName} />
                 ))}
               </div>
             </div>
@@ -1237,6 +1228,49 @@ function Home() {
           </div>
         </footer>
       </div>
+    </div>
+  );
+}
+
+// コメント＋バッジ表示用コンポーネント
+function CommentWithBadge({ comment, getBadgeForName }) {
+  const [badge, setBadge] = useState('Member');
+  useEffect(() => {
+    (async () => {
+      const b = await getBadgeForName(comment.name);
+      setBadge(b);
+    })();
+  }, [comment.name]);
+  return (
+    <div style={{
+      background: '#18181b',
+      padding: '20px',
+      borderRadius: '16px',
+      border: '1.5px solid #27272a',
+      boxShadow: '0 4px 16px rgba(0,0,0,0.2)'
+    }}>
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: '8px',
+        marginBottom: '8px'
+      }}>
+        <FaUser style={{ color: '#fbbf24', fontSize: '1rem' }} />
+        <strong style={{ color: '#fbbf24' }}>{comment.name || "匿名"}</strong>
+        <span style={{
+          background: badge === 'Gold' ? '#fbbf24' : badge === 'Founder' ? '#8b5cf6' : '#22d3ee',
+          color: '#18181b',
+          borderRadius: '8px',
+          padding: '2px 10px',
+          fontWeight: 'bold',
+          fontSize: '0.85rem',
+          marginLeft: '2px',
+          letterSpacing: '0.03em',
+          border: '1.5px solid #27272a',
+          boxShadow: '0 1px 4px rgba(0,0,0,0.10)'
+        }}>{badge}</span>
+      </div>
+      <div style={{ color: '#e4e4e7', lineHeight: '1.6', fontSize: '1rem' }}>{comment.text}</div>
     </div>
   );
 }

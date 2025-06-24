@@ -30,6 +30,7 @@ function CourseDetail() {
   const [userEnrollments, setUserEnrollments] = useState({});
   const [courseStats, setCourseStats] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [badgeCache, setBadgeCache] = useState({});
 
   useEffect(() => {
     fetchCourse();
@@ -170,6 +171,19 @@ function CourseDetail() {
     if (name.includes('sci') || name.includes('bio') || name.includes('chem')) return 'SCI';
     if (name.includes('hum') || name.includes('hist') || name.includes('phil')) return 'HUM';
     return 'OTHER';
+  };
+
+  // コメント投稿者のバッジを取得
+  const getBadgeForName = async (name) => {
+    if (!name) return 'Member';
+    if (badgeCache[name]) return badgeCache[name];
+    // 名前からuidは取得できないため、ここでは「Founder」や「Gold」など特別な名前だけ手動で割り当てる例
+    if (name === '管理者') {
+      setBadgeCache((prev) => ({ ...prev, [name]: 'Founder' }));
+      return 'Founder';
+    }
+    setBadgeCache((prev) => ({ ...prev, [name]: 'Member' }));
+    return 'Member';
   };
 
   if (!course) {
@@ -530,44 +544,7 @@ function CourseDetail() {
           }}>
             {comments.length > 0 ? (
               comments.map(comment => (
-                <div key={comment.id} style={{
-                  background: '#18181b',
-                  padding: '20px',
-                  borderRadius: '16px',
-                  border: '1.5px solid #27272a',
-                  boxShadow: '0 4px 16px rgba(0,0,0,0.2)'
-                }}>
-                  <div style={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                    marginBottom: '12px'
-                  }}>
-                    <div style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '8px'
-                    }}>
-                      <FaUser style={{ color: '#fbbf24', fontSize: '1rem' }} />
-                      <strong style={{ color: '#fbbf24' }}>
-                        {comment.name || "匿名"}
-                      </strong>
-                    </div>
-                    <div style={{
-                      color: '#a1a1aa',
-                      fontSize: '0.9rem'
-                    }}>
-                      {comment.timestamp?.toDate?.()?.toLocaleString('ja-JP') || '最近'}
-                    </div>
-                  </div>
-                  <div style={{ 
-                    color: '#e4e4e7', 
-                    lineHeight: '1.6',
-                    fontSize: '1rem'
-                  }}>
-                    {comment.text}
-                  </div>
-                </div>
+                <CommentWithBadge key={comment.id} comment={comment} getBadgeForName={getBadgeForName} />
               ))
             ) : (
               <div style={{
@@ -585,6 +562,49 @@ function CourseDetail() {
           </div>
         </div>
       </div>
+    </div>
+  );
+}
+
+// コメント＋バッジ表示用コンポーネント
+function CommentWithBadge({ comment, getBadgeForName }) {
+  const [badge, setBadge] = useState('Member');
+  useEffect(() => {
+    (async () => {
+      const b = await getBadgeForName(comment.name);
+      setBadge(b);
+    })();
+  }, [comment.name]);
+  return (
+    <div style={{
+      background: '#18181b',
+      padding: '20px',
+      borderRadius: '16px',
+      border: '1.5px solid #27272a',
+      boxShadow: '0 4px 16px rgba(0,0,0,0.2)'
+    }}>
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: '8px',
+        marginBottom: '8px'
+      }}>
+        <FaUser style={{ color: '#fbbf24', fontSize: '1rem' }} />
+        <strong style={{ color: '#fbbf24' }}>{comment.name || "匿名"}</strong>
+        <span style={{
+          background: badge === 'Gold' ? '#fbbf24' : badge === 'Founder' ? '#8b5cf6' : '#22d3ee',
+          color: '#18181b',
+          borderRadius: '8px',
+          padding: '2px 10px',
+          fontWeight: 'bold',
+          fontSize: '0.85rem',
+          marginLeft: '2px',
+          letterSpacing: '0.03em',
+          border: '1.5px solid #27272a',
+          boxShadow: '0 1px 4px rgba(0,0,0,0.10)'
+        }}>{badge}</span>
+      </div>
+      <div style={{ color: '#e4e4e7', lineHeight: '1.6', fontSize: '1rem' }}>{comment.text}</div>
     </div>
   );
 }
