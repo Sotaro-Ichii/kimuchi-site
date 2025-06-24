@@ -12,6 +12,7 @@ import Semester from './pages/Semester.jsx';
 import Comments from './pages/Comments.jsx';
 import CourseDetail from './pages/CourseDetail.jsx';
 import Legal from './pages/Legal.jsx';
+import Contact from './pages/Contact.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -24,6 +25,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path="/comments" element={<Comments />} />
           <Route path="/course/:id" element={<CourseDetail />} />
           <Route path="/legal" element={<Legal />} />
+          <Route path="/contact" element={<Contact />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>

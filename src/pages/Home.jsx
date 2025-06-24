@@ -6,6 +6,10 @@ import {
 import {
   collection, getDocs, addDoc, query, orderBy, Timestamp
 } from 'firebase/firestore';
+import { 
+  FaSearch, FaComment, FaPlus, FaUser, FaSignOutAlt, FaGoogle, FaUserSecret,
+  FaBook, FaGraduationCap, FaLightbulb, FaEnvelope, FaArrowRight
+} from 'react-icons/fa';
 
 function normalize(text) {
   if (typeof text !== 'string') return '';
@@ -24,6 +28,7 @@ function Home() {
   const [newDescription, setNewDescription] = useState('');
   const [resultCourses, setResultCourses] = useState([]);
   const [user, setUser] = useState(null);
+  const [activeTab, setActiveTab] = useState('search'); // search, comments, submit
 
   useEffect(() => {
     fetchCourses();
@@ -79,134 +84,723 @@ function Home() {
   };
 
   return (
-    <div style={{ backgroundColor: '#18181b', minHeight: '100vh', padding: '20px', fontFamily: 'sans-serif', textAlign: 'center', color: '#f4f4f5' }}>
-      <div style={{ position: 'absolute', top: 20, right: 20 }}>
-        {user ? (
-          <div>
-            <span>ログイン中: {user.isAnonymous ? '匿名ユーザー' : user.displayName || 'ユーザー'}</span>
-            <button onClick={logout} style={{ marginLeft: '10px', padding: '6px 12px', borderRadius: '20px', backgroundColor: '#c92a2a', color: 'white', border: 'none', boxShadow: '0 2px 8px rgba(0,0,0,0.10)' }}>ログアウト</button>
-          </div>
-        ) : (
-          <div>
-            <button onClick={loginWithGoogle} style={{ marginRight: '10px', padding: '6px 12px', borderRadius: '20px', backgroundColor: '#2f9e44', color: 'white', border: 'none', boxShadow: '0 2px 8px rgba(0,0,0,0.10)' }}>Googleでログイン</button>
-            <button onClick={loginAnonymously} style={{ padding: '6px 12px', borderRadius: '20px', backgroundColor: '#c92a2a', color: 'white', border: 'none', boxShadow: '0 2px 8px rgba(0,0,0,0.10)' }}>匿名ログイン</button>
-          </div>
-        )}
-      </div>
-
-      <h1 style={{ color: '#fbbf24', marginTop: '60px', fontSize: '2.5rem' }}>Kimuchiへようこそ</h1>
-
-      <form onSubmit={handleSearch} style={{ marginBottom: '20px' }}>
-        <input
-          type="text"
-          placeholder="授業名を検索（例：econ 170）"
-          value={searchInput}
-          onChange={(e) => setSearchInput(e.target.value)}
-          style={{ padding: '10px', width: '80%', maxWidth: '300px', marginRight: '10px', borderRadius: '12px', border: '1.5px solid #27272a', background: '#232326', color: '#f4f4f5' }}
-        />
-        <button style={{ backgroundColor: '#2f9e44', color: '#18181b', padding: '10px 16px', border: 'none', borderRadius: '20px', fontWeight: 700 }}>
-          検索
-        </button>
-      </form>
-
-      {resultCourses.length > 0 && (
-        <div style={{ marginBottom: '30px' }}>
-          <h2 style={{ borderBottom: '2px solid #fbbf24', color: '#fbbf24' }}>検索結果（楽単授業）</h2>
-          <ul style={{ listStyle: 'none', padding: 0 }}>
-            {resultCourses.map(course => (
-              <li key={course.id} style={{ marginBottom: '10px', backgroundColor: '#232326', color: '#f4f4f5', padding: '12px', borderRadius: '12px', boxShadow: '0 2px 8px rgba(0,0,0,0.10)', border: '1.5px solid #27272a' }}>
-                <strong>{course.name}</strong><br />
-                {course.professor}<br />
-                {course.description}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-
-      <h2 style={{ borderBottom: '2px solid #fbbf24', color: '#fbbf24' }}>全体コメント一覧</h2>
-      <div style={{ display: 'grid', gap: '10px', justifyContent: 'center' }}>
-        {comments.map(comment => (
-          <div key={comment.id} style={{
-            backgroundColor: '#232326',
-            color: '#f4f4f5',
-            border: '1.5px solid #27272a',
-            borderRadius: '12px',
-            padding: '16px',
-            width: '90%',
-            maxWidth: '500px',
-            margin: '0 auto',
-            boxShadow: '0 2px 8px rgba(0,0,0,0.10)'
+    <div style={{ 
+      backgroundColor: '#18181b', 
+      minHeight: '100vh', 
+      padding: '20px',
+      fontFamily: 'Inter, sans-serif',
+      color: '#f4f4f5'
+    }}>
+      {/* ヘッダー */}
+      <div style={{
+        maxWidth: '1400px',
+        margin: '0 auto',
+        padding: '20px 0'
+      }}>
+        {/* ユーザー情報・ログイン */}
+        <div style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          marginBottom: '40px',
+          padding: '20px',
+          background: '#232326',
+          borderRadius: '16px',
+          border: '1.5px solid #27272a',
+          boxShadow: '0 4px 20px rgba(0,0,0,0.2)'
+        }}>
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '12px'
           }}>
-            <strong>{comment.name || "匿名"}</strong>（{comment.courseId}）<br />
-            {comment.text}
+            <div style={{
+              width: '40px',
+              height: '40px',
+              borderRadius: '50%',
+              background: 'linear-gradient(135deg, #fbbf24, #f59e42)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: '#18181b',
+              fontWeight: 'bold'
+            }}>
+              <FaUser />
+            </div>
+            <div>
+              <div style={{ color: '#fbbf24', fontWeight: 'bold', fontSize: '1.1rem' }}>
+                {user ? (user.isAnonymous ? '匿名ユーザー' : user.displayName || 'ユーザー') : 'ゲスト'}
+              </div>
+              <div style={{ color: '#a1a1aa', fontSize: '0.9rem' }}>
+                {user ? 'ログイン中' : 'ログインしてください'}
+              </div>
+            </div>
           </div>
-        ))}
+
+          <div style={{
+            display: 'flex',
+            gap: '12px'
+          }}>
+            {user ? (
+              <button 
+                onClick={logout}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  padding: '10px 16px',
+                  background: 'linear-gradient(135deg, #c92a2a, #dc2626)',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '12px',
+                  fontWeight: '600',
+                  cursor: 'pointer',
+                  transition: 'transform 0.2s'
+                }}
+                onMouseOver={e => e.target.style.transform = 'scale(1.05)'}
+                onMouseOut={e => e.target.style.transform = 'scale(1)'}
+              >
+                <FaSignOutAlt /> ログアウト
+              </button>
+            ) : (
+              <>
+                <button 
+                  onClick={loginWithGoogle}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    padding: '10px 16px',
+                    background: 'linear-gradient(135deg, #2f9e44, #22d3ee)',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '12px',
+                    fontWeight: '600',
+                    cursor: 'pointer',
+                    transition: 'transform 0.2s'
+                  }}
+                  onMouseOver={e => e.target.style.transform = 'scale(1.05)'}
+                  onMouseOut={e => e.target.style.transform = 'scale(1)'}
+                >
+                  <FaGoogle /> Googleログイン
+                </button>
+                <button 
+                  onClick={loginAnonymously}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    padding: '10px 16px',
+                    background: 'linear-gradient(135deg, #6366f1, #8b5cf6)',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '12px',
+                    fontWeight: '600',
+                    cursor: 'pointer',
+                    transition: 'transform 0.2s'
+                  }}
+                  onMouseOver={e => e.target.style.transform = 'scale(1.05)'}
+                  onMouseOut={e => e.target.style.transform = 'scale(1)'}
+                >
+                  <FaUserSecret /> 匿名ログイン
+                </button>
+              </>
+            )}
+          </div>
+        </div>
+
+        {/* メインタイトル */}
+        <div style={{
+          textAlign: 'center',
+          marginBottom: '50px'
+        }}>
+          <h1 style={{ 
+            color: '#fbbf24', 
+            fontSize: '3.5rem', 
+            fontWeight: 'bold',
+            marginBottom: '16px',
+            textShadow: '0 4px 20px rgba(251, 191, 36, 0.3)'
+          }}>
+            Kimuchi
+          </h1>
+          <p style={{ 
+            fontSize: '1.3rem', 
+            color: '#a1a1aa',
+            maxWidth: '600px',
+            margin: '0 auto',
+            lineHeight: '1.6'
+          }}>
+            楽単情報プラットフォームへようこそ
+          </p>
+        </div>
+
+        {/* タブナビゲーション */}
+        <div style={{
+          display: 'flex',
+          justifyContent: 'center',
+          gap: '8px',
+          marginBottom: '40px',
+          flexWrap: 'wrap'
+        }}>
+          {[
+            { id: 'search', icon: <FaSearch />, label: '授業検索' },
+            { id: 'comments', icon: <FaComment />, label: 'コメント一覧' },
+            { id: 'submit', icon: <FaPlus />, label: '投稿・提案' }
+          ].map(tab => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                padding: '12px 24px',
+                background: activeTab === tab.id 
+                  ? 'linear-gradient(135deg, #fbbf24, #f59e42)' 
+                  : '#232326',
+                color: activeTab === tab.id ? '#18181b' : '#e4e4e7',
+                border: '1.5px solid',
+                borderColor: activeTab === tab.id ? '#fbbf24' : '#27272a',
+                borderRadius: '12px',
+                fontWeight: '600',
+                cursor: 'pointer',
+                transition: 'all 0.2s'
+              }}
+              onMouseOver={e => activeTab !== tab.id && (e.target.style.background = '#27272a')}
+              onMouseOut={e => activeTab !== tab.id && (e.target.style.background = '#232326')}
+            >
+              {tab.icon} {tab.label}
+            </button>
+          ))}
+        </div>
+
+        {/* タブコンテンツ */}
+        <div style={{
+          maxWidth: '1000px',
+          margin: '0 auto'
+        }}>
+          {/* 授業検索タブ */}
+          {activeTab === 'search' && (
+            <div style={{
+              background: '#232326',
+              borderRadius: '20px',
+              padding: '40px',
+              border: '1.5px solid #27272a',
+              boxShadow: '0 8px 32px rgba(0,0,0,0.3)'
+            }}>
+              <h2 style={{ 
+                color: '#22d3ee', 
+                fontSize: '2rem', 
+                fontWeight: 'bold',
+                marginBottom: '30px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '12px'
+              }}>
+                <FaSearch /> 授業を検索
+              </h2>
+
+              <form onSubmit={handleSearch} style={{ marginBottom: '30px' }}>
+                <div style={{
+                  display: 'flex',
+                  gap: '12px',
+                  maxWidth: '600px',
+                  margin: '0 auto',
+                  ...(window.innerWidth <= 600 && { flexDirection: 'column' })
+                }}>
+                  <input
+                    type="text"
+                    placeholder="授業名を検索（例：econ 170）"
+                    value={searchInput}
+                    onChange={(e) => setSearchInput(e.target.value)}
+                    style={{
+                      flex: '1',
+                      padding: '16px 20px',
+                      borderRadius: '12px',
+                      border: '1.5px solid #27272a',
+                      background: '#18181b',
+                      color: '#f4f4f5',
+                      fontSize: '1rem',
+                      outline: 'none',
+                      transition: 'border-color 0.2s'
+                    }}
+                    onFocus={(e) => e.target.style.borderColor = '#22d3ee'}
+                    onBlur={(e) => e.target.style.borderColor = '#27272a'}
+                  />
+                  <button style={{
+                    padding: '16px 24px',
+                    background: 'linear-gradient(135deg, #2f9e44, #22d3ee)',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '12px',
+                    fontWeight: 'bold',
+                    cursor: 'pointer',
+                    transition: 'transform 0.2s',
+                    whiteSpace: 'nowrap'
+                  }}
+                  onMouseOver={e => e.target.style.transform = 'scale(1.05)'}
+                  onMouseOut={e => e.target.style.transform = 'scale(1)'}
+                  >
+                    検索
+                  </button>
+                </div>
+              </form>
+
+              {resultCourses.length > 0 && (
+                <div>
+                  <h3 style={{ 
+                    color: '#fbbf24', 
+                    fontSize: '1.5rem', 
+                    fontWeight: 'bold',
+                    marginBottom: '20px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '10px'
+                  }}>
+                    <FaBook /> 検索結果（{resultCourses.length}件）
+                  </h3>
+                  <div style={{
+                    display: 'grid',
+                    gap: '16px',
+                    gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))'
+                  }}>
+                    {resultCourses.map(course => (
+                      <div key={course.id} style={{
+                        background: '#18181b',
+                        padding: '20px',
+                        borderRadius: '16px',
+                        border: '1.5px solid #27272a',
+                        boxShadow: '0 4px 16px rgba(0,0,0,0.2)',
+                        transition: 'transform 0.2s'
+                      }}
+                      onMouseOver={e => e.target.style.transform = 'scale(1.02)'}
+                      onMouseOut={e => e.target.style.transform = 'scale(1)'}
+                      >
+                        <div style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '10px',
+                          marginBottom: '12px'
+                        }}>
+                          <FaGraduationCap style={{ color: '#22d3ee', fontSize: '1.2rem' }} />
+                          <strong style={{ color: '#fbbf24', fontSize: '1.1rem' }}>{course.name}</strong>
+                        </div>
+                        <div style={{ color: '#e4e4e7', marginBottom: '8px' }}>
+                          <strong>教授:</strong> {course.professor}
+                        </div>
+                        <div style={{ color: '#a1a1aa', fontSize: '0.95rem', lineHeight: '1.5' }}>
+                          {course.description}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* コメント一覧タブ */}
+          {activeTab === 'comments' && (
+            <div style={{
+              background: '#232326',
+              borderRadius: '20px',
+              padding: '40px',
+              border: '1.5px solid #27272a',
+              boxShadow: '0 8px 32px rgba(0,0,0,0.3)'
+            }}>
+              <h2 style={{ 
+                color: '#22d3ee', 
+                fontSize: '2rem', 
+                fontWeight: 'bold',
+                marginBottom: '30px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '12px'
+              }}>
+                <FaComment /> 全体コメント一覧
+              </h2>
+
+              <div style={{
+                display: 'grid',
+                gap: '16px',
+                maxHeight: '600px',
+                overflowY: 'auto',
+                paddingRight: '8px'
+              }}>
+                {comments.map(comment => (
+                  <div key={comment.id} style={{
+                    background: '#18181b',
+                    padding: '20px',
+                    borderRadius: '16px',
+                    border: '1.5px solid #27272a',
+                    boxShadow: '0 4px 16px rgba(0,0,0,0.2)'
+                  }}>
+                    <div style={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                      marginBottom: '12px'
+                    }}>
+                      <div style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '8px'
+                      }}>
+                        <FaUser style={{ color: '#fbbf24', fontSize: '1rem' }} />
+                        <strong style={{ color: '#fbbf24' }}>
+                          {comment.name || "匿名"}
+                        </strong>
+                      </div>
+                      <div style={{
+                        background: '#27272a',
+                        padding: '4px 12px',
+                        borderRadius: '20px',
+                        fontSize: '0.9rem',
+                        color: '#a1a1aa'
+                      }}>
+                        {comment.courseId}
+                      </div>
+                    </div>
+                    <div style={{ 
+                      color: '#e4e4e7', 
+                      lineHeight: '1.6',
+                      fontSize: '1rem'
+                    }}>
+                      {comment.text}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* 投稿・提案タブ */}
+          {activeTab === 'submit' && (
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: '1fr 1fr',
+              gap: '40px',
+              ...(window.innerWidth <= 900 && { gridTemplateColumns: '1fr', gap: '30px' })
+            }}>
+              {/* コメント投稿 */}
+              <div style={{
+                background: '#232326',
+                borderRadius: '20px',
+                padding: '40px',
+                border: '1.5px solid #27272a',
+                boxShadow: '0 8px 32px rgba(0,0,0,0.3)'
+              }}>
+                <h2 style={{ 
+                  color: '#22d3ee', 
+                  fontSize: '1.8rem', 
+                  fontWeight: 'bold',
+                  marginBottom: '30px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '12px'
+                }}>
+                  <FaComment /> コメント投稿
+                </h2>
+
+                <form onSubmit={handleCommentSubmit}>
+                  <div style={{ marginBottom: '20px' }}>
+                    <label style={{ 
+                      display: 'block', 
+                      marginBottom: '8px', 
+                      fontWeight: '600',
+                      color: '#e4e4e7'
+                    }}>
+                      お名前（任意）
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="あなたの名前"
+                      value={commentName}
+                      onChange={(e) => setCommentName(e.target.value)}
+                      style={{
+                        width: '100%',
+                        padding: '12px 16px',
+                        borderRadius: '12px',
+                        border: '1.5px solid #27272a',
+                        background: '#18181b',
+                        color: '#f4f4f5',
+                        fontSize: '1rem',
+                        outline: 'none',
+                        transition: 'border-color 0.2s'
+                      }}
+                      onFocus={(e) => e.target.style.borderColor = '#22d3ee'}
+                      onBlur={(e) => e.target.style.borderColor = '#27272a'}
+                    />
+                  </div>
+
+                  <div style={{ marginBottom: '20px' }}>
+                    <label style={{ 
+                      display: 'block', 
+                      marginBottom: '8px', 
+                      fontWeight: '600',
+                      color: '#e4e4e7'
+                    }}>
+                      対象の授業ID *
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="例：econ170-davisscott"
+                      value={commentCourseId}
+                      onChange={(e) => setCommentCourseId(e.target.value)}
+                      required
+                      style={{
+                        width: '100%',
+                        padding: '12px 16px',
+                        borderRadius: '12px',
+                        border: '1.5px solid #27272a',
+                        background: '#18181b',
+                        color: '#f4f4f5',
+                        fontSize: '1rem',
+                        outline: 'none',
+                        transition: 'border-color 0.2s'
+                      }}
+                      onFocus={(e) => e.target.style.borderColor = '#22d3ee'}
+                      onBlur={(e) => e.target.style.borderColor = '#27272a'}
+                    />
+                  </div>
+
+                  <div style={{ marginBottom: '30px' }}>
+                    <label style={{ 
+                      display: 'block', 
+                      marginBottom: '8px', 
+                      fontWeight: '600',
+                      color: '#e4e4e7'
+                    }}>
+                      コメント内容 *
+                    </label>
+                    <textarea
+                      rows="4"
+                      placeholder="授業の感想や評価を書いてください"
+                      value={commentText}
+                      onChange={(e) => setCommentText(e.target.value)}
+                      required
+                      style={{
+                        width: '100%',
+                        padding: '12px 16px',
+                        borderRadius: '12px',
+                        border: '1.5px solid #27272a',
+                        background: '#18181b',
+                        color: '#f4f4f5',
+                        fontSize: '1rem',
+                        outline: 'none',
+                        resize: 'vertical',
+                        transition: 'border-color 0.2s'
+                      }}
+                      onFocus={(e) => e.target.style.borderColor = '#22d3ee'}
+                      onBlur={(e) => e.target.style.borderColor = '#27272a'}
+                    />
+                  </div>
+
+                  <button style={{
+                    width: '100%',
+                    padding: '16px 24px',
+                    background: 'linear-gradient(135deg, #c92a2a, #dc2626)',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '12px',
+                    fontSize: '1.1rem',
+                    fontWeight: 'bold',
+                    cursor: 'pointer',
+                    transition: 'transform 0.2s'
+                  }}
+                  onMouseOver={e => e.target.style.transform = 'scale(1.02)'}
+                  onMouseOut={e => e.target.style.transform = 'scale(1)'}
+                  >
+                    投稿する
+                  </button>
+                </form>
+              </div>
+
+              {/* 楽単授業提案 */}
+              <div style={{
+                background: '#232326',
+                borderRadius: '20px',
+                padding: '40px',
+                border: '1.5px solid #27272a',
+                boxShadow: '0 8px 32px rgba(0,0,0,0.3)'
+              }}>
+                <h2 style={{ 
+                  color: '#22d3ee', 
+                  fontSize: '1.8rem', 
+                  fontWeight: 'bold',
+                  marginBottom: '30px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '12px'
+                }}>
+                  <FaLightbulb /> 楽単授業を提案
+                </h2>
+
+                <form onSubmit={handleAddCourse}>
+                  <div style={{ marginBottom: '20px' }}>
+                    <label style={{ 
+                      display: 'block', 
+                      marginBottom: '8px', 
+                      fontWeight: '600',
+                      color: '#e4e4e7'
+                    }}>
+                      教科名 *
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="例：Econ 170"
+                      value={newCourseName}
+                      onChange={(e) => setNewCourseName(e.target.value)}
+                      required
+                      style={{
+                        width: '100%',
+                        padding: '12px 16px',
+                        borderRadius: '12px',
+                        border: '1.5px solid #27272a',
+                        background: '#18181b',
+                        color: '#f4f4f5',
+                        fontSize: '1rem',
+                        outline: 'none',
+                        transition: 'border-color 0.2s'
+                      }}
+                      onFocus={(e) => e.target.style.borderColor = '#22d3ee'}
+                      onBlur={(e) => e.target.style.borderColor = '#27272a'}
+                    />
+                  </div>
+
+                  <div style={{ marginBottom: '20px' }}>
+                    <label style={{ 
+                      display: 'block', 
+                      marginBottom: '8px', 
+                      fontWeight: '600',
+                      color: '#e4e4e7'
+                    }}>
+                      教授名 *
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="例：Davis Scott"
+                      value={newProfessor}
+                      onChange={(e) => setNewProfessor(e.target.value)}
+                      required
+                      style={{
+                        width: '100%',
+                        padding: '12px 16px',
+                        borderRadius: '12px',
+                        border: '1.5px solid #27272a',
+                        background: '#18181b',
+                        color: '#f4f4f5',
+                        fontSize: '1rem',
+                        outline: 'none',
+                        transition: 'border-color 0.2s'
+                      }}
+                      onFocus={(e) => e.target.style.borderColor = '#22d3ee'}
+                      onBlur={(e) => e.target.style.borderColor = '#27272a'}
+                    />
+                  </div>
+
+                  <div style={{ marginBottom: '30px' }}>
+                    <label style={{ 
+                      display: 'block', 
+                      marginBottom: '8px', 
+                      fontWeight: '600',
+                      color: '#e4e4e7'
+                    }}>
+                      授業の説明 *
+                    </label>
+                    <textarea
+                      rows="4"
+                      placeholder="授業の内容や楽単ポイントを説明してください"
+                      value={newDescription}
+                      onChange={(e) => setNewDescription(e.target.value)}
+                      required
+                      style={{
+                        width: '100%',
+                        padding: '12px 16px',
+                        borderRadius: '12px',
+                        border: '1.5px solid #27272a',
+                        background: '#18181b',
+                        color: '#f4f4f5',
+                        fontSize: '1rem',
+                        outline: 'none',
+                        resize: 'vertical',
+                        transition: 'border-color 0.2s'
+                      }}
+                      onFocus={(e) => e.target.style.borderColor = '#22d3ee'}
+                      onBlur={(e) => e.target.style.borderColor = '#27272a'}
+                    />
+                  </div>
+
+                  <button style={{
+                    width: '100%',
+                    padding: '16px 24px',
+                    background: 'linear-gradient(135deg, #22d3ee, #6366f1)',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '12px',
+                    fontSize: '1.1rem',
+                    fontWeight: 'bold',
+                    cursor: 'pointer',
+                    transition: 'transform 0.2s'
+                  }}
+                  onMouseOver={e => e.target.style.transform = 'scale(1.02)'}
+                  onMouseOut={e => e.target.style.transform = 'scale(1)'}
+                  >
+                    提案を送信
+                  </button>
+                </form>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* フッター */}
+        <footer style={{ 
+          marginTop: '80px', 
+          borderTop: '1px solid #27272a', 
+          paddingTop: '30px', 
+          textAlign: 'center',
+          color: '#a1a1aa'
+        }}>
+          <div style={{
+            display: 'flex',
+            justifyContent: 'center',
+            gap: '30px',
+            marginBottom: '20px',
+            flexWrap: 'wrap'
+          }}>
+            <Link to="/legal" style={{ 
+              color: '#a1a1aa', 
+              textDecoration: 'none',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              transition: 'color 0.2s'
+            }}
+            onMouseOver={e => e.target.style.color = '#fbbf24'}
+            onMouseOut={e => e.target.style.color = '#a1a1aa'}
+            >
+              <FaEnvelope /> 法的事項
+            </Link>
+            <Link to="/contact" style={{ 
+              color: '#a1a1aa', 
+              textDecoration: 'none',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              transition: 'color 0.2s'
+            }}
+            onMouseOver={e => e.target.style.color = '#fbbf24'}
+            onMouseOut={e => e.target.style.color = '#a1a1aa'}
+            >
+              <FaEnvelope /> お問い合わせ
+            </Link>
+          </div>
+          <div style={{ fontSize: '0.9rem' }}>
+            &copy; 2025 Kimuchi. All rights reserved.
+          </div>
+        </footer>
       </div>
-
-      <h2 style={{ borderBottom: '2px solid #6366f1', color: '#6366f1', marginTop: '40px' }}>コメント投稿</h2>
-      <form onSubmit={handleCommentSubmit} style={{ marginBottom: '30px' }}>
-        <input
-          type="text"
-          placeholder="あなたの名前（任意）"
-          value={commentName}
-          onChange={(e) => setCommentName(e.target.value)}
-          style={{ padding: '8px', borderRadius: '8px', width: '250px', marginBottom: '10px', background: '#232326', color: '#f4f4f5', border: '1.5px solid #27272a' }}
-        /><br />
-        <input
-          type="text"
-          placeholder="対象の授業ID（例：econ170-davisscott）"
-          value={commentCourseId}
-          onChange={(e) => setCommentCourseId(e.target.value)}
-          style={{ padding: '8px', borderRadius: '8px', width: '250px', marginBottom: '10px', background: '#232326', color: '#f4f4f5', border: '1.5px solid #27272a' }}
-        /><br />
-        <textarea
-          rows="4"
-          cols="40"
-          placeholder="コメント内容"
-          value={commentText}
-          onChange={(e) => setCommentText(e.target.value)}
-          style={{ padding: '8px', borderRadius: '8px', background: '#232326', color: '#f4f4f5', border: '1.5px solid #27272a' }}
-        /><br />
-        <button style={{ backgroundColor: '#c92a2a', color: 'white', padding: '10px 16px', border: 'none', borderRadius: '20px', fontWeight: 700, boxShadow: '0 2px 8px rgba(0,0,0,0.10)' }}>
-          投稿する
-        </button>
-      </form>
-
-      <h2 style={{ borderBottom: '2px solid #22d3ee', color: '#22d3ee' }}>楽単授業を提案する</h2>
-      <form onSubmit={handleAddCourse}>
-        <input
-          type="text"
-          placeholder="教科名（例：Econ 170）"
-          value={newCourseName}
-          onChange={(e) => setNewCourseName(e.target.value)}
-          style={{ padding: '8px', borderRadius: '8px', width: '250px', marginBottom: '10px', background: '#232326', color: '#f4f4f5', border: '1.5px solid #27272a' }}
-        /><br />
-        <input
-          type="text"
-          placeholder="教授名（例：Davis Scott）"
-          value={newProfessor}
-          onChange={(e) => setNewProfessor(e.target.value)}
-          style={{ padding: '8px', borderRadius: '8px', width: '250px', marginBottom: '10px', background: '#232326', color: '#f4f4f5', border: '1.5px solid #27272a' }}
-        /><br />
-        <textarea
-          rows="3"
-          cols="40"
-          placeholder="授業の説明"
-          value={newDescription}
-          onChange={(e) => setNewDescription(e.target.value)}
-          style={{ padding: '8px', borderRadius: '8px', background: '#232326', color: '#f4f4f5', border: '1.5px solid #27272a' }}
-        /><br />
-        <button style={{ backgroundColor: '#22d3ee', color: '#18181b', padding: '10px 16px', border: 'none', borderRadius: '20px', fontWeight: 700, boxShadow: '0 2px 8px rgba(0,0,0,0.10)' }}>
-          提案を送信
-        </button>
-      </form>
-
-      <footer style={{ marginTop: '60px', borderTop: '1px solid #27272a', paddingTop: '20px', textAlign: 'center', color: '#a1a1aa' }}>
-        <Link to="/legal" style={{ color: '#a1a1aa', marginRight: '20px', textDecoration: 'none' }}>
-          法的事項
-        </Link>
-      </footer>
     </div>
   );
 }
