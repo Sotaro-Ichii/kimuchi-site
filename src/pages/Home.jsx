@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   db, auth, loginWithGoogle, loginAnonymously, logout, onAuthChange
 } from '../firebase';
@@ -36,6 +36,7 @@ function Home() {
   const [showFilters, setShowFilters] = useState(false);
   const [userEnrollments, setUserEnrollments] = useState({});
   const [courseStats, setCourseStats] = useState({});
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchCourses();
@@ -684,7 +685,7 @@ function Home() {
                           e.target.style.transform = 'scale(1)';
                           e.target.style.boxShadow = '0 4px 16px rgba(0,0,0,0.2)';
                         }}
-                        onClick={() => window.location.href = `/course/${course.id}`}
+                        onClick={() => navigate(`/course/${course.id}`)}
                         >
                           {/* 詳細ページリンクアイコン */}
                           <div style={{
