@@ -9,7 +9,7 @@ import {
 import { 
   FaSearch, FaComment, FaPlus, FaUser, FaSignOutAlt, FaGoogle, FaUserSecret,
   FaBook, FaGraduationCap, FaLightbulb, FaEnvelope, FaArrowRight, FaFilter,
-  FaSort, FaCheck, FaTimes, FaUsers, FaStar, FaClock, FaThumbsUp
+  FaSort, FaCheck, FaTimes, FaUsers, FaStar, FaClock, FaThumbsUp, FaExternalLinkAlt
 } from 'react-icons/fa';
 
 function normalize(text) {
@@ -672,11 +672,32 @@ function Home() {
                           borderRadius: '16px',
                           border: '1.5px solid #27272a',
                           boxShadow: '0 4px 16px rgba(0,0,0,0.2)',
-                          transition: 'transform 0.2s'
+                          transition: 'transform 0.2s, box-shadow 0.2s',
+                          cursor: 'pointer',
+                          position: 'relative'
                         }}
-                        onMouseOver={e => e.target.style.transform = 'scale(1.02)'}
-                        onMouseOut={e => e.target.style.transform = 'scale(1)'}
+                        onMouseOver={e => {
+                          e.target.style.transform = 'scale(1.02)';
+                          e.target.style.boxShadow = '0 8px 24px rgba(0,0,0,0.3)';
+                        }}
+                        onMouseOut={e => {
+                          e.target.style.transform = 'scale(1)';
+                          e.target.style.boxShadow = '0 4px 16px rgba(0,0,0,0.2)';
+                        }}
+                        onClick={() => window.location.href = `/course/${course.id}`}
                         >
+                          {/* 詳細ページリンクアイコン */}
+                          <div style={{
+                            position: 'absolute',
+                            top: '16px',
+                            right: '16px',
+                            color: '#a1a1aa',
+                            fontSize: '1.2rem',
+                            opacity: 0.7
+                          }}>
+                            <FaExternalLinkAlt />
+                          </div>
+
                           {/* ヘッダー */}
                           <div style={{
                             display: 'flex',
@@ -756,7 +777,10 @@ function Home() {
 
                           {/* 受講ボタン */}
                           <button
-                            onClick={() => handleEnrollment(course.id)}
+                            onClick={(e) => {
+                              e.stopPropagation(); // カードのクリックイベントを阻止
+                              handleEnrollment(course.id);
+                            }}
                             style={{
                               width: '100%',
                               padding: '12px 20px',
