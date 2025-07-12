@@ -10,8 +10,8 @@ import {
   logout,
   db,
 } from "../firebase";
-import { doc, getDoc } from "firebase/firestore";
-import { FaCheckCircle, FaUserShield, FaMoneyCheckAlt, FaLock, FaGoogle, FaArrowRight } from 'react-icons/fa';
+import { doc, getDoc, collection, getDocs, query, where } from "firebase/firestore";
+import { FaCheckCircle, FaUserShield, FaMoneyCheckAlt, FaLock, FaGoogle, FaArrowRight, FaUsers } from 'react-icons/fa';
 import { HiOutlineArrowRight } from 'react-icons/hi';
 
 function LandingPage() {
@@ -20,6 +20,24 @@ function LandingPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isRegistering, setIsRegistering] = useState(false);
+  const [approvedUserCount, setApprovedUserCount] = useState(0);
+
+  // 承認済みユーザー数を取得
+  useEffect(() => {
+    const fetchApprovedUserCount = async () => {
+      try {
+        const approvedUsersRef = collection(db, "approvedUsers");
+        const q = query(approvedUsersRef, where("status", "==", "approved"));
+        const querySnapshot = await getDocs(q);
+        setApprovedUserCount(querySnapshot.size);
+      } catch (error) {
+        console.error("承認済みユーザー数取得エラー:", error);
+        // エラーが発生してもアプリは継続動作
+      }
+    };
+
+    fetchApprovedUserCount();
+  }, []);
 
   useEffect(() => {
     const checkApproval = async () => {
@@ -64,6 +82,27 @@ function LandingPage() {
           とある大学の、完全非公開の授業評価コミュニティ。<br />
           GPAと時間を守る、選ばれた人だけの楽単情報プラットフォーム。
         </p>
+        
+        {/* 承認済みユーザー数表示 */}
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.5rem',
+            background: 'rgba(34, 211, 238, 0.1)',
+            border: '1px solid rgba(34, 211, 238, 0.3)',
+            borderRadius: '9999px',
+            padding: '0.5rem 1rem',
+            marginBottom: '1.5rem',
+            color: '#22d3ee',
+            fontSize: '0.9rem',
+            fontWeight: 'bold',
+          }}
+        >
+          <FaUsers style={{ fontSize: '1rem' }} />
+          <span>承認済みユーザー: {approvedUserCount}名</span>
+        </div>
+        
         <a
           href="#apply"
           style={{
