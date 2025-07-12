@@ -1251,7 +1251,6 @@ function Home() {
             &copy; 2025 Kimuchi. All rights reserved.
           </div>
         </footer>
-      </div>
     </div>
   );
 }
@@ -1301,14 +1300,3 @@ function CommentWithBadge({ comment, getBadgeForUid }) {
 }
 
 export default Home;
-
-
-
-
-
-
-
-
-
-
-
