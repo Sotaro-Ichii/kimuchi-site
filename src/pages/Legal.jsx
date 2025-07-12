@@ -2,8 +2,8 @@ import React from 'react';
 
 function Legal() {
   return (
-    <div style={{ backgroundColor: '#18181b', minHeight: '100vh', padding: '30px', fontFamily: 'sans-serif', color: '#f4f4f5' }}>
-      <h1 style={{ color: '#fbbf24' }}>法的事項</h1>
+    <div style={{ backgroundColor: '#f1f5f9', minHeight: '100vh', padding: '30px', fontFamily: 'sans-serif', color: '#1e293b' }}>
+      <h1 style={{ color: '#2563eb' }}>法的事項</h1>
 
       <section style={{ marginBottom: '40px' }}>
         <h2>利用規約</h2>

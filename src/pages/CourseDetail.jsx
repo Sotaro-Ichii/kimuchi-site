@@ -211,10 +211,10 @@ function CourseDetail() {
 
   return (
     <div style={{ 
-      backgroundColor: '#18181b', 
+      backgroundColor: '#f1f5f9', 
       minHeight: '100vh',
       fontFamily: 'Inter, sans-serif',
-      color: '#f4f4f5'
+      color: '#1e293b'
     }}>
       <div style={{
         maxWidth: '1200px',
@@ -228,16 +228,16 @@ function CourseDetail() {
           alignItems: 'center',
           marginBottom: '40px',
           padding: '20px',
-          background: '#232326',
+          background: '#fff',
           borderRadius: '16px',
-          border: '1.5px solid #27272a',
-          boxShadow: '0 4px 20px rgba(0,0,0,0.2)'
+          border: '1.5px solid #cbd5e1',
+          boxShadow: '0 4px 20px rgba(30,41,59,0.10)'
         }}>
           <Link to="/home" style={{
             display: 'inline-flex',
             alignItems: 'center',
             gap: '8px',
-            color: '#fbbf24',
+            color: '#2563eb',
             textDecoration: 'none',
             fontSize: '1rem',
             fontWeight: '600'
@@ -276,12 +276,13 @@ function CourseDetail() {
 
         {/* 授業詳細 */}
         <div style={{
-          background: '#232326',
+          background: '#fff',
           borderRadius: '20px',
           padding: '40px',
-          border: '1.5px solid #27272a',
-          boxShadow: '0 8px 32px rgba(0,0,0,0.3)',
-          marginBottom: '40px'
+          border: '1.5px solid #cbd5e1',
+          boxShadow: '0 8px 32px rgba(30,41,59,0.10)',
+          marginBottom: '40px',
+          color: '#1e293b',
         }}>
           {/* 授業ヘッダー */}
           <div style={{
@@ -299,9 +300,9 @@ function CourseDetail() {
                 gap: '12px',
                 marginBottom: '16px'
               }}>
-                <FaGraduationCap style={{ color: '#22d3ee', fontSize: '2rem' }} />
+                <FaGraduationCap style={{ color: '#2563eb', fontSize: '2rem' }} />
                 <h1 style={{ 
-                  color: '#fbbf24', 
+                  color: '#2563eb', 
                   fontSize: '2.5rem', 
                   fontWeight: 'bold',
                   margin: 0
@@ -309,8 +310,8 @@ function CourseDetail() {
                   {course.name}
                 </h1>
                 <div style={{
-                  background: categoryColor,
-                  color: '#18181b',
+                  background: '#e0e7ef',
+                  color: '#2563eb',
                   padding: '8px 16px',
                   borderRadius: '20px',
                   fontSize: '0.9rem',
@@ -321,7 +322,7 @@ function CourseDetail() {
               </div>
               
               <div style={{ 
-                color: '#e4e4e7', 
+                color: '#334155', 
                 fontSize: '1.3rem',
                 marginBottom: '20px'
               }}>

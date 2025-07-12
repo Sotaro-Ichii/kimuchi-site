@@ -34,11 +34,11 @@ function Contact() {
 
   return (
     <div style={{ 
-      backgroundColor: '#18181b', 
+      backgroundColor: '#f1f5f9', 
       minHeight: '100vh', 
       padding: '20px',
       fontFamily: 'Inter, sans-serif',
-      color: '#f4f4f5'
+      color: '#1e293b'
     }}>
       {/* ヘッダー */}
       <div style={{ 
@@ -50,7 +50,7 @@ function Contact() {
           display: 'inline-flex',
           alignItems: 'center',
           gap: '8px',
-          color: '#fbbf24',
+          color: '#2563eb',
           textDecoration: 'none',
           fontSize: '1rem',
           fontWeight: '600',
@@ -60,7 +60,7 @@ function Contact() {
         </Link>
 
         <h1 style={{ 
-          color: '#fbbf24', 
+          color: '#2563eb', 
           fontSize: '3rem', 
           fontWeight: 'bold',
           textAlign: 'center',
@@ -71,7 +71,7 @@ function Contact() {
         <p style={{ 
           textAlign: 'center', 
           fontSize: '1.2rem', 
-          color: '#a1a1aa',
+          color: '#64748b',
           marginBottom: '60px'
         }}>
           ご質問・ご要望・バグ報告など、お気軽にお問い合わせください
@@ -87,14 +87,14 @@ function Contact() {
         }}>
           {/* 左側：お問い合わせフォーム */}
           <div style={{
-            background: '#232326',
+            background: '#fff',
             borderRadius: '20px',
             padding: '40px',
-            border: '1.5px solid #27272a',
-            boxShadow: '0 8px 32px rgba(0,0,0,0.3)'
+            border: '1.5px solid #cbd5e1',
+            boxShadow: '0 8px 32px rgba(30,41,59,0.10)'
           }}>
             <h2 style={{ 
-              color: '#22d3ee', 
+              color: '#2563eb', 
               fontSize: '1.8rem', 
               fontWeight: 'bold',
               marginBottom: '30px',
@@ -125,7 +125,7 @@ function Contact() {
                   display: 'block', 
                   marginBottom: '8px', 
                   fontWeight: '600',
-                  color: '#e4e4e7'
+                  color: '#1e293b'
                 }}>
                   お名前 *
                 </label>
@@ -139,15 +139,15 @@ function Contact() {
                     width: '100%',
                     padding: '12px 16px',
                     borderRadius: '12px',
-                    border: '1.5px solid #27272a',
-                    background: '#18181b',
-                    color: '#f4f4f5',
+                    border: '1.5px solid #cbd5e1',
+                    background: '#fff',
+                    color: '#1e293b',
                     fontSize: '1rem',
                     outline: 'none',
                     transition: 'border-color 0.2s'
                   }}
-                  onFocus={(e) => e.target.style.borderColor = '#22d3ee'}
-                  onBlur={(e) => e.target.style.borderColor = '#27272a'}
+                  onFocus={(e) => e.target.style.borderColor = '#2563eb'}
+                  onBlur={(e) => e.target.style.borderColor = '#cbd5e1'}
                 />
               </div>
 
@@ -156,7 +156,7 @@ function Contact() {
                   display: 'block', 
                   marginBottom: '8px', 
                   fontWeight: '600',
-                  color: '#e4e4e7'
+                  color: '#1e293b'
                 }}>
                   メールアドレス *
                 </label>
@@ -170,15 +170,15 @@ function Contact() {
                     width: '100%',
                     padding: '12px 16px',
                     borderRadius: '12px',
-                    border: '1.5px solid #27272a',
-                    background: '#18181b',
-                    color: '#f4f4f5',
+                    border: '1.5px solid #cbd5e1',
+                    background: '#fff',
+                    color: '#1e293b',
                     fontSize: '1rem',
                     outline: 'none',
                     transition: 'border-color 0.2s'
                   }}
-                  onFocus={(e) => e.target.style.borderColor = '#22d3ee'}
-                  onBlur={(e) => e.target.style.borderColor = '#27272a'}
+                  onFocus={(e) => e.target.style.borderColor = '#2563eb'}
+                  onBlur={(e) => e.target.style.borderColor = '#cbd5e1'}
                 />
               </div>
 
@@ -187,7 +187,7 @@ function Contact() {
                   display: 'block', 
                   marginBottom: '8px', 
                   fontWeight: '600',
-                  color: '#e4e4e7'
+                  color: '#1e293b'
                 }}>
                   件名 *
                 </label>
@@ -201,15 +201,15 @@ function Contact() {
                     width: '100%',
                     padding: '12px 16px',
                     borderRadius: '12px',
-                    border: '1.5px solid #27272a',
-                    background: '#18181b',
-                    color: '#f4f4f5',
+                    border: '1.5px solid #cbd5e1',
+                    background: '#fff',
+                    color: '#1e293b',
                     fontSize: '1rem',
                     outline: 'none',
                     transition: 'border-color 0.2s'
                   }}
-                  onFocus={(e) => e.target.style.borderColor = '#22d3ee'}
-                  onBlur={(e) => e.target.style.borderColor = '#27272a'}
+                  onFocus={(e) => e.target.style.borderColor = '#2563eb'}
+                  onBlur={(e) => e.target.style.borderColor = '#cbd5e1'}
                 />
               </div>
 
@@ -218,7 +218,7 @@ function Contact() {
                   display: 'block', 
                   marginBottom: '8px', 
                   fontWeight: '600',
-                  color: '#e4e4e7'
+                  color: '#1e293b'
                 }}>
                   メッセージ *
                 </label>
@@ -232,16 +232,16 @@ function Contact() {
                     width: '100%',
                     padding: '12px 16px',
                     borderRadius: '12px',
-                    border: '1.5px solid #27272a',
-                    background: '#18181b',
-                    color: '#f4f4f5',
+                    border: '1.5px solid #cbd5e1',
+                    background: '#fff',
+                    color: '#1e293b',
                     fontSize: '1rem',
                     outline: 'none',
                     resize: 'vertical',
                     transition: 'border-color 0.2s'
                   }}
-                  onFocus={(e) => e.target.style.borderColor = '#22d3ee'}
-                  onBlur={(e) => e.target.style.borderColor = '#27272a'}
+                  onFocus={(e) => e.target.style.borderColor = '#2563eb'}
+                  onBlur={(e) => e.target.style.borderColor = '#cbd5e1'}
                 />
               </div>
 
@@ -271,15 +271,15 @@ function Contact() {
 
           {/* 右側：連絡先情報 */}
           <div style={{
-            background: '#232326',
+            background: '#fff',
             borderRadius: '20px',
             padding: '40px',
-            border: '1.5px solid #27272a',
-            boxShadow: '0 8px 32px rgba(0,0,0,0.3)',
+            border: '1.5px solid #cbd5e1',
+            boxShadow: '0 8px 32px rgba(30,41,59,0.10)',
             height: 'fit-content'
           }}>
             <h2 style={{ 
-              color: '#fbbf24', 
+              color: '#2563eb', 
               fontSize: '1.8rem', 
               fontWeight: 'bold',
               marginBottom: '30px'
@@ -289,7 +289,7 @@ function Contact() {
 
             <div style={{ marginBottom: '30px' }}>
               <h3 style={{ 
-                color: '#22d3ee', 
+                color: '#2563eb', 
                 fontSize: '1.2rem', 
                 fontWeight: '600',
                 marginBottom: '15px',
@@ -300,14 +300,14 @@ function Contact() {
                 <FaEnvelope /> メール
               </h3>
               <p style={{ 
-                color: '#e4e4e7', 
+                color: '#1e293b', 
                 fontSize: '1.1rem',
                 marginBottom: '8px'
               }}>
                 sotta.san17@gmail.com
               </p>
               <p style={{ 
-                color: '#a1a1aa', 
+                color: '#64748b', 
                 fontSize: '0.95rem',
                 lineHeight: '1.5'
               }}>
@@ -317,7 +317,7 @@ function Contact() {
 
             <div style={{ marginBottom: '30px' }}>
               <h3 style={{ 
-                color: '#22d3ee', 
+                color: '#2563eb', 
                 fontSize: '1.2rem', 
                 fontWeight: '600',
                 marginBottom: '15px',
@@ -328,14 +328,14 @@ function Contact() {
                 <FaPhone /> 電話番号
               </h3>
               <p style={{ 
-                color: '#e4e4e7', 
+                color: '#1e293b', 
                 fontSize: '1.1rem',
                 marginBottom: '8px'
               }}>
                 657-709-1289
               </p>
               <p style={{ 
-                color: '#a1a1aa', 
+                color: '#64748b', 
                 fontSize: '0.95rem',
                 lineHeight: '1.5'
               }}>
@@ -344,13 +344,13 @@ function Contact() {
             </div>
 
             <div style={{
-              background: '#18181b',
+              background: '#f1f5f9',
               borderRadius: '12px',
               padding: '20px',
-              border: '1px solid #27272a'
+              border: '1px solid #cbd5e1'
             }}>
               <h3 style={{ 
-                color: '#fbbf24', 
+                color: '#2563eb', 
                 fontSize: '1.1rem', 
                 fontWeight: '600',
                 marginBottom: '12px'
@@ -358,7 +358,7 @@ function Contact() {
                 よくある質問
               </h3>
               <ul style={{ 
-                color: '#a1a1aa', 
+                color: '#64748b', 
                 fontSize: '0.95rem',
                 lineHeight: '1.6',
                 paddingLeft: '20px'
