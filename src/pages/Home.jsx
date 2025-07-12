@@ -975,6 +975,7 @@ function Home() {
                         fontSize: '1rem',
                         outline: 'none',
                         transition: 'border-color 0.2s',
+                        '::placeholder': { color: '#a1a1aa' }
                       }}
                       onFocus={e => e.target.style.borderColor = '#2563eb'}
                       onBlur={e => e.target.style.borderColor = '#cbd5e1'}
@@ -1038,6 +1039,7 @@ function Home() {
                         outline: 'none',
                         resize: 'vertical',
                         transition: 'border-color 0.2s',
+                        '::placeholder': { color: '#a1a1aa' }
                       }}
                       onFocus={e => e.target.style.borderColor = '#2563eb'}
                       onBlur={e => e.target.style.borderColor = '#cbd5e1'}
