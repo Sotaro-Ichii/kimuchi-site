@@ -454,7 +454,7 @@ function CourseDetail() {
               コメントを投稿
             </h3>
             
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="course-detail-comment-form">
               <div style={{ marginBottom: '20px' }}>
                 <label style={{ 
                   display: 'block', 
