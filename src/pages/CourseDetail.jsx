@@ -417,11 +417,12 @@ function CourseDetail() {
 
         {/* コメントセクション */}
         <div style={{
-          background: '#232326',
+          background: '#fff',
           borderRadius: '20px',
           padding: '40px',
-          border: '1.5px solid #27272a',
-          boxShadow: '0 8px 32px rgba(0,0,0,0.3)'
+          border: '1.5px solid #cbd5e1',
+          boxShadow: '0 8px 32px rgba(30,41,59,0.10)',
+          color: '#1e293b',
         }}>
           <h2 style={{ 
             color: '#22d3ee', 
