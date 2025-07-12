@@ -690,11 +690,17 @@ function Home() {
                   }}>
                     <FaBook /> 検索結果（{resultCourses.length}件）
                   </h3>
-                  <div style={{
-                    display: 'grid',
-                    gap: '20px',
-                    gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))'
-                  }}>
+                  <div
+                    style={{
+                      display: 'grid',
+                      gap: '20px',
+                      gridTemplateColumns: window.innerWidth <= 600 ? '1fr' : 'repeat(auto-fit, minmax(350px, 1fr))',
+                      width: '100%',
+                      maxWidth: 600,
+                      margin: '0 auto',
+                      boxSizing: 'border-box',
+                    }}
+                  >
                     {resultCourses.map(course => {
                       const category = getCategoryName(course.name);
                       const stats = courseStats[course.id] || { enrolledCount: 0, rating: 0, ratingCount: 0 };
@@ -703,21 +709,25 @@ function Home() {
                       return (
                         <div key={course.id} style={{
                           background: '#18181b',
-                          padding: '24px',
+                          padding: window.innerWidth <= 600 ? '16px' : '24px',
                           borderRadius: '16px',
                           border: '1.5px solid #27272a',
                           boxShadow: '0 4px 16px rgba(0,0,0,0.2)',
                           transition: 'transform 0.2s, box-shadow 0.2s',
                           cursor: 'pointer',
-                          position: 'relative'
+                          position: 'relative',
+                          width: '100%',
+                          maxWidth: '100%',
+                          margin: '0 auto',
+                          boxSizing: 'border-box',
                         }}
                         onMouseOver={e => {
-                          e.target.style.transform = 'scale(1.02)';
-                          e.target.style.boxShadow = '0 8px 24px rgba(0,0,0,0.3)';
+                          e.currentTarget.style.transform = 'scale(1.02)';
+                          e.currentTarget.style.boxShadow = '0 8px 24px rgba(0,0,0,0.3)';
                         }}
                         onMouseOut={e => {
-                          e.target.style.transform = 'scale(1)';
-                          e.target.style.boxShadow = '0 4px 16px rgba(0,0,0,0.2)';
+                          e.currentTarget.style.transform = 'scale(1)';
+                          e.currentTarget.style.boxShadow = '0 4px 16px rgba(0,0,0,0.2)';
                         }}
                         onClick={() => navigate(`/course/${course.id}`)}
                         >
