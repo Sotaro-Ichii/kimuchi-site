@@ -992,16 +992,12 @@ function Home() {
                       value={commentCourseId}
                       onChange={(e) => setCommentCourseId(e.target.value)}
                       required
+                      className="comment-input"
                       style={{
                         width: '100%',
                         padding: '12px 16px',
-                        borderRadius: '12px',
-                        border: '1.5px solid #cbd5e1',
-                        background: '#fff',
-                        color: '#1e293b',
                         fontSize: '1rem',
-                        outline: 'none',
-                        transition: 'border-color 0.2s',
+                        marginBottom: '14px'
                       }}
                       onFocus={e => e.target.style.borderColor = '#2563eb'}
                       onBlur={e => e.target.style.borderColor = '#cbd5e1'}

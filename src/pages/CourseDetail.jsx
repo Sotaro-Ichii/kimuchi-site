@@ -473,15 +473,16 @@ function CourseDetail() {
                     width: '100%',
                     padding: '12px 16px',
                     borderRadius: '12px',
-                    border: '1.5px solid #27272a',
-                    background: '#232326',
-                    color: '#f4f4f5',
+                    border: '1.5px solid #cbd5e1',
+                    background: '#fff',
+                    color: '#1e293b',
                     fontSize: '1rem',
                     outline: 'none',
-                    transition: 'border-color 0.2s'
+                    transition: 'border-color 0.2s',
+                    '::placeholder': { color: '#a1a1aa' }
                   }}
-                  onFocus={(e) => e.target.style.borderColor = '#22d3ee'}
-                  onBlur={(e) => e.target.style.borderColor = '#27272a'}
+                  onFocus={e => e.target.style.borderColor = '#2563eb'}
+                  onBlur={e => e.target.style.borderColor = '#cbd5e1'}
                 />
               </div>
 
@@ -504,16 +505,17 @@ function CourseDetail() {
                     width: '100%',
                     padding: '12px 16px',
                     borderRadius: '12px',
-                    border: '1.5px solid #27272a',
-                    background: '#232326',
-                    color: '#f4f4f5',
+                    border: '1.5px solid #cbd5e1',
+                    background: '#fff',
+                    color: '#1e293b',
                     fontSize: '1rem',
                     outline: 'none',
                     resize: 'vertical',
-                    transition: 'border-color 0.2s'
+                    transition: 'border-color 0.2s',
+                    '::placeholder': { color: '#a1a1aa' }
                   }}
-                  onFocus={(e) => e.target.style.borderColor = '#22d3ee'}
-                  onBlur={(e) => e.target.style.borderColor = '#27272a'}
+                  onFocus={e => e.target.style.borderColor = '#2563eb'}
+                  onBlur={e => e.target.style.borderColor = '#cbd5e1'}
                 />
               </div>
 
@@ -584,11 +586,12 @@ function CommentWithBadge({ comment, getBadgeForUid }) {
   return (
     <div style={{
       background: '#fff',
-      padding: '20px',
+      padding: '24px',
       borderRadius: '16px',
       border: '1.5px solid #cbd5e1',
-      boxShadow: '0 4px 16px rgba(30,41,59,0.08)',
+      boxShadow: '0 4px 16px rgba(30,41,59,0.10)',
       color: '#1e293b',
+      marginBottom: '8px',
     }}>
       <div style={{
         display: 'flex',
@@ -596,8 +599,8 @@ function CommentWithBadge({ comment, getBadgeForUid }) {
         gap: '8px',
         marginBottom: '8px'
       }}>
-        <FaUser style={{ color: '#fbbf24', fontSize: '1rem' }} />
-        <strong style={{ color: '#fbbf24' }}>{comment.name || "匿名"}</strong>
+        <FaUser style={{ color: '#2563eb', fontSize: '1rem' }} />
+        <strong style={{ color: '#2563eb' }}>{comment.name || "匿名"}</strong>
         <span style={{
           background: badge === 'Gold' ? '#fbbf24' : badge === 'Founder' ? '#8b5cf6' : '#22d3ee',
           color: '#18181b',
@@ -611,7 +614,7 @@ function CommentWithBadge({ comment, getBadgeForUid }) {
           boxShadow: '0 1px 4px rgba(0,0,0,0.10)'
         }}>{badge}</span>
       </div>
-      <div style={{ color: '#e4e4e7', lineHeight: '1.6', fontSize: '1rem' }}>{comment.text}</div>
+      <div style={{ color: '#334155', lineHeight: '1.6', fontSize: '1rem' }}>{comment.text}</div>
     </div>
   );
 }
