@@ -513,15 +513,15 @@ function Home() {
                         width: '100%',
                         padding: '16px 20px',
                         borderRadius: '12px',
-                        border: '1.5px solid #27272a',
-                        background: '#18181b',
-                        color: '#f4f4f5',
+                        border: '1.5px solid #cbd5e1',
+                        background: '#fff',
+                        color: '#1e293b',
                         fontSize: '1rem',
                         outline: 'none',
-                        transition: 'border-color 0.2s'
+                        transition: 'border-color 0.2s',
                       }}
-                      onFocus={(e) => e.target.style.borderColor = '#2563eb'}
-                      onBlur={(e) => e.target.style.borderColor = '#27272a'}
+                      onFocus={e => e.target.style.borderColor = '#2563eb'}
+                      onBlur={e => e.target.style.borderColor = '#cbd5e1'}
                     />
                   </div>
                   <div>
@@ -542,15 +542,15 @@ function Home() {
                         width: '100%',
                         padding: '16px 20px',
                         borderRadius: '12px',
-                        border: '1.5px solid #27272a',
-                        background: '#18181b',
-                        color: '#f4f4f5',
+                        border: '1.5px solid #cbd5e1',
+                        background: '#fff',
+                        color: '#1e293b',
                         fontSize: '1rem',
                         outline: 'none',
-                        transition: 'border-color 0.2s'
+                        transition: 'border-color 0.2s',
                       }}
-                      onFocus={(e) => e.target.style.borderColor = '#2563eb'}
-                      onBlur={(e) => e.target.style.borderColor = '#27272a'}
+                      onFocus={e => e.target.style.borderColor = '#2563eb'}
+                      onBlur={e => e.target.style.borderColor = '#cbd5e1'}
                     />
                   </div>
                 </div>
@@ -597,14 +597,16 @@ function Home() {
                       onChange={(e) => setSortBy(e.target.value)}
                       style={{
                         padding: '12px 16px',
-                        background: '#18181b',
-                        color: '#f4f4f5',
-                        border: '1.5px solid #27272a',
+                        background: '#fff',
+                        color: '#1e293b',
+                        border: '1.5px solid #cbd5e1',
                         borderRadius: '12px',
                         fontSize: '1rem',
                         outline: 'none',
-                        cursor: 'pointer'
+                        cursor: 'pointer',
                       }}
+                      onFocus={e => e.target.style.borderColor = '#2563eb'}
+                      onBlur={e => e.target.style.borderColor = '#cbd5e1'}
                     >
                       <option value="name">授業名順</option>
                       <option value="professor">教授名順</option>
@@ -965,15 +967,15 @@ function Home() {
                         width: '100%',
                         padding: '12px 16px',
                         borderRadius: '12px',
-                        border: '1.5px solid #27272a',
-                        background: '#18181b',
-                        color: '#f4f4f5',
+                        border: '1.5px solid #cbd5e1',
+                        background: '#fff',
+                        color: '#1e293b',
                         fontSize: '1rem',
                         outline: 'none',
-                        transition: 'border-color 0.2s'
+                        transition: 'border-color 0.2s',
                       }}
-                      onFocus={(e) => e.target.style.borderColor = '#2563eb'}
-                      onBlur={(e) => e.target.style.borderColor = '#27272a'}
+                      onFocus={e => e.target.style.borderColor = '#2563eb'}
+                      onBlur={e => e.target.style.borderColor = '#cbd5e1'}
                     />
                   </div>
 
@@ -996,15 +998,15 @@ function Home() {
                         width: '100%',
                         padding: '12px 16px',
                         borderRadius: '12px',
-                        border: '1.5px solid #27272a',
-                        background: '#18181b',
-                        color: '#f4f4f5',
+                        border: '1.5px solid #cbd5e1',
+                        background: '#fff',
+                        color: '#1e293b',
                         fontSize: '1rem',
                         outline: 'none',
-                        transition: 'border-color 0.2s'
+                        transition: 'border-color 0.2s',
                       }}
-                      onFocus={(e) => e.target.style.borderColor = '#2563eb'}
-                      onBlur={(e) => e.target.style.borderColor = '#27272a'}
+                      onFocus={e => e.target.style.borderColor = '#2563eb'}
+                      onBlur={e => e.target.style.borderColor = '#cbd5e1'}
                     />
                   </div>
 
@@ -1027,16 +1029,16 @@ function Home() {
                         width: '100%',
                         padding: '12px 16px',
                         borderRadius: '12px',
-                        border: '1.5px solid #27272a',
-                        background: '#18181b',
-                        color: '#f4f4f5',
+                        border: '1.5px solid #cbd5e1',
+                        background: '#fff',
+                        color: '#1e293b',
                         fontSize: '1rem',
                         outline: 'none',
                         resize: 'vertical',
-                        transition: 'border-color 0.2s'
+                        transition: 'border-color 0.2s',
                       }}
-                      onFocus={(e) => e.target.style.borderColor = '#2563eb'}
-                      onBlur={(e) => e.target.style.borderColor = '#27272a'}
+                      onFocus={e => e.target.style.borderColor = '#2563eb'}
+                      onBlur={e => e.target.style.borderColor = '#cbd5e1'}
                     />
                   </div>
 
@@ -1103,15 +1105,15 @@ function Home() {
                         width: '100%',
                         padding: '12px 16px',
                         borderRadius: '12px',
-                        border: '1.5px solid #27272a',
-                        background: '#18181b',
-                        color: '#f4f4f5',
+                        border: '1.5px solid #cbd5e1',
+                        background: '#fff',
+                        color: '#1e293b',
                         fontSize: '1rem',
                         outline: 'none',
-                        transition: 'border-color 0.2s'
+                        transition: 'border-color 0.2s',
                       }}
-                      onFocus={(e) => e.target.style.borderColor = '#2563eb'}
-                      onBlur={(e) => e.target.style.borderColor = '#27272a'}
+                      onFocus={e => e.target.style.borderColor = '#2563eb'}
+                      onBlur={e => e.target.style.borderColor = '#cbd5e1'}
                     />
                   </div>
 
@@ -1134,15 +1136,15 @@ function Home() {
                         width: '100%',
                         padding: '12px 16px',
                         borderRadius: '12px',
-                        border: '1.5px solid #27272a',
-                        background: '#18181b',
-                        color: '#f4f4f5',
+                        border: '1.5px solid #cbd5e1',
+                        background: '#fff',
+                        color: '#1e293b',
                         fontSize: '1rem',
                         outline: 'none',
-                        transition: 'border-color 0.2s'
+                        transition: 'border-color 0.2s',
                       }}
-                      onFocus={(e) => e.target.style.borderColor = '#2563eb'}
-                      onBlur={(e) => e.target.style.borderColor = '#27272a'}
+                      onFocus={e => e.target.style.borderColor = '#2563eb'}
+                      onBlur={e => e.target.style.borderColor = '#cbd5e1'}
                     />
                   </div>
 
@@ -1165,16 +1167,16 @@ function Home() {
                         width: '100%',
                         padding: '12px 16px',
                         borderRadius: '12px',
-                        border: '1.5px solid #27272a',
-                        background: '#18181b',
-                        color: '#f4f4f5',
+                        border: '1.5px solid #cbd5e1',
+                        background: '#fff',
+                        color: '#1e293b',
                         fontSize: '1rem',
                         outline: 'none',
                         resize: 'vertical',
-                        transition: 'border-color 0.2s'
+                        transition: 'border-color 0.2s',
                       }}
-                      onFocus={(e) => e.target.style.borderColor = '#2563eb'}
-                      onBlur={(e) => e.target.style.borderColor = '#27272a'}
+                      onFocus={e => e.target.style.borderColor = '#2563eb'}
+                      onBlur={e => e.target.style.borderColor = '#cbd5e1'}
                     />
                   </div>
 

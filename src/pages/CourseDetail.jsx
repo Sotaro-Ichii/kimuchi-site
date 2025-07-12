@@ -581,11 +581,12 @@ function CommentWithBadge({ comment, getBadgeForUid }) {
   }, [comment.uid]);
   return (
     <div style={{
-      background: '#18181b',
+      background: '#fff',
       padding: '20px',
       borderRadius: '16px',
-      border: '1.5px solid #27272a',
-      boxShadow: '0 4px 16px rgba(0,0,0,0.2)'
+      border: '1.5px solid #cbd5e1',
+      boxShadow: '0 4px 16px rgba(30,41,59,0.08)',
+      color: '#1e293b',
     }}>
       <div style={{
         display: 'flex',
