@@ -221,3 +221,24 @@ body {
   border-color: #2563eb !important;
   outline: none;
 }
+
+/* ===== 最優先: 授業詳細ページ コメント投稿フォーム 明るい入力欄 ===== */
+body .course-detail-comment-form input[type="text"],
+body .course-detail-comment-form textarea {
+  background: #fff !important;
+  color: #1e293b !important;
+  border: 1.5px solid #cbd5e1 !important;
+  border-radius: 12px !important;
+  font-size: 1rem !important;
+  transition: border-color 0.2s !important;
+}
+body .course-detail-comment-form input[type="text"]::placeholder,
+body .course-detail-comment-form textarea::placeholder {
+  color: #a1a1aa !important;
+  opacity: 1 !important;
+}
+body .course-detail-comment-form input[type="text"]:focus,
+body .course-detail-comment-form textarea:focus {
+  border-color: #2563eb !important;
+  outline: none !important;
+}

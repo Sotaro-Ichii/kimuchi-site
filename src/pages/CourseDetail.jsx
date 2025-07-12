@@ -469,20 +469,15 @@ function CourseDetail() {
                   placeholder="あなたの名前"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
+                  className=""
                   style={{
                     width: '100%',
                     padding: '12px 16px',
-                    borderRadius: '12px',
-                    border: '1.5px solid #cbd5e1',
-                    background: '#fff',
-                    color: '#1e293b',
                     fontSize: '1rem',
-                    outline: 'none',
-                    transition: 'border-color 0.2s',
-                    '::placeholder': { color: '#a1a1aa' }
+                    marginBottom: '14px'
                   }}
-                  onFocus={e => e.target.style.borderColor = '#2563eb'}
-                  onBlur={e => e.target.style.borderColor = '#cbd5e1'}
+                  onFocus={e => e.target.style.borderColor = ''}
+                  onBlur={e => e.target.style.borderColor = ''}
                 />
               </div>
 
@@ -501,21 +496,16 @@ function CourseDetail() {
                   value={text}
                   onChange={(e) => setText(e.target.value)}
                   required
+                  className=""
                   style={{
                     width: '100%',
                     padding: '12px 16px',
-                    borderRadius: '12px',
-                    border: '1.5px solid #cbd5e1',
-                    background: '#fff',
-                    color: '#1e293b',
                     fontSize: '1rem',
-                    outline: 'none',
-                    resize: 'vertical',
-                    transition: 'border-color 0.2s',
-                    '::placeholder': { color: '#a1a1aa' }
+                    marginBottom: '14px',
+                    resize: 'vertical'
                   }}
-                  onFocus={e => e.target.style.borderColor = '#2563eb'}
-                  onBlur={e => e.target.style.borderColor = '#cbd5e1'}
+                  onFocus={e => e.target.style.borderColor = ''}
+                  onBlur={e => e.target.style.borderColor = ''}
                 />
               </div>
 
