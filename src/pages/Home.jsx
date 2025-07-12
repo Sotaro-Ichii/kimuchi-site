@@ -1266,11 +1266,12 @@ function CommentWithBadge({ comment, getBadgeForUid }) {
   }, [comment.uid]);
   return (
     <div style={{
-      background: '#18181b',
+      background: '#fff',
       padding: '20px',
       borderRadius: '16px',
-      border: '1.5px solid #27272a',
-      boxShadow: '0 4px 16px rgba(0,0,0,0.2)'
+      border: '1.5px solid #cbd5e1',
+      boxShadow: '0 4px 16px rgba(30,41,59,0.08)',
+      color: '#1e293b',
     }}>
       <div style={{
         display: 'flex',
@@ -1278,22 +1279,22 @@ function CommentWithBadge({ comment, getBadgeForUid }) {
         gap: '8px',
         marginBottom: '8px'
       }}>
-        <FaUser style={{ color: '#fbbf24', fontSize: '1rem' }} />
-        <strong style={{ color: '#fbbf24' }}>{comment.name || "匿名"}</strong>
+        <FaUser style={{ color: '#2563eb', fontSize: '1rem' }} />
+        <strong style={{ color: '#2563eb' }}>{comment.name || "匿名"}</strong>
         <span style={{
-          background: badge === 'Gold' ? '#fbbf24' : badge === 'Founder' ? '#8b5cf6' : '#22d3ee',
-          color: '#18181b',
+          background: badge === 'Gold' ? '#93c5fd' : badge === 'Founder' ? '#8b5cf6' : '#e0e7ef',
+          color: '#2563eb',
           borderRadius: '8px',
           padding: '2px 10px',
           fontWeight: 'bold',
           fontSize: '0.85rem',
           marginLeft: '2px',
           letterSpacing: '0.03em',
-          border: '1.5px solid #27272a',
-          boxShadow: '0 1px 4px rgba(0,0,0,0.10)'
+          border: '1.5px solid #cbd5e1',
+          boxShadow: '0 1px 4px rgba(30,41,59,0.08)'
         }}>{badge}</span>
       </div>
-      <div style={{ color: '#e4e4e7', lineHeight: '1.6', fontSize: '1rem' }}>{comment.text}</div>
+      <div style={{ color: '#334155', lineHeight: '1.6', fontSize: '1rem' }}>{comment.text}</div>
     </div>
   );
 }
