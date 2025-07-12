@@ -465,11 +465,14 @@ function Home() {
           {/* 授業検索タブ */}
           {activeTab === 'search' && (
             <div style={{
-              background: '#232326',
-              borderRadius: '20px',
+              background: '#fff',
+              borderRadius: '24px',
+              boxShadow: '0 8px 32px rgba(30,41,59,0.10)',
+              border: '1.5px solid #cbd5e1',
+              color: '#1e293b',
               padding: '40px',
-              border: '1.5px solid #27272a',
-              boxShadow: '0 8px 32px rgba(0,0,0,0.3)'
+              margin: '0 auto 40px auto',
+              maxWidth: 1100,
             }}>
               <h2 style={{ 
                 color: '#2563eb', 
@@ -706,7 +709,7 @@ function Home() {
                           padding: window.innerWidth <= 600 ? '16px' : '24px',
                           borderRadius: '16px',
                           border: '1.5px solid #cbd5e1',
-                          boxShadow: '0 4px 16px rgba(0,0,0,0.2)',
+                          boxShadow: '0 4px 16px rgba(30,41,59,0.08)',
                           transition: 'transform 0.2s, box-shadow 0.2s',
                           cursor: 'pointer',
                           position: 'relative',
@@ -714,6 +717,7 @@ function Home() {
                           maxWidth: '100%',
                           margin: '0 auto',
                           boxSizing: 'border-box',
+                          color: '#1e293b',
                         }}
                         onMouseOver={e => {
                           e.currentTarget.style.transform = 'scale(1.02)';
@@ -876,11 +880,14 @@ function Home() {
           {/* コメント一覧タブ */}
           {activeTab === 'comments' && (
             <div style={{
-              background: '#232326',
-              borderRadius: '20px',
+              background: '#fff',
+              borderRadius: '24px',
+              boxShadow: '0 8px 32px rgba(30,41,59,0.10)',
+              border: '1.5px solid #cbd5e1',
+              color: '#1e293b',
               padding: '40px',
-              border: '1.5px solid #27272a',
-              boxShadow: '0 8px 32px rgba(0,0,0,0.3)'
+              margin: '0 auto 40px auto',
+              maxWidth: 1100,
             }}>
               <h2 style={{ 
                 color: '#2563eb', 
@@ -918,11 +925,14 @@ function Home() {
             }}>
               {/* コメント投稿 */}
               <div style={{
-                background: '#232326',
-                borderRadius: '20px',
+                background: '#fff',
+                borderRadius: '24px',
+                boxShadow: '0 8px 32px rgba(30,41,59,0.10)',
+                border: '1.5px solid #cbd5e1',
+                color: '#1e293b',
                 padding: '40px',
-                border: '1.5px solid #27272a',
-                boxShadow: '0 8px 32px rgba(0,0,0,0.3)'
+                margin: '0 auto 40px auto',
+                maxWidth: 1100,
               }}>
                 <h2 style={{ 
                   color: '#2563eb', 
@@ -1052,11 +1062,14 @@ function Home() {
 
               {/* 楽単授業提案 */}
               <div style={{
-                background: '#232326',
-                borderRadius: '20px',
+                background: '#fff',
+                borderRadius: '24px',
+                boxShadow: '0 8px 32px rgba(30,41,59,0.10)',
+                border: '1.5px solid #cbd5e1',
+                color: '#1e293b',
                 padding: '40px',
-                border: '1.5px solid #27272a',
-                boxShadow: '0 8px 32px rgba(0,0,0,0.3)'
+                margin: '0 auto 40px auto',
+                maxWidth: 1100,
               }}>
                 <h2 style={{ 
                   color: '#2563eb', 
