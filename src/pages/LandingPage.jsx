@@ -86,12 +86,12 @@ function LandingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#18181b] via-[#232326] to-[#18181b] flex flex-col items-center px-4 py-8" style={{ padding: isMobile ? '1rem 0.5rem' : '2rem 1rem' }}>
+    <div className="min-h-screen flex flex-col items-center px-4 py-8" style={{ background: 'linear-gradient(to bottom, #f1f5f9, #e2e8f0 80%, #f1f5f9)', color: '#1e293b' }}>
       {/* ヒーローセクション */}
       <section className="w-full max-w-2xl flex flex-col items-center text-center mb-16 mx-auto">
         <img src="/logo.png" alt="Kimuchi logo" className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 max-w-[120px] object-contain object-center rounded-full shadow-lg border-4 border-[#fbbf24] bg-[#18181b] mb-6" />
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-[#fbbf24] drop-shadow mb-4 tracking-tight">Kimuchi</h1>
-        <p className="text-lg sm:text-xl md:text-2xl text-[#e4e4e7] mb-8 font-light leading-relaxed max-w-xl mx-auto text-center px-4">
+        <h1 className="text-5xl md:text-6xl font-extrabold drop-shadow mb-4 tracking-tight" style={{ color: '#2563eb' }}>Kimuchi</h1>
+        <p className="text-xl md:text-2xl mb-8 font-light leading-relaxed max-w-xl mx-auto text-center" style={{ color: '#334155' }}>
           とある大学の、完全非公開の授業評価コミュニティ。<br />
           GPAと時間を守る、選ばれた人だけの楽単情報プラットフォーム。
         </p>
@@ -119,12 +119,12 @@ function LandingPage() {
         <a
           href="#apply"
           style={{
-            display:'inline-flex',alignItems:'center',gap: isMobile ? '0.5rem' : '0.75rem',background:'linear-gradient(90deg,#fbbf24,#f59e42)',color:'#18181b',borderRadius:'9999px',padding: isMobile ? '1rem 2rem' : '1.25rem 2.5rem',fontSize: isMobile ? '1.1rem' : '1.3rem',fontWeight:'bold',boxShadow:'0 4px 24px rgba(0,0,0,0.18)',textDecoration:'none',transition:'transform 0.2s,box-shadow 0.2s',marginBottom:'0.5rem',letterSpacing:'0.02em',position:'relative',overflow:'hidden',border:'none',outline:'none',cursor:'pointer'
+            display:'inline-flex',alignItems:'center',gap:'0.75rem',background:'linear-gradient(90deg,#2563eb,#1e40af)',color:'#fff',borderRadius:'9999px',padding:'1.25rem 2.5rem',fontSize:'1.3rem',fontWeight:'bold',boxShadow:'0 4px 24px rgba(30,41,59,0.12)',textDecoration:'none',transition:'transform 0.2s,box-shadow 0.2s',marginBottom:'0.5rem',letterSpacing:'0.02em',position:'relative',overflow:'hidden',border:'none',outline:'none',cursor:'pointer'
           }}
           onMouseOver={e=>{e.currentTarget.style.transform='scale(1.06)';e.currentTarget.style.boxShadow='0 8px 32px rgba(0,0,0,0.22)';}}
           onMouseOut={e=>{e.currentTarget.style.transform='scale(1)';e.currentTarget.style.boxShadow='0 4px 24px rgba(0,0,0,0.18)';}}
         >
-          まずは申請する <FaArrowRight style={{fontSize: isMobile ? '1.1em' : '1.3em'}} />
+          まずは申請する <FaArrowRight style={{fontSize:'1.3em'}} />
         </a>
       </section>
 
@@ -175,20 +175,21 @@ function LandingPage() {
             <div
               key={i}
               style={{
-                background: '#232326',
+                background: '#fff',
                 borderRadius: '1rem',
                 boxShadow: '0 4px 24px rgba(0,0,0,0.25)',
-                border: '1.5px solid #27272a',
+                border: '1.5px solid #cbd5e1',
                 padding: isMobile ? '1rem' : '2rem',
                 width: isMobile ? '100%' : 'auto',
                 maxWidth: isMobile ? '100%' : '340px',
                 textAlign: 'center',
                 flex: isMobile ? 'none' : '1 1 220px',
+                color: '#1e293b',
               }}
             >
               {item.icon}
               <div style={{ fontWeight: 'bold', fontSize: isMobile ? '1rem' : '1.1rem', marginBottom: '0.5rem' }}>{item.title}</div>
-              <div style={{ color: '#e4e4e7', fontSize: isMobile ? '0.9rem' : '1rem' }}>{item.desc}</div>
+              <div style={{ color: '#334155', fontSize: isMobile ? '0.9rem' : '1rem' }}>{item.desc}</div>
             </div>
           ))}
         </div>
@@ -200,29 +201,30 @@ function LandingPage() {
         style={{
           width: '100%',
           maxWidth: '900px',
-          background: '#232326',
+          background: '#fff',
           borderRadius: '1rem',
           boxShadow: '0 4px 24px rgba(0,0,0,0.25)',
-          border: '1.5px solid #27272a',
+          border: '1.5px solid #cbd5e1',
           padding: isMobile ? '1.5rem 1rem' : '2.5rem',
           margin: '0 auto 64px auto',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
+          color: '#1e293b',
         }}
       >
         <h3
           style={{
             fontSize: isMobile ? '1.1rem' : '1.4rem',
             fontWeight: 'bold',
-            color: '#fbbf24',
+            color: '#2563eb',
             display: 'flex',
             alignItems: 'center',
             gap: '0.5rem',
             marginBottom: isMobile ? '1.2rem' : '2rem',
           }}
         >
-          <HiOutlineArrowRight style={{ color: '#fbbf24', fontSize: isMobile ? '1.3rem' : '1.5rem' }} /> ご利用までの流れ
+          <HiOutlineArrowRight style={{ color: '#2563eb', fontSize: isMobile ? '1.3rem' : '1.5rem' }} /> ご利用までの流れ
         </h3>
         <div
           style={{
@@ -276,7 +278,7 @@ function LandingPage() {
               >
                 {item.num}
               </div>
-              <div style={{ color: '#e4e4e7', textAlign: 'center', fontSize: isMobile ? '0.9rem' : '1rem' }}>{item.desc}</div>
+              <div style={{ color: '#334155', textAlign: 'center', fontSize: isMobile ? '0.9rem' : '1rem' }}>{item.desc}</div>
             </div>
           ))}
         </div>
@@ -307,19 +309,20 @@ function LandingPage() {
         style={{
           width: '100%',
           maxWidth: isMobile ? '95vw' : '420px',
-          background: '#232326',
+          background: '#fff',
           borderRadius: '1.2rem',
           boxShadow: '0 4px 24px rgba(0,0,0,0.22)',
-          border: '1.5px solid #27272a',
+          border: '1.5px solid #cbd5e1',
           padding: isMobile ? '1.5rem 1rem' : '2.5rem 2rem',
           margin: '0 auto 40px auto',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
           gap: '1.2rem',
+          color: '#1e293b',
         }}
       >
-        <p style={{ color: '#e4e4e7', marginBottom: '0.5rem', fontWeight: 'bold', fontSize: isMobile ? '0.95rem' : '1.08rem', textAlign: 'center' }}>
+        <p style={{ color: '#334155', marginBottom: '0.5rem', fontWeight: 'bold', fontSize: isMobile ? '0.95rem' : '1.08rem', textAlign: 'center' }}>
           すでに申請済みの方はこちらからログイン
         </p>
         <button
@@ -365,7 +368,7 @@ function LandingPage() {
             handleEmailAuth();
           }}
         >
-          <label htmlFor="email" style={{ color: '#e4e4e7', fontWeight: 'bold', marginBottom: '0.2rem', textAlign: 'left', fontSize: isMobile ? '0.9rem' : '1rem' }}>
+          <label htmlFor="email" style={{ color: '#334155', fontWeight: 'bold', marginBottom: '0.2rem', textAlign: 'left', fontSize: isMobile ? '0.9rem' : '1rem' }}>
             メールアドレス
           </label>
           <input
@@ -387,7 +390,7 @@ function LandingPage() {
               boxSizing: 'border-box',
             }}
           />
-          <label htmlFor="password" style={{ color: '#e4e4e7', fontWeight: 'bold', marginBottom: '0.2rem', textAlign: 'left', fontSize: isMobile ? '0.9rem' : '1rem' }}>
+          <label htmlFor="password" style={{ color: '#334155', fontWeight: 'bold', marginBottom: '0.2rem', textAlign: 'left', fontSize: isMobile ? '0.9rem' : '1rem' }}>
             パスワード
           </label>
           <input
@@ -465,7 +468,7 @@ function LandingPage() {
         </button>
       </section>
 
-      <footer className="text-[#a1a1aa] text-sm mt-10 mb-4">
+      <footer className="text-[#64748b] text-sm mt-10 mb-4">
         &copy; 2025 Kimuchi. All rights reserved.
       </footer>
     </div>

@@ -258,13 +258,7 @@ function Home() {
   };
 
   return (
-    <div style={{ 
-      backgroundColor: '#18181b', 
-      minHeight: '100vh', 
-      padding: '20px',
-      fontFamily: 'Inter, sans-serif',
-      color: '#f4f4f5'
-    }}>
+    <div style={{ background: '#f1f5f9', minHeight: '100vh', color: '#1e293b' }}>
       {/* ヘッダー */}
       <div style={{
         maxWidth: '1400px',
@@ -404,11 +398,11 @@ function Home() {
           marginBottom: '50px'
         }}>
           <h1 style={{ 
-            color: '#fbbf24', 
+            color: '#2563eb', 
             fontSize: '3.5rem', 
             fontWeight: 'bold',
             marginBottom: '16px',
-            textShadow: '0 4px 20px rgba(251, 191, 36, 0.3)'
+            textShadow: '0 4px 20px rgba(37, 99, 235, 0.3)'
           }}>
             Kimuchi
           </h1>
@@ -445,11 +439,11 @@ function Home() {
                 gap: '8px',
                 padding: '12px 24px',
                 background: activeTab === tab.id 
-                  ? 'linear-gradient(135deg, #fbbf24, #f59e42)' 
+                  ? 'linear-gradient(135deg, #2563eb, #1e40af)' 
                   : '#232326',
                 color: activeTab === tab.id ? '#18181b' : '#e4e4e7',
                 border: '1.5px solid',
-                borderColor: activeTab === tab.id ? '#fbbf24' : '#27272a',
+                borderColor: activeTab === tab.id ? '#2563eb' : '#27272a',
                 borderRadius: '12px',
                 fontWeight: '600',
                 cursor: 'pointer',
@@ -478,7 +472,7 @@ function Home() {
               boxShadow: '0 8px 32px rgba(0,0,0,0.3)'
             }}>
               <h2 style={{ 
-                color: '#22d3ee', 
+                color: '#2563eb', 
                 fontSize: '2rem', 
                 fontWeight: 'bold',
                 marginBottom: '30px',
@@ -523,7 +517,7 @@ function Home() {
                         outline: 'none',
                         transition: 'border-color 0.2s'
                       }}
-                      onFocus={(e) => e.target.style.borderColor = '#22d3ee'}
+                      onFocus={(e) => e.target.style.borderColor = '#2563eb'}
                       onBlur={(e) => e.target.style.borderColor = '#27272a'}
                     />
                   </div>
@@ -552,7 +546,7 @@ function Home() {
                         outline: 'none',
                         transition: 'border-color 0.2s'
                       }}
-                      onFocus={(e) => e.target.style.borderColor = '#22d3ee'}
+                      onFocus={(e) => e.target.style.borderColor = '#2563eb'}
                       onBlur={(e) => e.target.style.borderColor = '#27272a'}
                     />
                   </div>
@@ -627,7 +621,7 @@ function Home() {
                     border: '1px solid #27272a'
                   }}>
                     <h3 style={{ 
-                      color: '#fbbf24', 
+                      color: '#2563eb', 
                       fontSize: '1.1rem', 
                       fontWeight: 'bold',
                       marginBottom: '16px'
@@ -680,7 +674,7 @@ function Home() {
               {resultCourses.length > 0 && (
                 <div>
                   <h3 style={{ 
-                    color: '#fbbf24', 
+                    color: '#2563eb', 
                     fontSize: '1.5rem', 
                     fontWeight: 'bold',
                     marginBottom: '20px',
@@ -708,10 +702,10 @@ function Home() {
                       
                       return (
                         <div key={course.id} style={{
-                          background: '#18181b',
+                          background: '#fff',
                           padding: window.innerWidth <= 600 ? '16px' : '24px',
                           borderRadius: '16px',
-                          border: '1.5px solid #27272a',
+                          border: '1.5px solid #cbd5e1',
                           boxShadow: '0 4px 16px rgba(0,0,0,0.2)',
                           transition: 'transform 0.2s, box-shadow 0.2s',
                           cursor: 'pointer',
@@ -755,8 +749,8 @@ function Home() {
                               alignItems: 'center',
                               gap: '10px'
                             }}>
-                              <FaGraduationCap style={{ color: '#22d3ee', fontSize: '1.2rem' }} />
-                              <strong style={{ color: '#fbbf24', fontSize: '1.1rem' }}>{course.name}</strong>
+                              <FaGraduationCap style={{ color: '#2563eb', fontSize: '1.2rem' }} />
+                              <strong style={{ color: '#2563eb', fontSize: '1.1rem' }}>{course.name}</strong>
                             </div>
                             <div style={{
                               background: getCategoryColor(category),
@@ -889,7 +883,7 @@ function Home() {
               boxShadow: '0 8px 32px rgba(0,0,0,0.3)'
             }}>
               <h2 style={{ 
-                color: '#22d3ee', 
+                color: '#2563eb', 
                 fontSize: '2rem', 
                 fontWeight: 'bold',
                 marginBottom: '30px',
@@ -931,7 +925,7 @@ function Home() {
                 boxShadow: '0 8px 32px rgba(0,0,0,0.3)'
               }}>
                 <h2 style={{ 
-                  color: '#22d3ee', 
+                  color: '#2563eb', 
                   fontSize: '1.8rem', 
                   fontWeight: 'bold',
                   marginBottom: '30px',
@@ -968,7 +962,7 @@ function Home() {
                         outline: 'none',
                         transition: 'border-color 0.2s'
                       }}
-                      onFocus={(e) => e.target.style.borderColor = '#22d3ee'}
+                      onFocus={(e) => e.target.style.borderColor = '#2563eb'}
                       onBlur={(e) => e.target.style.borderColor = '#27272a'}
                     />
                   </div>
@@ -999,7 +993,7 @@ function Home() {
                         outline: 'none',
                         transition: 'border-color 0.2s'
                       }}
-                      onFocus={(e) => e.target.style.borderColor = '#22d3ee'}
+                      onFocus={(e) => e.target.style.borderColor = '#2563eb'}
                       onBlur={(e) => e.target.style.borderColor = '#27272a'}
                     />
                   </div>
@@ -1031,7 +1025,7 @@ function Home() {
                         resize: 'vertical',
                         transition: 'border-color 0.2s'
                       }}
-                      onFocus={(e) => e.target.style.borderColor = '#22d3ee'}
+                      onFocus={(e) => e.target.style.borderColor = '#2563eb'}
                       onBlur={(e) => e.target.style.borderColor = '#27272a'}
                     />
                   </div>
@@ -1065,7 +1059,7 @@ function Home() {
                 boxShadow: '0 8px 32px rgba(0,0,0,0.3)'
               }}>
                 <h2 style={{ 
-                  color: '#22d3ee', 
+                  color: '#2563eb', 
                   fontSize: '1.8rem', 
                   fontWeight: 'bold',
                   marginBottom: '30px',
@@ -1103,7 +1097,7 @@ function Home() {
                         outline: 'none',
                         transition: 'border-color 0.2s'
                       }}
-                      onFocus={(e) => e.target.style.borderColor = '#22d3ee'}
+                      onFocus={(e) => e.target.style.borderColor = '#2563eb'}
                       onBlur={(e) => e.target.style.borderColor = '#27272a'}
                     />
                   </div>
@@ -1134,7 +1128,7 @@ function Home() {
                         outline: 'none',
                         transition: 'border-color 0.2s'
                       }}
-                      onFocus={(e) => e.target.style.borderColor = '#22d3ee'}
+                      onFocus={(e) => e.target.style.borderColor = '#2563eb'}
                       onBlur={(e) => e.target.style.borderColor = '#27272a'}
                     />
                   </div>
@@ -1166,7 +1160,7 @@ function Home() {
                         resize: 'vertical',
                         transition: 'border-color 0.2s'
                       }}
-                      onFocus={(e) => e.target.style.borderColor = '#22d3ee'}
+                      onFocus={(e) => e.target.style.borderColor = '#2563eb'}
                       onBlur={(e) => e.target.style.borderColor = '#27272a'}
                     />
                   </div>
