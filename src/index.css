@@ -180,8 +180,9 @@ body {
   background-color: #18181b !important;
 }
 
-/* コメント投稿フォーム専用 明るい入力欄 */
-.comment-input, .comment-textarea {
+/* コメント投稿フォーム専用 明るい入力欄（セレクタ強化） */
+.comment-form input[type="text"],
+.comment-form textarea {
   background: #fff !important;
   color: #1e293b !important;
   border: 1.5px solid #cbd5e1 !important;
@@ -189,11 +190,13 @@ body {
   font-size: 1rem;
   transition: border-color 0.2s;
 }
-.comment-input::placeholder, .comment-textarea::placeholder {
+.comment-form input[type="text"]::placeholder,
+.comment-form textarea::placeholder {
   color: #a1a1aa !important;
   opacity: 1;
 }
-.comment-input:focus, .comment-textarea:focus {
+.comment-form input[type="text"]:focus,
+.comment-form textarea:focus {
   border-color: #2563eb !important;
   outline: none;
 }

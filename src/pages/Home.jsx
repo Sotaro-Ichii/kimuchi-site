@@ -950,7 +950,7 @@ function Home() {
                   <FaComment /> コメント投稿
                 </h2>
 
-                <form onSubmit={handleCommentSubmit}>
+                <form onSubmit={handleCommentSubmit} className="comment-form">
                   <div style={{ marginBottom: '20px' }}>
                     <label style={{ 
                       display: 'block', 
