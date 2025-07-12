@@ -21,6 +21,19 @@ function LandingPage() {
   const [password, setPassword] = useState("");
   const [isRegistering, setIsRegistering] = useState(false);
   const [approvedUserCount, setApprovedUserCount] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // 画面サイズの監視
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+    
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
 
   // 承認済みユーザー数を取得
   useEffect(() => {
@@ -73,12 +86,12 @@ function LandingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#18181b] via-[#232326] to-[#18181b] flex flex-col items-center px-4 py-8">
+    <div className="min-h-screen bg-gradient-to-b from-[#18181b] via-[#232326] to-[#18181b] flex flex-col items-center px-4 py-8" style={{ padding: isMobile ? '1rem 0.5rem' : '2rem 1rem' }}>
       {/* ヒーローセクション */}
       <section className="w-full max-w-2xl flex flex-col items-center text-center mb-16 mx-auto">
-        <img src="/logo.png" alt="Kimuchi logo" className="w-24 h-24 md:w-28 md:h-28 max-w-[120px] object-contain object-center rounded-full shadow-lg border-4 border-[#fbbf24] bg-[#18181b] mb-6" />
-        <h1 className="text-5xl md:text-6xl font-extrabold text-[#fbbf24] drop-shadow mb-4 tracking-tight">Kimuchi</h1>
-        <p className="text-xl md:text-2xl text-[#e4e4e7] mb-8 font-light leading-relaxed max-w-xl mx-auto text-center">
+        <img src="/logo.png" alt="Kimuchi logo" className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 max-w-[120px] object-contain object-center rounded-full shadow-lg border-4 border-[#fbbf24] bg-[#18181b] mb-6" />
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-[#fbbf24] drop-shadow mb-4 tracking-tight">Kimuchi</h1>
+        <p className="text-lg sm:text-xl md:text-2xl text-[#e4e4e7] mb-8 font-light leading-relaxed max-w-xl mx-auto text-center px-4">
           とある大学の、完全非公開の授業評価コミュニティ。<br />
           GPAと時間を守る、選ばれた人だけの楽単情報プラットフォーム。
         </p>
@@ -92,26 +105,26 @@ function LandingPage() {
             background: 'rgba(34, 211, 238, 0.1)',
             border: '1px solid rgba(34, 211, 238, 0.3)',
             borderRadius: '9999px',
-            padding: '0.5rem 1rem',
+            padding: isMobile ? '0.4rem 0.8rem' : '0.5rem 1rem',
             marginBottom: '1.5rem',
             color: '#22d3ee',
-            fontSize: '0.9rem',
+            fontSize: isMobile ? '0.8rem' : '0.9rem',
             fontWeight: 'bold',
           }}
         >
-          <FaUsers style={{ fontSize: '1rem' }} />
+          <FaUsers style={{ fontSize: isMobile ? '0.9rem' : '1rem' }} />
           <span>会員登録者数: {approvedUserCount}名</span>
         </div>
         
         <a
           href="#apply"
           style={{
-            display:'inline-flex',alignItems:'center',gap:'0.75rem',background:'linear-gradient(90deg,#fbbf24,#f59e42)',color:'#18181b',borderRadius:'9999px',padding:'1.25rem 2.5rem',fontSize:'1.3rem',fontWeight:'bold',boxShadow:'0 4px 24px rgba(0,0,0,0.18)',textDecoration:'none',transition:'transform 0.2s,box-shadow 0.2s',marginBottom:'0.5rem',letterSpacing:'0.02em',position:'relative',overflow:'hidden',border:'none',outline:'none',cursor:'pointer'
+            display:'inline-flex',alignItems:'center',gap: isMobile ? '0.5rem' : '0.75rem',background:'linear-gradient(90deg,#fbbf24,#f59e42)',color:'#18181b',borderRadius:'9999px',padding: isMobile ? '1rem 2rem' : '1.25rem 2.5rem',fontSize: isMobile ? '1.1rem' : '1.3rem',fontWeight:'bold',boxShadow:'0 4px 24px rgba(0,0,0,0.18)',textDecoration:'none',transition:'transform 0.2s,box-shadow 0.2s',marginBottom:'0.5rem',letterSpacing:'0.02em',position:'relative',overflow:'hidden',border:'none',outline:'none',cursor:'pointer'
           }}
           onMouseOver={e=>{e.currentTarget.style.transform='scale(1.06)';e.currentTarget.style.boxShadow='0 8px 32px rgba(0,0,0,0.22)';}}
           onMouseOut={e=>{e.currentTarget.style.transform='scale(1)';e.currentTarget.style.boxShadow='0 4px 24px rgba(0,0,0,0.18)';}}
         >
-          まずは申請する <FaArrowRight style={{fontSize:'1.3em'}} />
+          まずは申請する <FaArrowRight style={{fontSize: isMobile ? '1.1em' : '1.3em'}} />
         </a>
       </section>
 
@@ -124,18 +137,19 @@ function LandingPage() {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          gap: '32px',
+          gap: isMobile ? '24px' : '32px',
+          padding: isMobile ? '0 1rem' : '0',
         }}
       >
         <h2
           style={{
-            fontSize: '1.5rem',
+            fontSize: isMobile ? '1.3rem' : '1.5rem',
             fontWeight: 'bold',
             color: '#2f9e44',
             display: 'flex',
             alignItems: 'center',
             gap: '0.5rem',
-            marginBottom: '24px',
+            marginBottom: isMobile ? '16px' : '24px',
           }}
         >
           <FaUserShield style={{ color: '#2f9e44' }} /> ご利用条件
@@ -143,22 +157,20 @@ function LandingPage() {
         <div
           style={{
             display: 'flex',
-            flexDirection: 'row',
-            gap: '32px',
+            flexDirection: isMobile ? 'column' : 'row',
+            gap: isMobile ? '16px' : '32px',
             width: '100%',
             justifyContent: 'center',
             flexWrap: 'wrap',
-            ...(window.innerWidth <= 600
-              ? { flexDirection: 'column', gap: '20px', alignItems: 'center' }
-              : {}),
+            alignItems: 'center',
           }}
         >
           {[{
-            icon: <FaCheckCircle style={{ color: '#22d3ee', fontSize: '2.2rem', marginBottom: '0.75rem' }} />, title: '承認制', desc: 'GoogleまたはEmailログイン＋申請必須'
+            icon: <FaCheckCircle style={{ color: '#22d3ee', fontSize: isMobile ? '1.8rem' : '2.2rem', marginBottom: '0.75rem' }} />, title: '承認制', desc: 'GoogleまたはEmailログイン＋申請必須'
           }, {
-            icon: <FaMoneyCheckAlt style={{ color: '#fbbf24', fontSize: '2.2rem', marginBottom: '0.75rem' }} />, title: 'Zelleで一括支払い', desc: '$49.9 / 3ヶ月'
+            icon: <FaMoneyCheckAlt style={{ color: '#fbbf24', fontSize: isMobile ? '1.8rem' : '2.2rem', marginBottom: '0.75rem' }} />, title: 'Zelleで一括支払い', desc: '$49.9 / 3ヶ月'
           }, {
-            icon: <FaLock style={{ color: '#c92a2a', fontSize: '2.2rem', marginBottom: '0.75rem' }} />, title: '外部共有は厳禁', desc: 'ログイン情報・内容の外部共有は厳禁'
+            icon: <FaLock style={{ color: '#c92a2a', fontSize: isMobile ? '1.8rem' : '2.2rem', marginBottom: '0.75rem' }} />, title: '外部共有は厳禁', desc: 'ログイン情報・内容の外部共有は厳禁'
           }].map((item, i) => (
             <div
               key={i}
@@ -167,18 +179,16 @@ function LandingPage() {
                 borderRadius: '1rem',
                 boxShadow: '0 4px 24px rgba(0,0,0,0.25)',
                 border: '1.5px solid #27272a',
-                padding: window.innerWidth <= 600 ? '1.2rem' : '2rem',
-                minWidth: window.innerWidth <= 600 ? '0' : '220px',
-                width: window.innerWidth <= 600 ? '90vw' : 'auto',
-                maxWidth: '340px',
+                padding: isMobile ? '1rem' : '2rem',
+                width: isMobile ? '100%' : 'auto',
+                maxWidth: isMobile ? '100%' : '340px',
                 textAlign: 'center',
-                flex: '1 1 220px',
-                margin: window.innerWidth <= 600 ? '0 auto' : undefined,
+                flex: isMobile ? 'none' : '1 1 220px',
               }}
             >
               {item.icon}
-              <div style={{ fontWeight: 'bold', fontSize: '1.1rem', marginBottom: '0.5rem' }}>{item.title}</div>
-              <div style={{ color: '#e4e4e7', fontSize: '1rem' }}>{item.desc}</div>
+              <div style={{ fontWeight: 'bold', fontSize: isMobile ? '1rem' : '1.1rem', marginBottom: '0.5rem' }}>{item.title}</div>
+              <div style={{ color: '#e4e4e7', fontSize: isMobile ? '0.9rem' : '1rem' }}>{item.desc}</div>
             </div>
           ))}
         </div>
@@ -194,7 +204,7 @@ function LandingPage() {
           borderRadius: '1rem',
           boxShadow: '0 4px 24px rgba(0,0,0,0.25)',
           border: '1.5px solid #27272a',
-          padding: window.innerWidth <= 600 ? '1.5rem 0.5rem' : '2.5rem',
+          padding: isMobile ? '1.5rem 1rem' : '2.5rem',
           margin: '0 auto 64px auto',
           display: 'flex',
           flexDirection: 'column',
@@ -203,32 +213,32 @@ function LandingPage() {
       >
         <h3
           style={{
-            fontSize: window.innerWidth <= 600 ? '1.1rem' : '1.4rem',
+            fontSize: isMobile ? '1.1rem' : '1.4rem',
             fontWeight: 'bold',
             color: '#fbbf24',
             display: 'flex',
             alignItems: 'center',
             gap: '0.5rem',
-            marginBottom: window.innerWidth <= 600 ? '1.2rem' : '2rem',
+            marginBottom: isMobile ? '1.2rem' : '2rem',
           }}
         >
-          <HiOutlineArrowRight style={{ color: '#fbbf24', fontSize: '1.5rem' }} /> ご利用までの流れ
+          <HiOutlineArrowRight style={{ color: '#fbbf24', fontSize: isMobile ? '1.3rem' : '1.5rem' }} /> ご利用までの流れ
         </h3>
         <div
           style={{
             display: 'flex',
-            flexDirection: window.innerWidth <= 600 ? 'column' : 'row',
-            gap: window.innerWidth <= 600 ? '20px' : '32px',
+            flexDirection: isMobile ? 'column' : 'row',
+            gap: isMobile ? '20px' : '32px',
             width: '100%',
             justifyContent: 'center',
             flexWrap: 'wrap',
-            marginBottom: window.innerWidth <= 600 ? '1.2rem' : '2rem',
+            marginBottom: isMobile ? '1.2rem' : '2rem',
             alignItems: 'center',
           }}
         >
           {[{
             num: '1',
-            desc: <>Zelleで <strong>$49.9</strong> を一括zell送金<br /><span style={{ fontSize: '0.9rem' }}>（送金先電話番号: 657-709-1289）</span></>
+            desc: <>Zelleで <strong>$49.9</strong> を一括zell送金<br /><span style={{ fontSize: isMobile ? '0.8rem' : '0.9rem' }}>（送金先電話番号: 657-709-1289）</span></>
           }, {
             num: '2',
             desc: <>申請フォームに必要事項を記入</>
@@ -239,12 +249,12 @@ function LandingPage() {
             <div
               key={i}
               style={{
-                flex: '1 1 220px',
-                maxWidth: '260px',
+                flex: isMobile ? 'none' : '1 1 220px',
+                maxWidth: isMobile ? '100%' : '260px',
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                margin: window.innerWidth <= 600 ? '0 auto' : undefined,
+                width: isMobile ? '100%' : 'auto',
               }}
             >
               <div
@@ -253,12 +263,12 @@ function LandingPage() {
                   border: '4px solid #22d3ee',
                   borderRadius: '9999px',
                   boxShadow: '0 2px 12px rgba(0,0,0,0.18)',
-                  width: window.innerWidth <= 600 ? '48px' : '64px',
-                  height: window.innerWidth <= 600 ? '48px' : '64px',
+                  width: isMobile ? '48px' : '64px',
+                  height: isMobile ? '48px' : '64px',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  fontSize: window.innerWidth <= 600 ? '1.2rem' : '2rem',
+                  fontSize: isMobile ? '1.2rem' : '2rem',
                   fontWeight: 'bold',
                   color: '#22d3ee',
                   marginBottom: '0.75rem',
@@ -266,7 +276,7 @@ function LandingPage() {
               >
                 {item.num}
               </div>
-              <div style={{ color: '#e4e4e7', textAlign: 'center', fontSize: window.innerWidth <= 600 ? '0.98rem' : '1rem' }}>{item.desc}</div>
+              <div style={{ color: '#e4e4e7', textAlign: 'center', fontSize: isMobile ? '0.9rem' : '1rem' }}>{item.desc}</div>
             </div>
           ))}
         </div>
@@ -280,8 +290,8 @@ function LandingPage() {
             background: 'linear-gradient(90deg,#2f9e44,#22d3ee)',
             color: '#fff',
             borderRadius: '9999px',
-            padding: window.innerWidth <= 600 ? '0.8rem 1.5rem' : '1rem 2.5rem',
-            fontSize: window.innerWidth <= 600 ? '1rem' : '1.1rem',
+            padding: isMobile ? '0.8rem 1.5rem' : '1rem 2.5rem',
+            fontSize: isMobile ? '0.9rem' : '1.1rem',
             fontWeight: 'bold',
             boxShadow: '0 2px 12px rgba(0,0,0,0.18)',
             textDecoration: 'none',
@@ -296,12 +306,12 @@ function LandingPage() {
       <section
         style={{
           width: '100%',
-          maxWidth: window.innerWidth <= 600 ? '98vw' : '420px',
+          maxWidth: isMobile ? '95vw' : '420px',
           background: '#232326',
           borderRadius: '1.2rem',
           boxShadow: '0 4px 24px rgba(0,0,0,0.22)',
           border: '1.5px solid #27272a',
-          padding: window.innerWidth <= 600 ? '1.5rem 0.5rem' : '2.5rem 2rem',
+          padding: isMobile ? '1.5rem 1rem' : '2.5rem 2rem',
           margin: '0 auto 40px auto',
           display: 'flex',
           flexDirection: 'column',
@@ -309,7 +319,7 @@ function LandingPage() {
           gap: '1.2rem',
         }}
       >
-        <p style={{ color: '#e4e4e7', marginBottom: '0.5rem', fontWeight: 'bold', fontSize: window.innerWidth <= 600 ? '1rem' : '1.08rem', textAlign: 'center' }}>
+        <p style={{ color: '#e4e4e7', marginBottom: '0.5rem', fontWeight: 'bold', fontSize: isMobile ? '0.95rem' : '1.08rem', textAlign: 'center' }}>
           すでに申請済みの方はこちらからログイン
         </p>
         <button
@@ -322,9 +332,9 @@ function LandingPage() {
             background: 'linear-gradient(90deg,#2f9e44,#22d3ee)',
             color: '#fff',
             borderRadius: '9999px',
-            padding: window.innerWidth <= 600 ? '0.7rem 1.2rem' : '0.9rem 2.2rem',
+            padding: isMobile ? '0.7rem 1.2rem' : '0.9rem 2.2rem',
             fontWeight: 'bold',
-            fontSize: window.innerWidth <= 600 ? '1rem' : '1.1rem',
+            fontSize: isMobile ? '0.95rem' : '1.1rem',
             boxShadow: '0 2px 12px rgba(0,0,0,0.18)',
             border: 'none',
             outline: 'none',
@@ -341,7 +351,7 @@ function LandingPage() {
             e.currentTarget.style.boxShadow = '0 2px 12px rgba(0,0,0,0.18)';
           }}
         >
-          <FaGoogle style={{ fontSize: '1.3em' }} /> Googleでログイン
+          <FaGoogle style={{ fontSize: isMobile ? '1.1em' : '1.3em' }} /> Googleでログイン
         </button>
         <form
           style={{
@@ -355,7 +365,7 @@ function LandingPage() {
             handleEmailAuth();
           }}
         >
-          <label htmlFor="email" style={{ color: '#e4e4e7', fontWeight: 'bold', marginBottom: '0.2rem', textAlign: 'left', fontSize: window.innerWidth <= 600 ? '0.98rem' : '1rem' }}>
+          <label htmlFor="email" style={{ color: '#e4e4e7', fontWeight: 'bold', marginBottom: '0.2rem', textAlign: 'left', fontSize: isMobile ? '0.9rem' : '1rem' }}>
             メールアドレス
           </label>
           <input
@@ -366,18 +376,18 @@ function LandingPage() {
             onChange={e => setEmail(e.target.value)}
             style={{
               width: '100%',
-              padding: window.innerWidth <= 600 ? '0.7rem' : '0.9rem',
+              padding: isMobile ? '0.7rem' : '0.9rem',
               borderRadius: '0.7rem',
               background: '#18181b',
               color: '#f4f4f5',
               border: '1.5px solid #27272a',
-              fontSize: window.innerWidth <= 600 ? '0.98rem' : '1rem',
+              fontSize: isMobile ? '0.9rem' : '1rem',
               marginBottom: '0.1rem',
               outline: 'none',
               boxSizing: 'border-box',
             }}
           />
-          <label htmlFor="password" style={{ color: '#e4e4e7', fontWeight: 'bold', marginBottom: '0.2rem', textAlign: 'left', fontSize: window.innerWidth <= 600 ? '0.98rem' : '1rem' }}>
+          <label htmlFor="password" style={{ color: '#e4e4e7', fontWeight: 'bold', marginBottom: '0.2rem', textAlign: 'left', fontSize: isMobile ? '0.9rem' : '1rem' }}>
             パスワード
           </label>
           <input
@@ -388,12 +398,12 @@ function LandingPage() {
             onChange={e => setPassword(e.target.value)}
             style={{
               width: '100%',
-              padding: window.innerWidth <= 600 ? '0.7rem' : '0.9rem',
+              padding: isMobile ? '0.7rem' : '0.9rem',
               borderRadius: '0.7rem',
               background: '#18181b',
               color: '#f4f4f5',
               border: '1.5px solid #27272a',
-              fontSize: window.innerWidth <= 600 ? '0.98rem' : '1rem',
+              fontSize: isMobile ? '0.9rem' : '1rem',
               marginBottom: '0.1rem',
               outline: 'none',
               boxSizing: 'border-box',
@@ -406,8 +416,8 @@ function LandingPage() {
               background: 'linear-gradient(90deg,#c92a2a,#fbbf24)',
               color: '#18181b',
               fontWeight: 'bold',
-              fontSize: window.innerWidth <= 600 ? '1rem' : '1.1rem',
-              padding: window.innerWidth <= 600 ? '0.7rem' : '0.9rem',
+              fontSize: isMobile ? '0.95rem' : '1.1rem',
+              padding: isMobile ? '0.7rem' : '0.9rem',
               borderRadius: '9999px',
               boxShadow: '0 2px 12px rgba(0,0,0,0.18)',
               border: 'none',
@@ -432,7 +442,7 @@ function LandingPage() {
         <button
           onClick={() => setIsRegistering(!isRegistering)}
           style={{
-            fontSize: window.innerWidth <= 600 ? '0.98rem' : '1rem',
+            fontSize: isMobile ? '0.9rem' : '1rem',
             color: '#a5b4fc',
             background: 'none',
             border: 'none',
