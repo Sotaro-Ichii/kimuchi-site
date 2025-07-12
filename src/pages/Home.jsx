@@ -266,22 +266,25 @@ function Home() {
         color: '#fff',
         padding: '20px 0',
       }}>
-        {/* ユーザー情報・ログイン */}
         <div style={{
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
-          marginBottom: '40px',
-          padding: '20px',
-          background: '#232326',
-          borderRadius: '16px',
-          border: '1.5px solid #27272a',
-          boxShadow: '0 4px 20px rgba(0,0,0,0.2)'
+          margin: '0 auto',
+          maxWidth: '1400px',
+          padding: '0 20px',
         }}>
+          {/* ユーザー情報バー */}
           <div style={{
             display: 'flex',
             alignItems: 'center',
-            gap: '12px'
+            gap: '12px',
+            background: '#fff',
+            color: '#1e293b',
+            borderRadius: '16px',
+            border: '1.5px solid #cbd5e1',
+            boxShadow: '0 4px 20px rgba(30,41,59,0.10)',
+            padding: '12px 24px',
           }}>
             <div style={{
               width: '40px',
@@ -321,10 +324,8 @@ function Home() {
             </div>
           </div>
 
-          <div style={{
-            display: 'flex',
-            gap: '12px'
-          }}>
+          {/* ログイン・ログアウトボタン */}
+          <div>
             {user ? (
               <button 
                 onClick={logout}
