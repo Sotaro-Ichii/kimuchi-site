@@ -261,10 +261,10 @@ function LandingPage() {
             >
               <div
                 style={{
-                  background: '#18181b',
-                  border: '4px solid #22d3ee',
+                  background: '#fff',
+                  border: '3px solid #2563eb',
                   borderRadius: '9999px',
-                  boxShadow: '0 2px 12px rgba(0,0,0,0.18)',
+                  boxShadow: '0 2px 12px rgba(30,41,59,0.10)',
                   width: isMobile ? '48px' : '64px',
                   height: isMobile ? '48px' : '64px',
                   display: 'flex',
@@ -272,7 +272,7 @@ function LandingPage() {
                   justifyContent: 'center',
                   fontSize: isMobile ? '1.2rem' : '2rem',
                   fontWeight: 'bold',
-                  color: '#22d3ee',
+                  color: '#2563eb',
                   marginBottom: '0.75rem',
                 }}
               >
@@ -381,14 +381,17 @@ function LandingPage() {
               width: '100%',
               padding: isMobile ? '0.7rem' : '0.9rem',
               borderRadius: '0.7rem',
-              background: '#18181b',
-              color: '#f4f4f5',
-              border: '1.5px solid #27272a',
+              background: '#fff',
+              color: '#1e293b',
+              border: '1.5px solid #cbd5e1',
               fontSize: isMobile ? '0.9rem' : '1rem',
               marginBottom: '0.1rem',
               outline: 'none',
               boxSizing: 'border-box',
+              transition: 'border-color 0.2s',
             }}
+            onFocus={e => e.target.style.borderColor = '#2563eb'}
+            onBlur={e => e.target.style.borderColor = '#cbd5e1'}
           />
           <label htmlFor="password" style={{ color: '#334155', fontWeight: 'bold', marginBottom: '0.2rem', textAlign: 'left', fontSize: isMobile ? '0.9rem' : '1rem' }}>
             パスワード
@@ -403,14 +406,17 @@ function LandingPage() {
               width: '100%',
               padding: isMobile ? '0.7rem' : '0.9rem',
               borderRadius: '0.7rem',
-              background: '#18181b',
-              color: '#f4f4f5',
-              border: '1.5px solid #27272a',
+              background: '#fff',
+              color: '#1e293b',
+              border: '1.5px solid #cbd5e1',
               fontSize: isMobile ? '0.9rem' : '1rem',
               marginBottom: '0.1rem',
               outline: 'none',
               boxSizing: 'border-box',
+              transition: 'border-color 0.2s',
             }}
+            onFocus={e => e.target.style.borderColor = '#2563eb'}
+            onBlur={e => e.target.style.borderColor = '#cbd5e1'}
           />
           <button
             type="submit"

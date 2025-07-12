@@ -437,11 +437,13 @@ function CourseDetail() {
 
           {/* コメント投稿フォーム */}
           <div style={{
-            background: '#18181b',
-            padding: '24px',
+            background: '#fff',
             borderRadius: '16px',
-            border: '1.5px solid #27272a',
-            marginBottom: '30px'
+            boxShadow: '0 4px 16px rgba(30,41,59,0.08)',
+            border: '1.5px solid #cbd5e1',
+            color: '#1e293b',
+            padding: '32px',
+            marginBottom: '32px',
           }}>
             <h3 style={{ 
               color: '#fbbf24', 

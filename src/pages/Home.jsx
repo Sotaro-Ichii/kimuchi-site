@@ -261,9 +261,10 @@ function Home() {
     <div style={{ background: '#f1f5f9', minHeight: '100vh', color: '#1e293b' }}>
       {/* ヘッダー */}
       <div style={{
-        maxWidth: '1400px',
-        margin: '0 auto',
-        padding: '20px 0'
+        width: '100%',
+        background: '#2563eb',
+        color: '#fff',
+        padding: '20px 0',
       }}>
         {/* ユーザー情報・ログイン */}
         <div style={{
@@ -391,6 +392,7 @@ function Home() {
             )}
           </div>
         </div>
+      </div>
 
         {/* メインタイトル */}
         <div style={{
@@ -438,19 +440,18 @@ function Home() {
                 alignItems: 'center',
                 gap: '8px',
                 padding: '12px 24px',
-                background: activeTab === tab.id 
-                  ? 'linear-gradient(135deg, #2563eb, #1e40af)' 
-                  : '#232326',
-                color: activeTab === tab.id ? '#18181b' : '#e4e4e7',
+                background: activeTab === tab.id ? '#2563eb' : '#fff',
+                color: activeTab === tab.id ? '#fff' : '#2563eb',
                 border: '1.5px solid',
-                borderColor: activeTab === tab.id ? '#2563eb' : '#27272a',
+                borderColor: '#2563eb',
                 borderRadius: '12px',
                 fontWeight: '600',
                 cursor: 'pointer',
-                transition: 'all 0.2s'
+                transition: 'all 0.2s',
+                boxShadow: activeTab === tab.id ? '0 2px 8px rgba(30,41,59,0.08)' : 'none',
               }}
-              onMouseOver={e => activeTab !== tab.id && (e.target.style.background = '#27272a')}
-              onMouseOut={e => activeTab !== tab.id && (e.target.style.background = '#232326')}
+              onMouseOver={e => { if (activeTab !== tab.id) e.currentTarget.style.background = '#e0e7ef'; }}
+              onMouseOut={e => { if (activeTab !== tab.id) e.currentTarget.style.background = '#fff'; }}
             >
               {tab.icon} {tab.label}
             </button>
