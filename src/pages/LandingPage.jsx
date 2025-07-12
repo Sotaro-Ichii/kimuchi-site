@@ -100,7 +100,7 @@ function LandingPage() {
           }}
         >
           <FaUsers style={{ fontSize: '1rem' }} />
-          <span>承認済みユーザー: {approvedUserCount}名</span>
+          <span>会員登録者数: {approvedUserCount}名</span>
         </div>
         
         <a
