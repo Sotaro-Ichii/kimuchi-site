@@ -12,18 +12,38 @@ import CourseDetail from './pages/CourseDetail';
 import './index.css'; // TailwindCSS やグローバルCSSを適用
 
 function PrivateRoute({ children }) {
-  const { user, loading } = useAuth();
-  if (loading) {
+  const { user, loading, initialized } = useAuth();
+  
+  // 初期化が完了していない場合はローディング表示
+  if (!initialized || loading) {
     return (
       <div className="flex justify-center items-center h-screen text-gray-600 text-lg">
-        認証確認中...
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#fbbf24] mx-auto mb-4"></div>
+          認証確認中...
+        </div>
       </div>
     );
   }
-  return user ? children : <Navigate to="/" />;
+  
+  return user ? children : <Navigate to="/" replace />;
 }
 
 function AppRoutes() {
+  const { loading, initialized } = useAuth();
+
+  // 初期化が完了していない場合はローディング表示
+  if (!initialized || loading) {
+    return (
+      <div className="flex justify-center items-center h-screen text-gray-600 text-lg">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#fbbf24] mx-auto mb-4"></div>
+          読み込み中...
+        </div>
+      </div>
+    );
+  }
+
   return (
     <Routes>
       <Route path="/" element={<LandingPage />} />

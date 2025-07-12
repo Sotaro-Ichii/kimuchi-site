@@ -6,5 +6,15 @@ export default defineConfig({
   css: {
     postcss: './postcss.config.js', // ✅ 明示すると確実
   },
+  server: {
+    historyApiFallback: true,
+  },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: undefined,
+      },
+    },
+  },
 })
 
