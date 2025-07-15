@@ -9,6 +9,7 @@ import {
   registerWithEmail,
   logout,
   db,
+  loginAnonymously,
 } from "../firebase";
 import { doc, getDoc, collection, getDocs, query, where } from "firebase/firestore";
 import { FaCheckCircle, FaUserShield, FaMoneyCheckAlt, FaLock, FaGoogle, FaArrowRight, FaUsers } from 'react-icons/fa';
@@ -22,6 +23,7 @@ function LandingPage() {
   const [isRegistering, setIsRegistering] = useState(false);
   const [approvedUserCount, setApprovedUserCount] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const [showAllFaqs, setShowAllFaqs] = useState(false);
 
   // 画面サイズの監視
   useEffect(() => {
@@ -87,8 +89,8 @@ function LandingPage() {
 
   return (
     <div className="min-h-screen flex flex-col items-center px-4 py-8" style={{ background: 'linear-gradient(to bottom, #f1f5f9, #e2e8f0 80%, #f1f5f9)', color: '#1e293b' }}>
-      {/* ヒーローセクション（UI/UX最適化） */}
-      <section className="w-full max-w-2xl flex flex-col items-center text-center mb-16 mx-auto animate-fadein" style={{paddingTop: '5vh', paddingBottom: '5vh', transition: 'background 0.5s'}}> 
+      {/* ヒーローセクション（UI/UX最適化＋デモ体験ボタン） */}
+      <section className="w-full max-w-xl flex flex-col items-center text-center mb-16 mx-auto animate-fadein" style={{paddingTop: '6vh', paddingBottom: '6vh', margin: '0 auto'}}> 
         <img src="/logo.png" alt="Kimuchi logo" className="w-24 h-24 md:w-32 md:h-32 max-w-[130px] object-contain object-center rounded-full shadow-2xl border-4 border-[#fbbf24] bg-[#18181b] mb-8 animate-pop" style={{transition: 'box-shadow 0.3s'}} />
         <h1 className="text-5xl md:text-6xl font-extrabold drop-shadow mb-4 tracking-tight animate-slidein" style={{ color: '#2563eb', letterSpacing: '0.04em', lineHeight: 1.1 }}>Kimuchi</h1>
         <p className="text-xl md:text-2xl mb-10 font-light leading-relaxed max-w-xl mx-auto text-center animate-fadein" style={{ color: '#334155', lineHeight: 1.6 }}>
@@ -116,16 +118,28 @@ function LandingPage() {
           <span style={{ fontVariantNumeric: 'tabular-nums', fontSize: '1.2em', transition: 'color 0.3s' }}>{approvedUserCount}</span>名が参加中
         </div>
         {/* CTAボタン（ホバー演出強化） */}
-        <a
-          href="#apply"
-          style={{
-            display:'inline-flex',alignItems:'center',gap:'0.75rem',background:'linear-gradient(90deg,#2563eb,#1e40af)',color:'#fff',borderRadius:'9999px',padding:'1.25rem 2.5rem',fontSize:'1.3rem',fontWeight:'bold',boxShadow:'0 4px 24px rgba(30,41,59,0.12)',textDecoration:'none',transition:'transform 0.2s,box-shadow 0.2s,background 0.2s',marginBottom:'0.5rem',letterSpacing:'0.02em',position:'relative',overflow:'hidden',border:'none',outline:'none',cursor:'pointer',willChange:'transform',
-          }}
-          onMouseOver={e=>{e.currentTarget.style.transform='scale(1.08)';e.currentTarget.style.background='linear-gradient(90deg,#1e40af,#2563eb)';e.currentTarget.style.boxShadow='0 8px 32px rgba(0,0,0,0.22)';}}
-          onMouseOut={e=>{e.currentTarget.style.transform='scale(1)';e.currentTarget.style.background='linear-gradient(90deg,#2563eb,#1e40af)';e.currentTarget.style.boxShadow='0 4px 24px rgba(0,0,0,0.18)';}}
-        >
-          まずは申請する <FaArrowRight style={{fontSize:'1.3em'}} />
-        </a>
+        <div className="flex flex-col md:flex-row gap-4 justify-center items-center w-full mb-2">
+          <a
+            href="#apply"
+            style={{
+              display:'inline-flex',alignItems:'center',gap:'0.75rem',background:'linear-gradient(90deg,#2563eb,#1e40af)',color:'#fff',borderRadius:'9999px',padding:'1.25rem 2.5rem',fontSize:'1.3rem',fontWeight:'bold',boxShadow:'0 4px 24px rgba(30,41,59,0.12)',textDecoration:'none',transition:'transform 0.2s,box-shadow 0.2s,background 0.2s',letterSpacing:'0.02em',position:'relative',overflow:'hidden',border:'none',outline:'none',cursor:'pointer',willChange:'transform',
+            }}
+            onMouseOver={e=>{e.currentTarget.style.transform='scale(1.08)';e.currentTarget.style.background='linear-gradient(90deg,#1e40af,#2563eb)';e.currentTarget.style.boxShadow='0 8px 32px rgba(0,0,0,0.22)';}}
+            onMouseOut={e=>{e.currentTarget.style.transform='scale(1)';e.currentTarget.style.background='linear-gradient(90deg,#2563eb,#1e40af)';e.currentTarget.style.boxShadow='0 4px 24px rgba(0,0,0,0.18)';}}
+          >
+            まずは申請する <FaArrowRight style={{fontSize:'1.3em'}} />
+          </a>
+          <button
+            onClick={loginAnonymously}
+            style={{
+              display:'inline-flex',alignItems:'center',gap:'0.75rem',background:'linear-gradient(90deg,#22d3ee,#2563eb)',color:'#18181b',borderRadius:'9999px',padding:'1.25rem 2.5rem',fontSize:'1.1rem',fontWeight:'bold',boxShadow:'0 2px 8px rgba(30,41,59,0.10)',textDecoration:'none',transition:'transform 0.2s,box-shadow 0.2s,background 0.2s',letterSpacing:'0.02em',border:'none',outline:'none',cursor:'pointer',willChange:'transform',
+            }}
+            onMouseOver={e=>{e.currentTarget.style.transform='scale(1.06)';e.currentTarget.style.background='linear-gradient(90deg,#2563eb,#22d3ee)';e.currentTarget.style.boxShadow='0 6px 18px rgba(30,41,59,0.18)';}}
+            onMouseOut={e=>{e.currentTarget.style.transform='scale(1)';e.currentTarget.style.background='linear-gradient(90deg,#22d3ee,#2563eb)';e.currentTarget.style.boxShadow='0 2px 8px rgba(30,41,59,0.10)';}}
+          >
+            デモ体験（ゲスト）
+          </button>
+        </div>
       </section>
 
       {/* SNSシェアボタン */}
@@ -201,10 +215,10 @@ function LandingPage() {
         </div>
       </section>
 
-      {/* FAQ・サポートセクション */}
-      <section className="w-full max-w-3xl mx-auto mb-12 p-6 bg-[#f1f5f9] rounded-2xl shadow border border-[#e0e7ef]">
+      {/* FAQ・サポートセクション（折りたたみ式） */}
+      <section className="w-full max-w-2xl mx-auto mb-12 p-6 bg-[#f1f5f9] rounded-2xl shadow border border-[#e0e7ef] text-center">
         <h2 className="text-xl font-bold mb-4 text-[#2563eb]">よくある質問（FAQ）</h2>
-        <ul className="space-y-4 mb-6">
+        <ul className="space-y-4 mb-6" style={{textAlign:'left',margin:'0 auto',maxWidth:500}}>
           <li>
             <strong>Q. 入会後に追加料金はかかりますか？</strong><br />
             A. いいえ、入会金$50のみで追加料金は一切かかりません。
@@ -213,19 +227,27 @@ function LandingPage() {
             <strong>Q. どんな情報が見られますか？</strong><br />
             A. 実際に現地で学んだ先輩たちによる最新の授業評価・体験談・楽単情報などが見られます。
           </li>
-          <li>
-            <strong>Q. 承認までどれくらいかかりますか？</strong><br />
-            A. 通常24時間以内に審査結果をご連絡します。
-          </li>
-          <li>
-            <strong>Q. 退会はできますか？</strong><br />
-            A. いつでも退会可能です。サポートまでご連絡ください。
-          </li>
-          <li>
-            <strong>Q. サポートへの連絡方法は？</strong><br />
-            A. 下記「お問い合わせ」ボタンからご連絡いただけます。
-          </li>
         </ul>
+        <button
+          onClick={() => setShowAllFaqs(true)}
+          style={{display: showAllFaqs ? 'none' : 'inline-block', background: 'linear-gradient(90deg,#2563eb,#1e40af)', color: '#fff', borderRadius: '9999px', padding: '0.7rem 2rem', fontWeight: 'bold', fontSize: '1rem', border: 'none', cursor: 'pointer', marginBottom: 16, marginTop: 8}}
+        >もっと見る</button>
+        {showAllFaqs && (
+          <ul className="space-y-4 mb-6" style={{textAlign:'left',margin:'0 auto',maxWidth:500}}>
+            <li>
+              <strong>Q. 承認までどれくらいかかりますか？</strong><br />
+              A. 通常24時間以内に審査結果をご連絡します。
+            </li>
+            <li>
+              <strong>Q. 退会はできますか？</strong><br />
+              A. いつでも退会可能です。サポートまでご連絡ください。
+            </li>
+            <li>
+              <strong>Q. サポートへの連絡方法は？</strong><br />
+              A. 下記「お問い合わせ」ボタンからご連絡いただけます。
+            </li>
+          </ul>
+        )}
         <div className="text-center">
           <a href="/contact" style={{
             display: 'inline-block',
