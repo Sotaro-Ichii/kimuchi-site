@@ -91,7 +91,7 @@ function LandingPage() {
   const handleDemoLogin = async () => {
     try {
       await loginAnonymously();
-      // ページ遷移はuseEffectでuserが匿名になったときに行う
+      navigate("/demo");
     } catch (e) {
       alert("デモログインに失敗しました");
     }

@@ -9,6 +9,7 @@ import CommentsPage from './pages/CommentsPage';
 import Legal from './pages/Legal';
 import Contact from './pages/Contact';
 import CourseDetail from './pages/CourseDetail';
+import DemoHome from './pages/DemoHome';
 import './index.css'; // TailwindCSS やグローバルCSSを適用
 
 function PrivateRoute({ children }) {
@@ -53,6 +54,7 @@ function AppRoutes() {
       <Route path="/course/:id" element={<PrivateRoute><CourseDetail /></PrivateRoute>} />
       <Route path="/legal" element={<Legal />} />
       <Route path="/contact" element={<Contact />} />
+      <Route path="/demo" element={<DemoHome />} />
       <Route path="*" element={<div className="text-center py-10 text-gray-500">404 Not Found</div>} />
     </Routes>
   );
