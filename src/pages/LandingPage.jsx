@@ -87,6 +87,16 @@ function LandingPage() {
     }
   };
 
+  // デモログイン（匿名ログイン後に遷移）
+  const handleDemoLogin = async () => {
+    try {
+      await loginAnonymously();
+      navigate("/home");
+    } catch (e) {
+      alert("デモログインに失敗しました");
+    }
+  };
+
   return (
     <div className="min-h-screen flex flex-col items-center px-4 py-8" style={{ background: 'linear-gradient(to bottom, #f1f5f9, #e2e8f0 80%, #f1f5f9)', color: '#1e293b' }}>
       {/* ヒーローセクション（UI/UX最適化＋デモ体験ボタン） */}
@@ -130,7 +140,7 @@ function LandingPage() {
             まずは申請する <FaArrowRight style={{fontSize:'1.3em'}} />
           </a>
           <button
-            onClick={loginAnonymously}
+            onClick={handleDemoLogin}
             style={{
               display:'inline-flex',alignItems:'center',gap:'0.75rem',background:'linear-gradient(90deg,#22d3ee,#2563eb)',color:'#18181b',borderRadius:'9999px',padding:'1.25rem 2.5rem',fontSize:'1.1rem',fontWeight:'bold',boxShadow:'0 2px 8px rgba(30,41,59,0.10)',textDecoration:'none',transition:'transform 0.2s,box-shadow 0.2s,background 0.2s',letterSpacing:'0.02em',border:'none',outline:'none',cursor:'pointer',willChange:'transform',
             }}
