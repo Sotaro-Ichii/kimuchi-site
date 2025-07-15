@@ -87,41 +87,42 @@ function LandingPage() {
 
   return (
     <div className="min-h-screen flex flex-col items-center px-4 py-8" style={{ background: 'linear-gradient(to bottom, #f1f5f9, #e2e8f0 80%, #f1f5f9)', color: '#1e293b' }}>
-      {/* ヒーローセクション */}
-      <section className="w-full max-w-2xl flex flex-col items-center text-center mb-16 mx-auto">
-        <img src="/logo.png" alt="Kimuchi logo" className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 max-w-[120px] object-contain object-center rounded-full shadow-lg border-4 border-[#fbbf24] bg-[#18181b] mb-6" />
-        <h1 className="text-5xl md:text-6xl font-extrabold drop-shadow mb-4 tracking-tight" style={{ color: '#2563eb' }}>Kimuchi</h1>
-        <p className="text-xl md:text-2xl mb-8 font-light leading-relaxed max-w-xl mx-auto text-center" style={{ color: '#334155' }}>
+      {/* ヒーローセクション（UI/UX最適化） */}
+      <section className="w-full max-w-2xl flex flex-col items-center text-center mb-16 mx-auto animate-fadein" style={{paddingTop: '5vh', paddingBottom: '5vh', transition: 'background 0.5s'}}> 
+        <img src="/logo.png" alt="Kimuchi logo" className="w-24 h-24 md:w-32 md:h-32 max-w-[130px] object-contain object-center rounded-full shadow-2xl border-4 border-[#fbbf24] bg-[#18181b] mb-8 animate-pop" style={{transition: 'box-shadow 0.3s'}} />
+        <h1 className="text-5xl md:text-6xl font-extrabold drop-shadow mb-4 tracking-tight animate-slidein" style={{ color: '#2563eb', letterSpacing: '0.04em', lineHeight: 1.1 }}>Kimuchi</h1>
+        <p className="text-xl md:text-2xl mb-10 font-light leading-relaxed max-w-xl mx-auto text-center animate-fadein" style={{ color: '#334155', lineHeight: 1.6 }}>
           とある大学の、完全非公開の授業評価コミュニティ。<br />
           GPAと時間を守る、選ばれた人だけの楽単情報プラットフォーム。
         </p>
-        {/* 会員数表示 */}
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.5rem',
-            background: 'rgba(34, 211, 238, 0.1)',
-            border: '1px solid rgba(34, 211, 238, 0.3)',
-            borderRadius: '9999px',
-            padding: isMobile ? '0.4rem 0.8rem' : '0.5rem 1rem',
-            marginBottom: '1.5rem',
-            color: '#22d3ee',
-            fontSize: isMobile ? '0.8rem' : '0.9rem',
-            fontWeight: 'bold',
-          }}
-        >
-          <FaUsers style={{ fontSize: isMobile ? '0.9rem' : '1rem' }} />
-          <span>現在の会員数: {approvedUserCount}名</span>
+        {/* 会員数表示（カウントアップ風） */}
+        <div id="member-count" style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '0.5rem',
+          background: 'rgba(34, 211, 238, 0.1)',
+          border: '1px solid rgba(34, 211, 238, 0.3)',
+          borderRadius: '9999px',
+          padding: isMobile ? '0.4rem 0.8rem' : '0.5rem 1rem',
+          marginBottom: '1.5rem',
+          color: '#22d3ee',
+          fontSize: isMobile ? '1rem' : '1.1rem',
+          fontWeight: 'bold',
+          minWidth: 180,
+          justifyContent: 'center',
+          transition: 'background 0.3s',
+        }}>
+          <FaUsers style={{ fontSize: isMobile ? '1.1rem' : '1.2rem' }} />
+          <span style={{ fontVariantNumeric: 'tabular-nums', fontSize: '1.2em', transition: 'color 0.3s' }}>{approvedUserCount}</span>名が参加中
         </div>
-        {/* CTAボタン */}
+        {/* CTAボタン（ホバー演出強化） */}
         <a
           href="#apply"
           style={{
-            display:'inline-flex',alignItems:'center',gap:'0.75rem',background:'linear-gradient(90deg,#2563eb,#1e40af)',color:'#fff',borderRadius:'9999px',padding:'1.25rem 2.5rem',fontSize:'1.3rem',fontWeight:'bold',boxShadow:'0 4px 24px rgba(30,41,59,0.12)',textDecoration:'none',transition:'transform 0.2s,box-shadow 0.2s',marginBottom:'0.5rem',letterSpacing:'0.02em',position:'relative',overflow:'hidden',border:'none',outline:'none',cursor:'pointer'
+            display:'inline-flex',alignItems:'center',gap:'0.75rem',background:'linear-gradient(90deg,#2563eb,#1e40af)',color:'#fff',borderRadius:'9999px',padding:'1.25rem 2.5rem',fontSize:'1.3rem',fontWeight:'bold',boxShadow:'0 4px 24px rgba(30,41,59,0.12)',textDecoration:'none',transition:'transform 0.2s,box-shadow 0.2s,background 0.2s',marginBottom:'0.5rem',letterSpacing:'0.02em',position:'relative',overflow:'hidden',border:'none',outline:'none',cursor:'pointer',willChange:'transform',
           }}
-          onMouseOver={e=>{e.currentTarget.style.transform='scale(1.06)';e.currentTarget.style.boxShadow='0 8px 32px rgba(0,0,0,0.22)';}}
-          onMouseOut={e=>{e.currentTarget.style.transform='scale(1)';e.currentTarget.style.boxShadow='0 4px 24px rgba(0,0,0,0.18)';}}
+          onMouseOver={e=>{e.currentTarget.style.transform='scale(1.08)';e.currentTarget.style.background='linear-gradient(90deg,#1e40af,#2563eb)';e.currentTarget.style.boxShadow='0 8px 32px rgba(0,0,0,0.22)';}}
+          onMouseOut={e=>{e.currentTarget.style.transform='scale(1)';e.currentTarget.style.background='linear-gradient(90deg,#2563eb,#1e40af)';e.currentTarget.style.boxShadow='0 4px 24px rgba(0,0,0,0.18)';}}
         >
           まずは申請する <FaArrowRight style={{fontSize:'1.3em'}} />
         </a>
@@ -179,14 +180,25 @@ function LandingPage() {
         </p>
       </section>
 
-      {/* 会員の声セクション */}
+      {/* 会員の声セクション（スライダー風） */}
       <section className="w-full max-w-3xl mx-auto mb-12 p-6 bg-[#f1f5f9] rounded-2xl shadow border border-[#e0e7ef]">
         <h2 className="text-xl font-bold mb-4 text-[#22d3ee]">会員の声</h2>
-        <ul className="space-y-4">
-          <li className="text-[#334155] text-base">「本当に楽単情報が手に入って、GPAも上がりました！」<span className="ml-2 text-xs text-[#a1a1aa]">（経済学部2年）</span></li>
-          <li className="text-[#334155] text-base">「エージェントよりもリアルな体験談が聞けて安心できた」<span className="ml-2 text-xs text-[#a1a1aa]">（理系1年）</span></li>
-          <li className="text-[#334155] text-base">「入会金だけでずっと使えるのがありがたい」<span className="ml-2 text-xs text-[#a1a1aa]">（文系3年）</span></li>
-        </ul>
+        <div style={{overflowX:'auto',whiteSpace:'nowrap',paddingBottom:8}}>
+          <div style={{display:'inline-flex',gap:24}}>
+            <div style={{minWidth:260,maxWidth:320,background:'#fff',border:'1.5px solid #e0e7ef',borderRadius:16,padding:24,boxShadow:'0 2px 8px rgba(30,41,59,0.08)',color:'#334155',fontSize:'1rem',textAlign:'left'}}>
+              <span style={{fontWeight:'bold',color:'#2563eb'}}>「本当に楽単情報が手に入って、GPAも上がりました！」</span>
+              <div style={{fontSize:'0.9rem',color:'#a1a1aa',marginTop:8}}>（経済学部2年）</div>
+            </div>
+            <div style={{minWidth:260,maxWidth:320,background:'#fff',border:'1.5px solid #e0e7ef',borderRadius:16,padding:24,boxShadow:'0 2px 8px rgba(30,41,59,0.08)',color:'#334155',fontSize:'1rem',textAlign:'left'}}>
+              <span style={{fontWeight:'bold',color:'#2563eb'}}>「エージェントよりもリアルな体験談が聞けて安心できた」</span>
+              <div style={{fontSize:'0.9rem',color:'#a1a1aa',marginTop:8}}>（理系1年）</div>
+            </div>
+            <div style={{minWidth:260,maxWidth:320,background:'#fff',border:'1.5px solid #e0e7ef',borderRadius:16,padding:24,boxShadow:'0 2px 8px rgba(30,41,59,0.08)',color:'#334155',fontSize:'1rem',textAlign:'left'}}>
+              <span style={{fontWeight:'bold',color:'#2563eb'}}>「入会金だけでずっと使えるのがありがたい」</span>
+              <div style={{fontSize:'0.9rem',color:'#a1a1aa',marginTop:8}}>（文系3年）</div>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* FAQ・サポートセクション */}
