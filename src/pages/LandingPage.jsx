@@ -333,7 +333,7 @@ function LandingPage() {
         </div>
       </section>
 
-      {/* 入会までの流れセクション（カードのみ・文章リライト） */}
+      {/* ご利用までの流れセクション（カードのみ・3ステップ） */}
       <section className="w-full max-w-3xl mx-auto mb-12 p-6 bg-white rounded-2xl shadow-lg border border-[#e0e7ef]">
         <h2 className="text-2xl font-bold mb-6 text-[#2563eb]">ご利用までの流れ</h2>
         <div className="flex flex-col md:flex-row justify-between items-center gap-8">
