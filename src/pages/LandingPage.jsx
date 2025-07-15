@@ -87,14 +87,9 @@ function LandingPage() {
     }
   };
 
-  // デモログイン（匿名ログインのみ実行）
-  const handleDemoLogin = async () => {
-    try {
-      await loginAnonymously();
-      navigate("/demo");
-    } catch (e) {
-      alert("デモログインに失敗しました");
-    }
+  // デモログイン（Firebase認証なしでデモページへ遷移）
+  const handleDemoLogin = () => {
+    navigate("/demo");
   };
 
   return (
