@@ -95,8 +95,7 @@ function LandingPage() {
           とある大学の、完全非公開の授業評価コミュニティ。<br />
           GPAと時間を守る、選ばれた人だけの楽単情報プラットフォーム。
         </p>
-        
-        {/* 承認済みユーザー数表示 */}
+        {/* 会員数表示 */}
         <div
           style={{
             display: 'flex',
@@ -113,9 +112,9 @@ function LandingPage() {
           }}
         >
           <FaUsers style={{ fontSize: isMobile ? '0.9rem' : '1rem' }} />
-          <span>会員登録者数: {approvedUserCount}名</span>
+          <span>現在の会員数: {approvedUserCount}名</span>
         </div>
-        
+        {/* CTAボタン */}
         <a
           href="#apply"
           style={{
@@ -126,6 +125,111 @@ function LandingPage() {
         >
           まずは申請する <FaArrowRight style={{fontSize:'1.3em'}} />
         </a>
+      </section>
+
+      {/* SNSシェアボタン */}
+      <div className="flex flex-wrap justify-center gap-4 mb-10">
+        {/* X（Twitter） */}
+        <a
+          href={`https://twitter.com/intent/tweet?text=${encodeURIComponent('Kimuchi｜先輩直伝の楽単・授業情報コミュニティ')}&url=${encodeURIComponent(window.location.origin)}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#1da1f2', color: '#fff', borderRadius: 9999, padding: '0.7rem 1.5rem', fontWeight: 'bold', textDecoration: 'none', fontSize: '1rem' }}
+        >
+          <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M22.46 5.924c-.793.352-1.645.59-2.54.697a4.48 4.48 0 0 0 1.963-2.475 8.94 8.94 0 0 1-2.828 1.082A4.48 4.48 0 0 0 11.07 9.03c0 .352.04.695.116 1.022C7.728 9.89 4.1 8.1 1.67 5.149a4.48 4.48 0 0 0-.606 2.254c0 1.555.792 2.927 2.002 3.732a4.48 4.48 0 0 1-2.03-.561v.057a4.48 4.48 0 0 0 3.6 4.393c-.193.053-.397.082-.607.082-.148 0-.292-.014-.432-.04a4.48 4.48 0 0 0 4.18 3.11A8.98 8.98 0 0 1 2 19.54a12.7 12.7 0 0 0 6.88 2.017c8.26 0 12.78-6.84 12.78-12.78 0-.195-.004-.39-.013-.583A9.14 9.14 0 0 0 24 4.59a8.98 8.98 0 0 1-2.54.697z"/></svg>
+          Xでシェア
+        </a>
+        {/* LINE */}
+        <a
+          href={`https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(window.location.origin)}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#06c755', color: '#fff', borderRadius: 9999, padding: '0.7rem 1.5rem', fontWeight: 'bold', textDecoration: 'none', fontSize: '1rem' }}
+        >
+          <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M19.615 3.184C17.413 1.13 14.13.013 10.66.013 4.77.013 0 4.13 0 9.22c0 2.92 1.68 5.53 4.36 7.23-.18.62-.98 3.36-1.02 3.56 0 .01-.01.05.02.07.03.02.07.01.08.01.11-.02 3.52-2.32 4.13-2.7.97.14 1.97.22 3.08.22 5.89 0 10.66-4.12 10.66-9.21 0-2.19-1.09-4.25-3.13-6.18z"/></svg>
+          LINEでシェア
+        </a>
+        {/* Facebook */}
+        <a
+          href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.origin)}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#1877f2', color: '#fff', borderRadius: 9999, padding: '0.7rem 1.5rem', fontWeight: 'bold', textDecoration: 'none', fontSize: '1rem' }}
+        >
+          <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0h-21.35C.595 0 0 .592 0 1.326v21.348C0 23.408.595 24 1.326 24h11.495v-9.294H9.691v-3.622h3.13V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.797.143v3.24l-1.918.001c-1.504 0-1.797.715-1.797 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116C23.406 24 24 23.408 24 22.674V1.326C24 .592 23.406 0 22.675 0"/></svg>
+          Facebookでシェア
+        </a>
+        {/* URLコピー */}
+        <button
+          onClick={() => {navigator.clipboard.writeText(window.location.origin); alert('URLをコピーしました！');}}
+          style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#334155', color: '#fff', borderRadius: 9999, padding: '0.7rem 1.5rem', fontWeight: 'bold', fontSize: '1rem', border: 'none', cursor: 'pointer' }}
+        >
+          <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+          URLコピー
+        </button>
+      </div>
+
+      {/* なぜKimuchiなのかセクション */}
+      <section className="w-full max-w-3xl mx-auto mb-12 p-6 bg-white rounded-2xl shadow-lg border border-[#e0e7ef]">
+        <h2 className="text-2xl font-bold mb-4 text-[#2563eb]">なぜKimuchiなのか？</h2>
+        <p className="text-lg text-[#334155] leading-relaxed">
+          他に同じようなサービスは存在しません。<br />
+          留学エージェントに何十万円も支払うよりも、実際に現地で学んだ先輩たちから最新・リアルな授業情報や体験談を、圧倒的に安い入会金で手に入れることができます。<br />
+          Kimuchiは、信頼できるコミュニティだからこそ、ネットやSNSでは得られない「本当に役立つ情報」だけを厳選して提供しています。
+        </p>
+      </section>
+
+      {/* 会員の声セクション */}
+      <section className="w-full max-w-3xl mx-auto mb-12 p-6 bg-[#f1f5f9] rounded-2xl shadow border border-[#e0e7ef]">
+        <h2 className="text-xl font-bold mb-4 text-[#22d3ee]">会員の声</h2>
+        <ul className="space-y-4">
+          <li className="text-[#334155] text-base">「本当に楽単情報が手に入って、GPAも上がりました！」<span className="ml-2 text-xs text-[#a1a1aa]">（経済学部2年）</span></li>
+          <li className="text-[#334155] text-base">「エージェントよりもリアルな体験談が聞けて安心できた」<span className="ml-2 text-xs text-[#a1a1aa]">（理系1年）</span></li>
+          <li className="text-[#334155] text-base">「入会金だけでずっと使えるのがありがたい」<span className="ml-2 text-xs text-[#a1a1aa]">（文系3年）</span></li>
+        </ul>
+      </section>
+
+      {/* FAQ・サポートセクション */}
+      <section className="w-full max-w-3xl mx-auto mb-12 p-6 bg-[#f1f5f9] rounded-2xl shadow border border-[#e0e7ef]">
+        <h2 className="text-xl font-bold mb-4 text-[#2563eb]">よくある質問（FAQ）</h2>
+        <ul className="space-y-4 mb-6">
+          <li>
+            <strong>Q. 入会後に追加料金はかかりますか？</strong><br />
+            A. いいえ、入会金$50のみで追加料金は一切かかりません。
+          </li>
+          <li>
+            <strong>Q. どんな情報が見られますか？</strong><br />
+            A. 実際に現地で学んだ先輩たちによる最新の授業評価・体験談・楽単情報などが見られます。
+          </li>
+          <li>
+            <strong>Q. 承認までどれくらいかかりますか？</strong><br />
+            A. 通常24時間以内に審査結果をご連絡します。
+          </li>
+          <li>
+            <strong>Q. 退会はできますか？</strong><br />
+            A. いつでも退会可能です。サポートまでご連絡ください。
+          </li>
+          <li>
+            <strong>Q. サポートへの連絡方法は？</strong><br />
+            A. 下記「お問い合わせ」ボタンからご連絡いただけます。
+          </li>
+        </ul>
+        <div className="text-center">
+          <a href="/contact" style={{
+            display: 'inline-block',
+            background: 'linear-gradient(90deg,#2563eb,#1e40af)',
+            color: '#fff',
+            borderRadius: '9999px',
+            padding: '1rem 2.5rem',
+            fontWeight: 'bold',
+            fontSize: '1.1rem',
+            textDecoration: 'none',
+            boxShadow: '0 2px 8px rgba(30,41,59,0.10)',
+            transition: 'background 0.2s',
+          }}>
+            お問い合わせはこちら
+          </a>
+        </div>
       </section>
 
       {/* ご利用条件カード（完全インラインstyle, レスポンシブ対応） */}
@@ -192,6 +296,41 @@ function LandingPage() {
               <div style={{ color: '#334155', fontSize: isMobile ? '0.9rem' : '1rem' }}>{item.desc}</div>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* 入会までの流れセクション */}
+      <section className="w-full max-w-3xl mx-auto mb-12 p-6 bg-white rounded-2xl shadow-lg border border-[#e0e7ef]">
+        <h2 className="text-2xl font-bold mb-6 text-[#2563eb]">入会までの流れ</h2>
+        <div className="flex flex-col md:flex-row justify-between items-center gap-8">
+          {/* ステップ1 */}
+          <div className="flex flex-col items-center flex-1">
+            <div className="bg-[#fbbf24] text-white rounded-full w-16 h-16 flex items-center justify-center text-3xl mb-2 shadow"><FaMoneyCheckAlt /></div>
+            <div className="font-bold text-lg mb-1">入会金送金</div>
+            <div className="text-[#334155] text-sm text-center">Zelleで入会金$50を送金<br /><span className='text-xs'>(送金先: 657-709-1289)</span></div>
+          </div>
+          {/* → */}
+          <div className="hidden md:block text-3xl text-[#a1a1aa] mx-2">→</div>
+          {/* ステップ2 */}
+          <div className="flex flex-col items-center flex-1">
+            <div className="bg-[#22d3ee] text-white rounded-full w-16 h-16 flex items-center justify-center text-3xl mb-2 shadow"><FaUserShield /></div>
+            <div className="font-bold text-lg mb-1">申請フォーム記入</div>
+            <div className="text-[#334155] text-sm text-center">必要事項をフォームに入力</div>
+          </div>
+          <div className="hidden md:block text-3xl text-[#a1a1aa] mx-2">→</div>
+          {/* ステップ3 */}
+          <div className="flex flex-col items-center flex-1">
+            <div className="bg-[#6366f1] text-white rounded-full w-16 h-16 flex items-center justify-center text-3xl mb-2 shadow"><FaCheckCircle /></div>
+            <div className="font-bold text-lg mb-1">審査</div>
+            <div className="text-[#334155] text-sm text-center">24時間以内に結果をご連絡</div>
+          </div>
+          <div className="hidden md:block text-3xl text-[#a1a1aa] mx-2">→</div>
+          {/* ステップ4 */}
+          <div className="flex flex-col items-center flex-1">
+            <div className="bg-[#2f9e44] text-white rounded-full w-16 h-16 flex items-center justify-center text-3xl mb-2 shadow"><FaUsers /></div>
+            <div className="font-bold text-lg mb-1">利用開始</div>
+            <div className="text-[#334155] text-sm text-center">承認後すぐに全機能利用可能</div>
+          </div>
         </div>
       </section>
 

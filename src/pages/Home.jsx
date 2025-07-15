@@ -41,6 +41,18 @@ function Home() {
   const { userBadge } = useAuth();
   const [badgeCache, setBadgeCache] = useState({});
 
+  // サンプルデータ
+  const sampleCourses = [
+    { id: 'ECON101', name: 'ECON 101（楽単・出席重視）', professor: 'Tanaka', description: '出席点が高く、テストも簡単。' },
+    { id: 'MATH010', name: 'MATH 010（ほぼ中学レベル）', professor: 'Smith', description: '内容が易しく、課題も少ない。' },
+    { id: 'ENG200', name: 'ENG 200（エッセイ中心）', professor: 'Lee', description: 'エッセイ提出のみで単位が取れる。' },
+  ];
+  const sampleComments = [
+    { id: 1, name: '先輩A', text: 'この授業は本当に楽でした！' },
+    { id: 2, name: '先輩B', text: '出席だけで単位がもらえます。' },
+    { id: 3, name: '先輩C', text: 'テストも簡単でおすすめ。' },
+  ];
+
   useEffect(() => {
     fetchCourses();
     fetchComments();
@@ -487,396 +499,441 @@ function Home() {
               }}>
                 <FaSearch /> 授業を検索
               </h2>
-
-              {/* 検索フォーム */}
-              <form onSubmit={handleSearch} style={{ marginBottom: '30px' }}>
-                <div style={{
-                  display: 'grid',
-                  gridTemplateColumns: '1fr 1fr',
-                  gap: '16px',
-                  marginBottom: '20px',
-                  ...(window.innerWidth <= 768 && { gridTemplateColumns: '1fr' })
-                }}>
-                  <div>
-                    <label style={{ 
-                      display: 'block', 
-                      marginBottom: '8px', 
-                      fontWeight: '600',
-                      color: '#e4e4e7'
-                    }}>
-                      授業名で検索
-                    </label>
-                    <input
-                      type="text"
-                      placeholder="授業名を検索（例：econ 170）"
-                      value={searchInput}
-                      onChange={(e) => setSearchInput(e.target.value)}
-                      style={{
-                        width: '100%',
-                        padding: '16px 20px',
-                        borderRadius: '12px',
-                        border: '1.5px solid #cbd5e1',
-                        background: '#fff',
-                        color: '#1e293b',
-                        fontSize: '1rem',
-                        outline: 'none',
-                        transition: 'border-color 0.2s',
-                      }}
-                      onFocus={e => e.target.style.borderColor = '#2563eb'}
-                      onBlur={e => e.target.style.borderColor = '#cbd5e1'}
-                    />
+              {/* 未ログイン時はサンプルのみ表示 */}
+              {!user ? (
+                <>
+                  <div style={{ marginBottom: '24px', color: '#334155', fontWeight: 'bold' }}>
+                    <FaUser style={{ color: '#22d3ee', marginRight: 8 }} />
+                    ゲストモード：サンプル授業のみ表示中
                   </div>
-                  <div>
-                    <label style={{ 
-                      display: 'block', 
-                      marginBottom: '8px', 
-                      fontWeight: '600',
-                      color: '#e4e4e7'
-                    }}>
-                      教授名で検索
-                    </label>
-                    <input
-                      type="text"
-                      placeholder="教授名を検索（例：Davis）"
-                      value={professorSearch}
-                      onChange={(e) => setProfessorSearch(e.target.value)}
-                      style={{
-                        width: '100%',
-                        padding: '16px 20px',
-                        borderRadius: '12px',
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '24px', marginBottom: '32px' }}>
+                    {sampleCourses.map(course => (
+                      <div key={course.id} style={{
+                        background: '#f1f5f9',
+                        borderRadius: '16px',
                         border: '1.5px solid #cbd5e1',
-                        background: '#fff',
+                        boxShadow: '0 2px 8px rgba(30,41,59,0.08)',
+                        padding: '20px',
                         color: '#1e293b',
-                        fontSize: '1rem',
-                        outline: 'none',
-                        transition: 'border-color 0.2s',
-                      }}
-                      onFocus={e => e.target.style.borderColor = '#2563eb'}
-                      onBlur={e => e.target.style.borderColor = '#cbd5e1'}
-                    />
+                      }}>
+                        <div style={{ fontWeight: 'bold', fontSize: '1.1rem', marginBottom: 8 }}>{course.name}</div>
+                        <div style={{ color: '#a1a1aa', fontSize: '0.95rem', marginBottom: 8 }}>教授: {course.professor}</div>
+                        <div style={{ fontSize: '0.95rem' }}>{course.description}</div>
+                      </div>
+                    ))}
                   </div>
-                </div>
-
-                {/* フィルター・並び替え */}
-                <div style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  marginBottom: '20px',
-                  flexWrap: 'wrap',
-                  gap: '16px'
-                }}>
-                  <button
-                    type="button"
-                    onClick={() => setShowFilters(!showFilters)}
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '8px',
-                      padding: '12px 20px',
-                      background: '#27272a',
-                      color: '#e4e4e7',
-                      border: '1.5px solid #27272a',
-                      borderRadius: '12px',
-                      fontWeight: '600',
-                      cursor: 'pointer',
-                      transition: 'all 0.2s'
-                    }}
-                    onMouseOver={e => e.target.style.background = '#3f3f46'}
-                    onMouseOut={e => e.target.style.background = '#27272a'}
-                  >
-                    <FaFilter /> フィルター
-                  </button>
-
-                  <div style={{
-                    display: 'flex',
-                    gap: '12px',
-                    alignItems: 'center',
-                    flexWrap: 'wrap'
-                  }}>
-                    <select
-                      value={sortBy}
-                      onChange={(e) => setSortBy(e.target.value)}
-                      style={{
-                        padding: '12px 16px',
-                        background: '#fff',
-                        color: '#1e293b',
-                        border: '1.5px solid #cbd5e1',
-                        borderRadius: '12px',
-                        fontSize: '1rem',
-                        outline: 'none',
-                        cursor: 'pointer',
-                      }}
-                      onFocus={e => e.target.style.borderColor = '#2563eb'}
-                      onBlur={e => e.target.style.borderColor = '#cbd5e1'}
-                    >
-                      <option value="name">授業名順</option>
-                      <option value="professor">教授名順</option>
-                      <option value="enrolled">受講者数順</option>
-                      <option value="recent">最近追加順</option>
-                    </select>
+                  <div style={{ marginBottom: '16px', color: '#334155', fontWeight: 'bold' }}>
+                    <FaComment style={{ color: '#fbbf24', marginRight: 8 }} />
+                    サンプルコメント
                   </div>
-                </div>
-
-                {/* フィルターオプション */}
-                {showFilters && (
-                  <div style={{
-                    background: '#18181b',
-                    padding: '20px',
-                    borderRadius: '12px',
-                    marginBottom: '20px',
-                    border: '1px solid #27272a'
-                  }}>
-                    <h3 style={{ 
-                      color: '#2563eb', 
-                      fontSize: '1.1rem', 
-                      fontWeight: 'bold',
-                      marginBottom: '16px'
+                  <ul style={{ marginBottom: '32px' }}>
+                    {sampleComments.map(c => (
+                      <li key={c.id} style={{ background: '#fff', border: '1.5px solid #e0e7ef', borderRadius: '12px', padding: '16px', marginBottom: '10px', color: '#334155' }}>
+                        <strong>{c.name}</strong>：{c.text}
+                      </li>
+                    ))}
+                  </ul>
+                  <div style={{ textAlign: 'center', margin: '32px 0' }}>
+                    <span style={{ fontWeight: 'bold', color: '#2563eb', fontSize: '1.2rem' }}>続きは会員登録で！</span><br />
+                    <button onClick={loginWithGoogle} style={{ marginTop: 16, padding: '12px 32px', background: 'linear-gradient(90deg,#2563eb,#1e40af)', color: '#fff', border: 'none', borderRadius: '9999px', fontWeight: 'bold', fontSize: '1.1rem', cursor: 'pointer', boxShadow: '0 2px 8px rgba(30,41,59,0.10)' }}>
+                      Googleで会員登録
+                    </button>
+                  </div>
+                </>
+              ) : (
+                // ...従来の全件表示...
+                <>
+                  {/* 検索フォーム */}
+                  <form onSubmit={handleSearch} style={{ marginBottom: '30px' }}>
+                    <div style={{
+                      display: 'grid',
+                      gridTemplateColumns: '1fr 1fr',
+                      gap: '16px',
+                      marginBottom: '20px',
+                      ...(window.innerWidth <= 768 && { gridTemplateColumns: '1fr' })
                     }}>
-                      カテゴリフィルター
-                    </h3>
+                      <div>
+                        <label style={{ 
+                          display: 'block', 
+                          marginBottom: '8px', 
+                          fontWeight: '600',
+                          color: '#e4e4e7'
+                        }}>
+                          授業名で検索
+                        </label>
+                        <input
+                          type="text"
+                          placeholder="授業名を検索（例：econ 170）"
+                          value={searchInput}
+                          onChange={(e) => setSearchInput(e.target.value)}
+                          style={{
+                            width: '100%',
+                            padding: '16px 20px',
+                            borderRadius: '12px',
+                            border: '1.5px solid #cbd5e1',
+                            background: '#fff',
+                            color: '#1e293b',
+                            fontSize: '1rem',
+                            outline: 'none',
+                            transition: 'border-color 0.2s',
+                          }}
+                          onFocus={e => e.target.style.borderColor = '#2563eb'}
+                          onBlur={e => e.target.style.borderColor = '#cbd5e1'}
+                        />
+                      </div>
+                      <div>
+                        <label style={{ 
+                          display: 'block', 
+                          marginBottom: '8px', 
+                          fontWeight: '600',
+                          color: '#e4e4e7'
+                        }}>
+                          教授名で検索
+                        </label>
+                        <input
+                          type="text"
+                          placeholder="教授名を検索（例：Davis）"
+                          value={professorSearch}
+                          onChange={(e) => setProfessorSearch(e.target.value)}
+                          style={{
+                            width: '100%',
+                            padding: '16px 20px',
+                            borderRadius: '12px',
+                            border: '1.5px solid #cbd5e1',
+                            background: '#fff',
+                            color: '#1e293b',
+                            fontSize: '1rem',
+                            outline: 'none',
+                            transition: 'border-color 0.2s',
+                          }}
+                          onFocus={e => e.target.style.borderColor = '#2563eb'}
+                          onBlur={e => e.target.style.borderColor = '#cbd5e1'}
+                        />
+                      </div>
+                    </div>
+
+                    {/* フィルター・並び替え */}
                     <div style={{
                       display: 'flex',
-                      gap: '12px',
-                      flexWrap: 'wrap'
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                      marginBottom: '20px',
+                      flexWrap: 'wrap',
+                      gap: '16px'
                     }}>
-                      {[
-                        { value: 'all', label: 'すべて', color: '#6366f1' },
-                        { value: 'econ', label: '経済学', color: '#22d3ee' },
-                        { value: 'math', label: '数学', color: '#fbbf24' },
-                        { value: 'eng', label: '英語', color: '#2f9e44' },
-                        { value: 'sci', label: '科学', color: '#c92a2a' },
-                        { value: 'hum', label: '人文', color: '#8b5cf6' }
-                      ].map(category => (
-                        <button
-                          key={category.value}
-                          type="button"
-                          onClick={() => setSelectedCategory(category.value)}
-                          style={{
-                            padding: '8px 16px',
-                            background: selectedCategory === category.value 
-                              ? category.color 
-                              : '#27272a',
-                            color: selectedCategory === category.value ? '#18181b' : '#e4e4e7',
-                            border: '1.5px solid',
-                            borderColor: selectedCategory === category.value ? category.color : '#27272a',
-                            borderRadius: '20px',
-                            fontWeight: '600',
-                            cursor: 'pointer',
-                            transition: 'all 0.2s',
-                            fontSize: '0.9rem'
-                          }}
-                          onMouseOver={e => selectedCategory !== category.value && (e.target.style.background = '#3f3f46')}
-                          onMouseOut={e => selectedCategory !== category.value && (e.target.style.background = '#27272a')}
-                        >
-                          {category.label}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </form>
-
-              {/* 検索結果 */}
-              {resultCourses.length > 0 && (
-                <div>
-                  <h3 style={{ 
-                    color: '#2563eb', 
-                    fontSize: '1.5rem', 
-                    fontWeight: 'bold',
-                    marginBottom: '20px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '10px'
-                  }}>
-                    <FaBook /> 検索結果（{resultCourses.length}件）
-                  </h3>
-                  <div
-                    style={{
-                      display: 'grid',
-                      gap: '20px',
-                      gridTemplateColumns: window.innerWidth <= 600 ? '1fr' : 'repeat(auto-fit, minmax(350px, 1fr))',
-                      width: '100%',
-                      maxWidth: 600,
-                      margin: '0 auto',
-                      boxSizing: 'border-box',
-                    }}
-                  >
-                    {resultCourses.map(course => {
-                      const category = getCategoryName(course.name);
-                      const stats = courseStats[course.id] || { enrolledCount: 0, rating: 0, ratingCount: 0 };
-                      const isEnrolled = userEnrollments[course.id];
-                      
-                      return (
-                        <div key={course.id} style={{
-                          background: '#fff',
-                          padding: window.innerWidth <= 600 ? '16px' : '24px',
-                          borderRadius: '16px',
-                          border: '1.5px solid #cbd5e1',
-                          boxShadow: '0 4px 16px rgba(30,41,59,0.08)',
-                          transition: 'transform 0.2s, box-shadow 0.2s',
+                      <button
+                        type="button"
+                        onClick={() => setShowFilters(!showFilters)}
+                        style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '8px',
+                          padding: '12px 20px',
+                          background: '#27272a',
+                          color: '#e4e4e7',
+                          border: '1.5px solid #27272a',
+                          borderRadius: '12px',
+                          fontWeight: '600',
                           cursor: 'pointer',
-                          position: 'relative',
+                          transition: 'all 0.2s'
+                        }}
+                        onMouseOver={e => e.target.style.background = '#3f3f46'}
+                        onMouseOut={e => e.target.style.background = '#27272a'}
+                      >
+                        <FaFilter /> フィルター
+                      </button>
+
+                      <div style={{
+                        display: 'flex',
+                        gap: '12px',
+                        alignItems: 'center',
+                        flexWrap: 'wrap'
+                      }}>
+                        <select
+                          value={sortBy}
+                          onChange={(e) => setSortBy(e.target.value)}
+                          style={{
+                            padding: '12px 16px',
+                            background: '#fff',
+                            color: '#1e293b',
+                            border: '1.5px solid #cbd5e1',
+                            borderRadius: '12px',
+                            fontSize: '1rem',
+                            outline: 'none',
+                            cursor: 'pointer',
+                          }}
+                          onFocus={e => e.target.style.borderColor = '#2563eb'}
+                          onBlur={e => e.target.style.borderColor = '#cbd5e1'}
+                        >
+                          <option value="name">授業名順</option>
+                          <option value="professor">教授名順</option>
+                          <option value="enrolled">受講者数順</option>
+                          <option value="recent">最近追加順</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    {/* フィルターオプション */}
+                    {showFilters && (
+                      <div style={{
+                        background: '#18181b',
+                        padding: '20px',
+                        borderRadius: '12px',
+                        marginBottom: '20px',
+                        border: '1px solid #27272a'
+                      }}>
+                        <h3 style={{ 
+                          color: '#2563eb', 
+                          fontSize: '1.1rem', 
+                          fontWeight: 'bold',
+                          marginBottom: '16px'
+                        }}>
+                          カテゴリフィルター
+                        </h3>
+                        <div style={{
+                          display: 'flex',
+                          gap: '12px',
+                          flexWrap: 'wrap'
+                        }}>
+                          {[
+                            { value: 'all', label: 'すべて', color: '#6366f1' },
+                            { value: 'econ', label: '経済学', color: '#22d3ee' },
+                            { value: 'math', label: '数学', color: '#fbbf24' },
+                            { value: 'eng', label: '英語', color: '#2f9e44' },
+                            { value: 'sci', label: '科学', color: '#c92a2a' },
+                            { value: 'hum', label: '人文', color: '#8b5cf6' }
+                          ].map(category => (
+                            <button
+                              key={category.value}
+                              type="button"
+                              onClick={() => setSelectedCategory(category.value)}
+                              style={{
+                                padding: '8px 16px',
+                                background: selectedCategory === category.value 
+                                  ? category.color 
+                                  : '#27272a',
+                                color: selectedCategory === category.value ? '#18181b' : '#e4e4e7',
+                                border: '1.5px solid',
+                                borderColor: selectedCategory === category.value ? category.color : '#27272a',
+                                borderRadius: '20px',
+                                fontWeight: '600',
+                                cursor: 'pointer',
+                                transition: 'all 0.2s',
+                                fontSize: '0.9rem'
+                              }}
+                              onMouseOver={e => selectedCategory !== category.value && (e.target.style.background = '#3f3f46')}
+                              onMouseOut={e => selectedCategory !== category.value && (e.target.style.background = '#27272a')}
+                            >
+                              {category.label}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </form>
+
+                  {/* 検索結果 */}
+                  {resultCourses.length > 0 && (
+                    <div>
+                      <h3 style={{ 
+                        color: '#2563eb', 
+                        fontSize: '1.5rem', 
+                        fontWeight: 'bold',
+                        marginBottom: '20px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '10px'
+                      }}>
+                        <FaBook /> 検索結果（{resultCourses.length}件）
+                      </h3>
+                      <div
+                        style={{
+                          display: 'grid',
+                          gap: '20px',
+                          gridTemplateColumns: window.innerWidth <= 600 ? '1fr' : 'repeat(auto-fit, minmax(350px, 1fr))',
                           width: '100%',
-                          maxWidth: '100%',
+                          maxWidth: 600,
                           margin: '0 auto',
                           boxSizing: 'border-box',
-                          color: '#1e293b',
                         }}
-                        onMouseOver={e => {
-                          e.currentTarget.style.transform = 'scale(1.02)';
-                          e.currentTarget.style.boxShadow = '0 8px 24px rgba(0,0,0,0.3)';
-                        }}
-                        onMouseOut={e => {
-                          e.currentTarget.style.transform = 'scale(1)';
-                          e.currentTarget.style.boxShadow = '0 4px 16px rgba(0,0,0,0.2)';
-                        }}
-                        onClick={() => navigate(`/course/${course.id}`)}
-                        >
-                          {/* 詳細ページリンクアイコン */}
-                          <div style={{
-                            position: 'absolute',
-                            top: '16px',
-                            right: '16px',
-                            color: '#a1a1aa',
-                            fontSize: '1.2rem',
-                            opacity: 0.7
-                          }}>
-                            <FaExternalLinkAlt />
-                          </div>
+                      >
+                        {resultCourses.map(course => {
+                          const category = getCategoryName(course.name);
+                          const stats = courseStats[course.id] || { enrolledCount: 0, rating: 0, ratingCount: 0 };
+                          const isEnrolled = userEnrollments[course.id];
+                          
+                          return (
+                            <div key={course.id} style={{
+                              background: '#fff',
+                              padding: window.innerWidth <= 600 ? '16px' : '24px',
+                              borderRadius: '16px',
+                              border: '1.5px solid #cbd5e1',
+                              boxShadow: '0 4px 16px rgba(30,41,59,0.08)',
+                              transition: 'transform 0.2s, box-shadow 0.2s',
+                              cursor: 'pointer',
+                              position: 'relative',
+                              width: '100%',
+                              maxWidth: '100%',
+                              margin: '0 auto',
+                              boxSizing: 'border-box',
+                              color: '#1e293b',
+                            }}
+                            onMouseOver={e => {
+                              e.currentTarget.style.transform = 'scale(1.02)';
+                              e.currentTarget.style.boxShadow = '0 8px 24px rgba(0,0,0,0.3)';
+                            }}
+                            onMouseOut={e => {
+                              e.currentTarget.style.transform = 'scale(1)';
+                              e.currentTarget.style.boxShadow = '0 4px 16px rgba(0,0,0,0.2)';
+                            }}
+                            onClick={() => navigate(`/course/${course.id}`)}
+                            >
+                              {/* 詳細ページリンクアイコン */}
+                              <div style={{
+                                position: 'absolute',
+                                top: '16px',
+                                right: '16px',
+                                color: '#a1a1aa',
+                                fontSize: '1.2rem',
+                                opacity: 0.7
+                              }}>
+                                <FaExternalLinkAlt />
+                              </div>
 
-                          {/* ヘッダー */}
-                          <div style={{
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            alignItems: 'flex-start',
-                            marginBottom: '16px'
-                          }}>
-                            <div style={{
-                              display: 'flex',
-                              alignItems: 'center',
-                              gap: '10px'
-                            }}>
-                              <FaGraduationCap style={{ color: '#2563eb', fontSize: '1.2rem' }} />
-                              <strong style={{ color: '#2563eb', fontSize: '1.1rem' }}>{course.name}</strong>
-                            </div>
-                            <div style={{
-                              background: getCategoryColor(category),
-                              color: '#18181b',
-                              padding: '4px 12px',
-                              borderRadius: '20px',
-                              fontSize: '0.8rem',
-                              fontWeight: 'bold'
-                            }}>
-                              {category.toUpperCase()}
-                            </div>
-                          </div>
-
-                          {/* 教授名 */}
-                          <div style={{ 
-                            color: '#e4e4e7', 
-                            marginBottom: '12px',
-                            fontSize: '1rem'
-                          }}>
-                            <strong>教授:</strong> {course.professor}
-                          </div>
-
-                          {/* 説明 */}
-                          <div style={{ 
-                            color: '#a1a1aa', 
-                            fontSize: '0.95rem', 
-                            lineHeight: '1.5',
-                            marginBottom: '16px'
-                          }}>
-                            {course.description}
-                          </div>
-
-                          {/* 統計情報 */}
-                          <div style={{
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            alignItems: 'center',
-                            marginBottom: '16px'
-                          }}>
-                            <div style={{
-                              display: 'flex',
-                              alignItems: 'center',
-                              gap: '8px',
-                              color: '#a1a1aa',
-                              fontSize: '0.9rem'
-                            }}>
-                              <FaUsers style={{ color: '#22d3ee' }} />
-                              <span>{stats.enrolledCount}人が受講中</span>
-                            </div>
-                            {stats.rating > 0 && (
+                              {/* ヘッダー */}
                               <div style={{
                                 display: 'flex',
-                                alignItems: 'center',
-                                gap: '4px',
-                                color: '#fbbf24',
-                                fontSize: '0.9rem'
+                                justifyContent: 'space-between',
+                                alignItems: 'flex-start',
+                                marginBottom: '16px'
                               }}>
-                                <FaStar />
-                                <span>{stats.rating.toFixed(1)} ({stats.ratingCount}件)</span>
+                                <div style={{
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  gap: '10px'
+                                }}>
+                                  <FaGraduationCap style={{ color: '#2563eb', fontSize: '1.2rem' }} />
+                                  <strong style={{ color: '#2563eb', fontSize: '1.1rem' }}>{course.name}</strong>
+                                </div>
+                                <div style={{
+                                  background: getCategoryColor(category),
+                                  color: '#18181b',
+                                  padding: '4px 12px',
+                                  borderRadius: '20px',
+                                  fontSize: '0.8rem',
+                                  fontWeight: 'bold'
+                                }}>
+                                  {category.toUpperCase()}
+                                </div>
                               </div>
-                            )}
-                          </div>
 
-                          {/* 受講ボタン */}
-                          <button
-                            onClick={(e) => {
-                              e.stopPropagation(); // カードのクリックイベントを阻止
-                              handleEnrollment(course.id);
-                            }}
-                            style={{
-                              width: '100%',
-                              padding: '12px 20px',
-                              background: isEnrolled 
-                                ? 'linear-gradient(135deg, #2f9e44, #22d3ee)' 
-                                : 'linear-gradient(135deg, #6366f1, #8b5cf6)',
-                              color: 'white',
-                              border: 'none',
-                              borderRadius: '12px',
-                              fontWeight: 'bold',
-                              cursor: 'pointer',
-                              transition: 'transform 0.2s',
-                              display: 'flex',
-                              alignItems: 'center',
-                              justifyContent: 'center',
-                              gap: '8px'
-                            }}
-                            onMouseOver={e => e.target.style.transform = 'scale(1.02)'}
-                            onMouseOut={e => e.target.style.transform = 'scale(1)'}
-                          >
-                            {isEnrolled ? (
-                              <>
-                                <FaCheck /> 受講中
-                              </>
-                            ) : (
-                              <>
-                                <FaPlus /> 受講登録
-                              </>
-                            )}
-                          </button>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              )}
+                              {/* 教授名 */}
+                              <div style={{ 
+                                color: '#e4e4e7', 
+                                marginBottom: '12px',
+                                fontSize: '1rem'
+                              }}>
+                                <strong>教授:</strong> {course.professor}
+                              </div>
 
-              {resultCourses.length === 0 && courses.length > 0 && (
-                <div style={{
-                  textAlign: 'center',
-                  padding: '40px',
-                  color: '#a1a1aa'
-                }}>
-                  <FaSearch style={{ fontSize: '3rem', marginBottom: '16px', opacity: 0.5 }} />
-                  <p>条件に一致する授業が見つかりませんでした</p>
-                  <p style={{ fontSize: '0.9rem', marginTop: '8px' }}>
-                    検索条件を変更してお試しください
-                  </p>
-                </div>
+                              {/* 説明 */}
+                              <div style={{ 
+                                color: '#a1a1aa', 
+                                fontSize: '0.95rem', 
+                                lineHeight: '1.5',
+                                marginBottom: '16px'
+                              }}>
+                                {course.description}
+                              </div>
+
+                              {/* 統計情報 */}
+                              <div style={{
+                                display: 'flex',
+                                justifyContent: 'space-between',
+                                alignItems: 'center',
+                                marginBottom: '16px'
+                              }}>
+                                <div style={{
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  gap: '8px',
+                                  color: '#a1a1aa',
+                                  fontSize: '0.9rem'
+                                }}>
+                                  <FaUsers style={{ color: '#22d3ee' }} />
+                                  <span>{stats.enrolledCount}人が受講中</span>
+                                </div>
+                                {stats.rating > 0 && (
+                                  <div style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    gap: '4px',
+                                    color: '#fbbf24',
+                                    fontSize: '0.9rem'
+                                  }}>
+                                    <FaStar />
+                                    <span>{stats.rating.toFixed(1)} ({stats.ratingCount}件)</span>
+                                  </div>
+                                )}
+                              </div>
+
+                              {/* 受講ボタン */}
+                              <button
+                                onClick={(e) => {
+                                  e.stopPropagation(); // カードのクリックイベントを阻止
+                                  handleEnrollment(course.id);
+                                }}
+                                style={{
+                                  width: '100%',
+                                  padding: '12px 20px',
+                                  background: isEnrolled 
+                                    ? 'linear-gradient(135deg, #2f9e44, #22d3ee)' 
+                                    : 'linear-gradient(135deg, #6366f1, #8b5cf6)',
+                                  color: 'white',
+                                  border: 'none',
+                                  borderRadius: '12px',
+                                  fontWeight: 'bold',
+                                  cursor: 'pointer',
+                                  transition: 'transform 0.2s',
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  justifyContent: 'center',
+                                  gap: '8px'
+                                }}
+                                onMouseOver={e => e.target.style.transform = 'scale(1.02)'}
+                                onMouseOut={e => e.target.style.transform = 'scale(1)'}
+                              >
+                                {isEnrolled ? (
+                                  <>
+                                    <FaCheck /> 受講中
+                                  </>
+                                ) : (
+                                  <>
+                                    <FaPlus /> 受講登録
+                                  </>
+                                )}
+                              </button>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )}
+
+                  {resultCourses.length === 0 && courses.length > 0 && (
+                    <div style={{
+                      textAlign: 'center',
+                      padding: '40px',
+                      color: '#a1a1aa'
+                    }}>
+                      <FaSearch style={{ fontSize: '3rem', marginBottom: '16px', opacity: 0.5 }} />
+                      <p>条件に一致する授業が見つかりませんでした</p>
+                      <p style={{ fontSize: '0.9rem', marginTop: '8px' }}>
+                        検索条件を変更してお試しください
+                      </p>
+                    </div>
+                  )}
+                </>
               )}
             </div>
           )}
