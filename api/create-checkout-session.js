@@ -25,9 +25,9 @@ module.exports = async (req, res) => {
           price_data: {
             currency: 'usd',
             product_data: {
-              name: `Unlock course: ${courseId}`,
+              name: 'Kimuchi Admission Fee',
             },
-            unit_amount: 200, // 金額（セント単位）。$2.00なら200
+            unit_amount: 5000, // 金額（セント単位）。$50.00なら5000
           },
           quantity: 1,
         },

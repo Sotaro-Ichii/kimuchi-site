@@ -13,6 +13,7 @@ Kimuchi is a private, invite-only university course review community platform. I
 - **User Badges**: Users can earn badges based on their status or contributions.
 - **Contact Form**: Users can send inquiries or feedback (email sending is implemented).
 - **Legal & Privacy Pages**: Terms of use, privacy policy, and contact information are provided.
+- **One-time Admission Fee**: Only a one-time $50 admission fee is required for membership. No recurring payments.
 
 ## Not Yet Complete
 

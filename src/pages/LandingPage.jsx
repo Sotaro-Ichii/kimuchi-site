@@ -168,7 +168,7 @@ function LandingPage() {
           {[{
             icon: <FaCheckCircle style={{ color: '#22d3ee', fontSize: isMobile ? '1.8rem' : '2.2rem', marginBottom: '0.75rem' }} />, title: '承認制', desc: 'GoogleまたはEmailログイン＋申請必須'
           }, {
-            icon: <FaMoneyCheckAlt style={{ color: '#fbbf24', fontSize: isMobile ? '1.8rem' : '2.2rem', marginBottom: '0.75rem' }} />, title: 'Zelleで一括支払い', desc: '$49.9 / 3ヶ月'
+            icon: <FaMoneyCheckAlt style={{ color: '#fbbf24', fontSize: isMobile ? '1.8rem' : '2.2rem', marginBottom: '0.75rem' }} />, title: '入会金', desc: 'Zelleで入会金$50（初回のみ）'
           }, {
             icon: <FaLock style={{ color: '#c92a2a', fontSize: isMobile ? '1.8rem' : '2.2rem', marginBottom: '0.75rem' }} />, title: '外部共有は厳禁', desc: 'ログイン情報・内容の外部共有は厳禁'
           }].map((item, i) => (
@@ -240,7 +240,7 @@ function LandingPage() {
         >
           {[{
             num: '1',
-            desc: <>Zelleで <strong>$49.9</strong> を一括zell送金<br /><span style={{ fontSize: isMobile ? '0.8rem' : '0.9rem' }}>（送金先電話番号: 657-709-1289）</span></>
+            desc: <>Zelleで <strong>$50</strong> を一度だけ送金<br /><span style={{ fontSize: isMobile ? '0.8rem' : '0.9rem' }}>（送金先電話番号: 657-709-1289）</span></>
           }, {
             num: '2',
             desc: <>申請フォームに必要事項を記入</>
