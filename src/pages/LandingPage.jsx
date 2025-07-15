@@ -87,15 +87,22 @@ function LandingPage() {
     }
   };
 
-  // デモログイン（匿名ログイン後に遷移）
+  // デモログイン（匿名ログインのみ実行）
   const handleDemoLogin = async () => {
     try {
       await loginAnonymously();
-      navigate("/home");
+      // ページ遷移はuseEffectでuserが匿名になったときに行う
     } catch (e) {
       alert("デモログインに失敗しました");
     }
   };
+
+  // 匿名ユーザーになったら自動で/homeへ遷移
+  useEffect(() => {
+    if (user && user.isAnonymous) {
+      navigate("/home");
+    }
+  }, [user, navigate]);
 
   return (
     <div className="min-h-screen flex flex-col items-center px-4 py-8" style={{ background: 'linear-gradient(to bottom, #f1f5f9, #e2e8f0 80%, #f1f5f9)', color: '#1e293b' }}>
