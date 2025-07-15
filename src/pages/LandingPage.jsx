@@ -184,8 +184,8 @@ function LandingPage() {
         </button>
       </div>
 
-      {/* なぜKimuchiなのかセクション */}
-      <section className="w-full max-w-3xl mx-auto mb-12 p-6 bg-white rounded-2xl shadow-lg border border-[#e0e7ef]">
+      {/* なぜKimuchiなのかセクション（中央寄せ） */}
+      <section className="w-full max-w-xl mx-auto mb-12 p-6 bg-white rounded-2xl shadow-lg border border-[#e0e7ef] text-center">
         <h2 className="text-2xl font-bold mb-4 text-[#2563eb]">なぜKimuchiなのか？</h2>
         <p className="text-lg text-[#334155] leading-relaxed">
           他に同じようなサービスは存在しません。<br />
@@ -194,21 +194,21 @@ function LandingPage() {
         </p>
       </section>
 
-      {/* 会員の声セクション（スライダー風） */}
-      <section className="w-full max-w-3xl mx-auto mb-12 p-6 bg-[#f1f5f9] rounded-2xl shadow border border-[#e0e7ef]">
+      {/* 会員の声セクション（中央寄せ・カード修正） */}
+      <section className="w-full max-w-xl mx-auto mb-12 p-6 bg-[#f1f5f9] rounded-2xl shadow border border-[#e0e7ef] text-center">
         <h2 className="text-xl font-bold mb-4 text-[#22d3ee]">会員の声</h2>
-        <div style={{overflowX:'auto',whiteSpace:'nowrap',paddingBottom:8}}>
+        <div style={{overflowX:'auto',whiteSpace:'nowrap',paddingBottom:8,margin:'0 auto',maxWidth:480}}>
           <div style={{display:'inline-flex',gap:24}}>
-            <div style={{minWidth:260,maxWidth:320,background:'#fff',border:'1.5px solid #e0e7ef',borderRadius:16,padding:24,boxShadow:'0 2px 8px rgba(30,41,59,0.08)',color:'#334155',fontSize:'1rem',textAlign:'left'}}>
-              <span style={{fontWeight:'bold',color:'#2563eb'}}>「本当に楽単情報が手に入って、GPAも上がりました！」</span>
+            <div style={{minWidth:220,maxWidth:280,background:'#fff',border:'1.5px solid #e0e7ef',borderRadius:16,padding:'20px 16px',boxShadow:'0 2px 8px rgba(30,41,59,0.08)',color:'#334155',fontSize:'1rem',textAlign:'left',wordBreak:'break-word',overflowWrap:'break-word'}}>
+              <span style={{fontWeight:'bold',color:'#2563eb',wordBreak:'break-word'}}>「本当に楽単情報が手に入って、GPAも上がりました！」</span>
               <div style={{fontSize:'0.9rem',color:'#a1a1aa',marginTop:8}}>（経済学部2年）</div>
             </div>
-            <div style={{minWidth:260,maxWidth:320,background:'#fff',border:'1.5px solid #e0e7ef',borderRadius:16,padding:24,boxShadow:'0 2px 8px rgba(30,41,59,0.08)',color:'#334155',fontSize:'1rem',textAlign:'left'}}>
-              <span style={{fontWeight:'bold',color:'#2563eb'}}>「エージェントよりもリアルな体験談が聞けて安心できた」</span>
+            <div style={{minWidth:220,maxWidth:280,background:'#fff',border:'1.5px solid #e0e7ef',borderRadius:16,padding:'20px 16px',boxShadow:'0 2px 8px rgba(30,41,59,0.08)',color:'#334155',fontSize:'1rem',textAlign:'left',wordBreak:'break-word',overflowWrap:'break-word'}}>
+              <span style={{fontWeight:'bold',color:'#2563eb',wordBreak:'break-word'}}>「エージェントよりもリアルな体験談が聞けて安心できた」</span>
               <div style={{fontSize:'0.9rem',color:'#a1a1aa',marginTop:8}}>（理系1年）</div>
             </div>
-            <div style={{minWidth:260,maxWidth:320,background:'#fff',border:'1.5px solid #e0e7ef',borderRadius:16,padding:24,boxShadow:'0 2px 8px rgba(30,41,59,0.08)',color:'#334155',fontSize:'1rem',textAlign:'left'}}>
-              <span style={{fontWeight:'bold',color:'#2563eb'}}>「入会金だけでずっと使えるのがありがたい」</span>
+            <div style={{minWidth:220,maxWidth:280,background:'#fff',border:'1.5px solid #e0e7ef',borderRadius:16,padding:'20px 16px',boxShadow:'0 2px 8px rgba(30,41,59,0.08)',color:'#334155',fontSize:'1rem',textAlign:'left',wordBreak:'break-word',overflowWrap:'break-word'}}>
+              <span style={{fontWeight:'bold',color:'#2563eb',wordBreak:'break-word'}}>「入会金だけでずっと使えるのがありがたい」</span>
               <div style={{fontSize:'0.9rem',color:'#a1a1aa',marginTop:8}}>（文系3年）</div>
             </div>
           </div>
@@ -333,36 +333,28 @@ function LandingPage() {
         </div>
       </section>
 
-      {/* 入会までの流れセクション */}
+      {/* 入会までの流れセクション（カードのみ・文章リライト） */}
       <section className="w-full max-w-3xl mx-auto mb-12 p-6 bg-white rounded-2xl shadow-lg border border-[#e0e7ef]">
-        <h2 className="text-2xl font-bold mb-6 text-[#2563eb]">入会までの流れ</h2>
+        <h2 className="text-2xl font-bold mb-6 text-[#2563eb]">ご利用までの流れ</h2>
         <div className="flex flex-col md:flex-row justify-between items-center gap-8">
           {/* ステップ1 */}
           <div className="flex flex-col items-center flex-1">
             <div className="bg-[#fbbf24] text-white rounded-full w-16 h-16 flex items-center justify-center text-3xl mb-2 shadow"><FaMoneyCheckAlt /></div>
-            <div className="font-bold text-lg mb-1">入会金送金</div>
-            <div className="text-[#334155] text-sm text-center">Zelleで入会金$50を送金<br /><span className='text-xs'>(送金先: 657-709-1289)</span></div>
+            <div className="font-bold text-lg mb-1">1. Zelleで$50を一度だけ送金</div>
+            <div className="text-[#334155] text-sm text-center">送金先: 657-709-1289</div>
           </div>
-          {/* → */}
           <div className="hidden md:block text-3xl text-[#a1a1aa] mx-2">→</div>
           {/* ステップ2 */}
           <div className="flex flex-col items-center flex-1">
             <div className="bg-[#22d3ee] text-white rounded-full w-16 h-16 flex items-center justify-center text-3xl mb-2 shadow"><FaUserShield /></div>
-            <div className="font-bold text-lg mb-1">申請フォーム記入</div>
-            <div className="text-[#334155] text-sm text-center">必要事項をフォームに入力</div>
+            <div className="font-bold text-lg mb-1">2. 申請フォームに必要事項を記入</div>
+            <div className="text-[#334155] text-sm text-center">簡単な情報を入力するだけ</div>
           </div>
           <div className="hidden md:block text-3xl text-[#a1a1aa] mx-2">→</div>
           {/* ステップ3 */}
           <div className="flex flex-col items-center flex-1">
             <div className="bg-[#6366f1] text-white rounded-full w-16 h-16 flex items-center justify-center text-3xl mb-2 shadow"><FaCheckCircle /></div>
-            <div className="font-bold text-lg mb-1">審査</div>
-            <div className="text-[#334155] text-sm text-center">24時間以内に結果をご連絡</div>
-          </div>
-          <div className="hidden md:block text-3xl text-[#a1a1aa] mx-2">→</div>
-          {/* ステップ4 */}
-          <div className="flex flex-col items-center flex-1">
-            <div className="bg-[#2f9e44] text-white rounded-full w-16 h-16 flex items-center justify-center text-3xl mb-2 shadow"><FaUsers /></div>
-            <div className="font-bold text-lg mb-1">利用開始</div>
+            <div className="font-bold text-lg mb-1">3. 審査後、24時間以内に結果をご連絡</div>
             <div className="text-[#334155] text-sm text-center">承認後すぐに全機能利用可能</div>
           </div>
         </div>
