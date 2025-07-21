@@ -89,7 +89,7 @@ function LandingPage() {
 
   // デモログイン（Firebase認証なしでデモページへ遷移）
   const handleDemoLogin = () => {
-    navigate("/demo");
+    navigate("/home");
   };
 
   return (
