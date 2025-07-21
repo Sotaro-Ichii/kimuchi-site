@@ -204,17 +204,17 @@ function LandingPage() {
         <h2 className="text-xl font-bold mb-4 text-[#22d3ee]">会員の声</h2>
         <div style={{overflowX:'auto',whiteSpace:'nowrap',paddingBottom:8,margin:'0 auto',maxWidth:480}}>
           <div style={{display:'inline-flex',gap:24}}>
-            <div style={{minWidth:220,maxWidth:280,background:'#fff',border:'1.5px solid #e0e7ef',borderRadius:16,padding:'20px 16px',boxShadow:'0 2px 8px rgba(30,41,59,0.08)',color:'#334155',fontSize:'1rem',textAlign:'left',wordBreak:'break-word',overflowWrap:'break-word'}}>
+            <div style={{minWidth:320,maxWidth:420,background:'#fff',border:'1.5px solid #e0e7ef',borderRadius:20,padding:'32px 28px',boxShadow:'0 4px 16px rgba(30,41,59,0.10)',color:'#334155',fontSize:'1.13rem',textAlign:'left',wordBreak:'break-word',overflowWrap:'break-word'}}>
               <span style={{fontWeight:'bold',color:'#2563eb',wordBreak:'break-word'}}>「本当に楽単情報が手に入って、GPAも上がりました！」</span>
-              <div style={{fontSize:'0.9rem',color:'#a1a1aa',marginTop:8}}>（経済学部2年）</div>
+              <div style={{fontSize:'1rem',color:'#a1a1aa',marginTop:12}}>（経済学部2年）</div>
             </div>
-            <div style={{minWidth:220,maxWidth:280,background:'#fff',border:'1.5px solid #e0e7ef',borderRadius:16,padding:'20px 16px',boxShadow:'0 2px 8px rgba(30,41,59,0.08)',color:'#334155',fontSize:'1rem',textAlign:'left',wordBreak:'break-word',overflowWrap:'break-word'}}>
+            <div style={{minWidth:320,maxWidth:420,background:'#fff',border:'1.5px solid #e0e7ef',borderRadius:20,padding:'32px 28px',boxShadow:'0 4px 16px rgba(30,41,59,0.10)',color:'#334155',fontSize:'1.13rem',textAlign:'left',wordBreak:'break-word',overflowWrap:'break-word'}}>
               <span style={{fontWeight:'bold',color:'#2563eb',wordBreak:'break-word'}}>「エージェントよりもリアルな体験談が聞けて安心できた」</span>
-              <div style={{fontSize:'0.9rem',color:'#a1a1aa',marginTop:8}}>（理系1年）</div>
+              <div style={{fontSize:'1rem',color:'#a1a1aa',marginTop:12}}>（理系1年）</div>
             </div>
-            <div style={{minWidth:220,maxWidth:280,background:'#fff',border:'1.5px solid #e0e7ef',borderRadius:16,padding:'20px 16px',boxShadow:'0 2px 8px rgba(30,41,59,0.08)',color:'#334155',fontSize:'1rem',textAlign:'left',wordBreak:'break-word',overflowWrap:'break-word'}}>
+            <div style={{minWidth:320,maxWidth:420,background:'#fff',border:'1.5px solid #e0e7ef',borderRadius:20,padding:'32px 28px',boxShadow:'0 4px 16px rgba(30,41,59,0.10)',color:'#334155',fontSize:'1.13rem',textAlign:'left',wordBreak:'break-word',overflowWrap:'break-word'}}>
               <span style={{fontWeight:'bold',color:'#2563eb',wordBreak:'break-word'}}>「入会金だけでずっと使えるのがありがたい」</span>
-              <div style={{fontSize:'0.9rem',color:'#a1a1aa',marginTop:8}}>（文系3年）</div>
+              <div style={{fontSize:'1rem',color:'#a1a1aa',marginTop:12}}>（文系3年）</div>
             </div>
           </div>
         </div>
