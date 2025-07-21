@@ -232,6 +232,18 @@ function LandingPage() {
             <strong>Q. どんな情報が見られますか？</strong><br />
             A. 実際に現地で学んだ先輩たちによる最新の授業評価・体験談・楽単情報などが見られます。
           </li>
+          <li>
+            <strong>Q. 支払い方法は何がありますか？</strong><br />
+            A. 現在はBuy Me a Coffee（クレジットカード、Apple Pay等対応）のみです。
+          </li>
+          <li>
+            <strong>Q. 支払い後に返金はできますか？</strong><br />
+            A. サービスの性質上、原則返金はできません。不明点は事前にお問い合わせください。
+          </li>
+          <li>
+            <strong>Q. 支払い後、どのくらいで承認されますか？</strong><br />
+            A. 通常12時間以内にログインできるようになります。
+          </li>
         </ul>
         <button
           onClick={() => setShowAllFaqs(true)}
@@ -268,6 +280,7 @@ function LandingPage() {
           }}>
             お問い合わせはこちら
           </a>
+          <p style={{marginTop:16, color:'#64748b', fontSize:'0.98rem'}}>※ 決済情報はBuy Me a Coffee側で安全に管理されます。当サイトではクレジットカード情報等を保持しません。</p>
         </div>
       </section>
 
