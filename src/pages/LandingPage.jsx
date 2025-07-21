@@ -311,7 +311,7 @@ function LandingPage() {
           {[{
             icon: <FaCheckCircle style={{ color: '#22d3ee', fontSize: isMobile ? '1.8rem' : '2.2rem', marginBottom: '0.75rem' }} />, title: '承認制', desc: 'GoogleまたはEmailログイン＋申請必須'
           }, {
-            icon: <FaMoneyCheckAlt style={{ color: '#fbbf24', fontSize: isMobile ? '1.8rem' : '2.2rem', marginBottom: '0.75rem' }} />, title: '入会金', desc: 'Zelleで入会金$50（初回のみ）'
+            icon: <FaMoneyCheckAlt style={{ color: '#fbbf24', fontSize: isMobile ? '1.8rem' : '2.2rem', marginBottom: '0.75rem' }} />, title: '入会金', desc: 'Buy Me a Coffeeで入会金$50（初回のみ）'
           }, {
             icon: <FaLock style={{ color: '#c92a2a', fontSize: isMobile ? '1.8rem' : '2.2rem', marginBottom: '0.75rem' }} />, title: '外部共有は厳禁', desc: 'ログイン情報・内容の外部共有は厳禁'
           }].map((item, i) => (
@@ -333,6 +333,11 @@ function LandingPage() {
               {item.icon}
               <div style={{ fontWeight: 'bold', fontSize: isMobile ? '1rem' : '1.1rem', marginBottom: '0.5rem' }}>{item.title}</div>
               <div style={{ color: '#334155', fontSize: isMobile ? '0.9rem' : '1rem' }}>{item.desc}</div>
+              {item.title === '入会金' && (
+                <a href="https://coff.ee/sottasan" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', marginTop: 12, background: '#fbbf24', color: '#fff', borderRadius: 9999, padding: '0.5rem 1.5rem', fontWeight: 'bold', textDecoration: 'none', fontSize: '1rem', boxShadow: '0 2px 8px rgba(251,191,36,0.15)' }}>
+                  Buy Me a Coffeeで支払う
+                </a>
+              )}
             </div>
           ))}
         </div>
@@ -383,7 +388,7 @@ function LandingPage() {
         >
           {[{
             num: '1',
-            desc: <>Zelleで <strong>$50</strong> を一度だけ送金<br /><span style={{ fontSize: isMobile ? '0.8rem' : '0.9rem' }}>（送金先電話番号: 657-709-1289）</span></>
+            desc: <>Buy Me a Coffeeで <strong>$50</strong> を一度だけ支払い<br /><a href="https://coff.ee/sottasan" target="_blank" rel="noopener noreferrer" style={{ color: '#fbbf24', textDecoration: 'underline', fontWeight: 'bold', fontSize: isMobile ? '0.9rem' : '1rem' }}>決済はこちら</a></>
           }, {
             num: '2',
             desc: <>申請フォームに必要事項を記入</>
