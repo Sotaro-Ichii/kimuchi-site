@@ -453,7 +453,7 @@ function LandingPage() {
           ))}
         </div>
         <a
-          href="https://docs.google.com/forms/d/e/1FAIpQLSeiKGlblgkAzjJmbVEno3L5lwWPiVt6ECZgt0OV9Ps6r6SRmw/viewform?usp=header"
+          href="https://form.run/@kimuchi"
           target="_blank"
           rel="noopener noreferrer"
           style={{
