@@ -338,33 +338,6 @@ function LandingPage() {
         </div>
       </section>
 
-      {/* ご利用までの流れセクション（カードのみ・3ステップ） */}
-      <section className="w-full max-w-3xl mx-auto mb-12 p-6 bg-white rounded-2xl shadow-lg border border-[#e0e7ef]">
-        <h2 className="text-2xl font-bold mb-6 text-[#2563eb]">ご利用までの流れ</h2>
-        <div className="flex flex-col md:flex-row justify-between items-center gap-8">
-          {/* ステップ1 */}
-          <div className="flex flex-col items-center flex-1">
-            <div className="bg-[#fbbf24] text-white rounded-full w-16 h-16 flex items-center justify-center text-3xl mb-2 shadow"><FaMoneyCheckAlt /></div>
-            <div className="font-bold text-lg mb-1">1. Zelleで$50を一度だけ送金</div>
-            <div className="text-[#334155] text-sm text-center">送金先: 657-709-1289</div>
-          </div>
-          <div className="hidden md:block text-3xl text-[#a1a1aa] mx-2">→</div>
-          {/* ステップ2 */}
-          <div className="flex flex-col items-center flex-1">
-            <div className="bg-[#22d3ee] text-white rounded-full w-16 h-16 flex items-center justify-center text-3xl mb-2 shadow"><FaUserShield /></div>
-            <div className="font-bold text-lg mb-1">2. 申請フォームに必要事項を記入</div>
-            <div className="text-[#334155] text-sm text-center">簡単な情報を入力するだけ</div>
-          </div>
-          <div className="hidden md:block text-3xl text-[#a1a1aa] mx-2">→</div>
-          {/* ステップ3 */}
-          <div className="flex flex-col items-center flex-1">
-            <div className="bg-[#6366f1] text-white rounded-full w-16 h-16 flex items-center justify-center text-3xl mb-2 shadow"><FaCheckCircle /></div>
-            <div className="font-bold text-lg mb-1">3. 審査後、24時間以内に結果をご連絡</div>
-            <div className="text-[#334155] text-sm text-center">承認後すぐに全機能利用可能</div>
-          </div>
-        </div>
-      </section>
-
       {/* ご利用までの流れ（完全インラインstyleステップ型, レスポンシブ対応） */}
       <section
         id="apply"
