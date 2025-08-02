@@ -100,7 +100,7 @@ function LandingPage() {
         <h1 className="text-5xl md:text-6xl font-extrabold drop-shadow mb-4 tracking-tight animate-slidein" style={{ color: '#2563eb', letterSpacing: '0.04em', lineHeight: 1.1 }}>Kimuchi</h1>
         <p className="text-xl md:text-2xl mb-10 font-light leading-relaxed max-w-xl mx-auto text-center animate-fadein" style={{ color: '#334155', lineHeight: 1.6 }}>
           とある大学の、完全非公開の授業評価コミュニティ。<br />
-          GPAと時間を守る、選ばれた人だけの楽単情報プラットフォーム。
+          編入成功者たちからの楽単情報を、圧倒的に安い入会金で手に入れることができます。
         </p>
         {/* 会員数表示（カウントアップ風） */}
         <div id="member-count" style={{
