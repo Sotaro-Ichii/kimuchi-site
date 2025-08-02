@@ -443,7 +443,7 @@ function Home() {
             src="/logo.png" 
             alt="Musashi logo" 
             style={{
-              height: '80px',
+              height: '240px',
               width: 'auto',
               marginBottom: '16px',
               filter: 'drop-shadow(0 4px 20px rgba(37, 99, 235, 0.3))'
