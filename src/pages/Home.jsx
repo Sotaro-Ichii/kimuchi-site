@@ -29,6 +29,7 @@ function Home() {
   const [newCourseName, setNewCourseName] = useState('');
   const [newProfessor, setNewProfessor] = useState('');
   const [newDescription, setNewDescription] = useState('');
+  const [newCollege, setNewCollege] = useState('');
   const [resultCourses, setResultCourses] = useState([]);
   const [user, setUser] = useState(null);
   const [activeTab, setActiveTab] = useState('search');
@@ -43,9 +44,9 @@ function Home() {
 
   // サンプルデータ
   const sampleCourses = [
-    { id: 'ECON101', name: 'ECON 101（楽単・出席重視）', professor: 'Tanaka', description: '出席点が高く、テストも簡単。' },
-    { id: 'MATH010', name: 'MATH 010（ほぼ中学レベル）', professor: 'Smith', description: '内容が易しく、課題も少ない。' },
-    { id: 'ENG200', name: 'ENG 200（エッセイ中心）', professor: 'Lee', description: 'エッセイ提出のみで単位が取れる。' },
+    { id: 'ECON101', name: 'ECON 101（楽単・出席重視）', professor: 'Tanaka', description: '出席点が高く、テストも簡単。', college: 'Santa Monica College' },
+    { id: 'MATH010', name: 'MATH 010（ほぼ中学レベル）', professor: 'Smith', description: '内容が易しく、課題も少ない。', college: 'Santa Monica College' },
+    { id: 'ENG200', name: 'ENG 200（エッセイ中心）', professor: 'Lee', description: 'エッセイ提出のみで単位が取れる。', college: 'Santa Monica College' },
   ];
   const sampleComments = [
     { id: 1, name: '先輩A', text: 'この授業は本当に楽でした！' },
@@ -224,12 +225,14 @@ function Home() {
       name: newCourseName,
       professor: newProfessor,
       description: newDescription,
+      college: newCollege,
       id,
       timestamp: Timestamp.now()
     });
     setNewCourseName('');
     setNewProfessor('');
     setNewDescription('');
+    setNewCollege('');
     fetchCourses();
   };
 
@@ -517,7 +520,8 @@ function Home() {
                         color: '#1e293b',
                       }}>
                         <div style={{ fontWeight: 'bold', fontSize: '1.1rem', marginBottom: 8 }}>{course.name}</div>
-                        <div style={{ color: '#a1a1aa', fontSize: '0.95rem', marginBottom: 8 }}>教授: {course.professor}</div>
+                        <div style={{ color: '#a1a1aa', fontSize: '0.95rem', marginBottom: 4 }}>教授: {course.professor}</div>
+                        <div style={{ color: '#2563eb', fontSize: '0.9rem', marginBottom: 8, fontWeight: 'bold' }}>{course.college}</div>
                         <div style={{ fontSize: '0.95rem' }}>{course.description}</div>
                       </div>
                     ))}
@@ -830,11 +834,23 @@ function Home() {
                               {/* 教授名 */}
                               <div style={{ 
                                 color: '#e4e4e7', 
-                                marginBottom: '12px',
+                                marginBottom: '8px',
                                 fontSize: '1rem'
                               }}>
                                 <strong>教授:</strong> {course.professor}
                               </div>
+
+                              {/* カレッジ名 */}
+                              {course.college && (
+                                <div style={{ 
+                                  color: '#2563eb', 
+                                  marginBottom: '12px',
+                                  fontSize: '0.95rem',
+                                  fontWeight: 'bold'
+                                }}>
+                                  {course.college}
+                                </div>
+                              )}
 
                               {/* 説明 */}
                               <div style={{ 
@@ -1178,6 +1194,37 @@ function Home() {
                       placeholder="例：Davis Scott"
                       value={newProfessor}
                       onChange={(e) => setNewProfessor(e.target.value)}
+                      required
+                      style={{
+                        width: '100%',
+                        padding: '12px 16px',
+                        borderRadius: '12px',
+                        border: '1.5px solid #cbd5e1',
+                        background: '#fff',
+                        color: '#1e293b',
+                        fontSize: '1rem',
+                        outline: 'none',
+                        transition: 'border-color 0.2s',
+                      }}
+                      onFocus={e => e.target.style.borderColor = '#2563eb'}
+                      onBlur={e => e.target.style.borderColor = '#cbd5e1'}
+                    />
+                  </div>
+
+                  <div style={{ marginBottom: '20px' }}>
+                    <label style={{ 
+                      display: 'block', 
+                      marginBottom: '8px', 
+                      fontWeight: '600',
+                      color: '#e4e4e7'
+                    }}>
+                      カレッジ名 *
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="例：Santa Monica College"
+                      value={newCollege}
+                      onChange={(e) => setNewCollege(e.target.value)}
                       required
                       style={{
                         width: '100%',
