@@ -31,6 +31,8 @@ function CourseDetail() {
   const [courseStats, setCourseStats] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [badgeCache, setBadgeCache] = useState({});
+  const [isEditing, setIsEditing] = useState(false);
+  const [editCollege, setEditCollege] = useState('');
 
   useEffect(() => {
     fetchCourse();
@@ -53,7 +55,9 @@ function CourseDetail() {
   const fetchCourse = async () => {
     const snapshot = await getDocs(query(collection(db, 'courses'), where('id', '==', id)));
     if (!snapshot.empty) {
-      setCourse(snapshot.docs[0].data());
+      const courseData = snapshot.docs[0].data();
+      setCourse(courseData);
+      setEditCollege(courseData.college || '');
     }
   };
 
@@ -186,6 +190,30 @@ function CourseDetail() {
     } catch {
       setBadgeCache((prev) => ({ ...prev, [uid]: 'Member' }));
       return 'Member';
+    }
+  };
+
+  const handleUpdateCollege = async () => {
+    if (!course) return;
+    
+    try {
+      // コースドキュメントを更新
+      const courseQuery = query(collection(db, 'courses'), where('id', '==', course.id));
+      const courseSnapshot = await getDocs(courseQuery);
+      if (!courseSnapshot.empty) {
+        const courseDoc = courseSnapshot.docs[0];
+        await updateDoc(courseDoc.ref, {
+          college: editCollege
+        });
+        
+        // ローカル状態を更新
+        setCourse(prev => ({ ...prev, college: editCollege }));
+        setIsEditing(false);
+        alert('カレッジ名を更新しました');
+      }
+    } catch (error) {
+      console.error('カレッジ名更新エラー:', error);
+      alert('カレッジ名の更新に失敗しました');
     }
   };
 
@@ -327,6 +355,88 @@ function CourseDetail() {
                 marginBottom: '20px'
               }}>
                 <strong>教授:</strong> {course.professor}
+              </div>
+
+              {/* カレッジ名 */}
+              <div style={{ 
+                color: '#2563eb', 
+                fontSize: '1.1rem',
+                marginBottom: '20px',
+                fontWeight: 'bold'
+              }}>
+                {isEditing ? (
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                    <input
+                      type="text"
+                      value={editCollege}
+                      onChange={(e) => setEditCollege(e.target.value)}
+                      style={{
+                        padding: '8px 12px',
+                        borderRadius: '8px',
+                        border: '1.5px solid #cbd5e1',
+                        background: '#fff',
+                        color: '#1e293b',
+                        fontSize: '1rem',
+                        outline: 'none',
+                        transition: 'border-color 0.2s',
+                      }}
+                      onFocus={e => e.target.style.borderColor = '#2563eb'}
+                      onBlur={e => e.target.style.borderColor = '#cbd5e1'}
+                    />
+                    <button
+                      onClick={handleUpdateCollege}
+                      style={{
+                        padding: '8px 16px',
+                        background: '#2563eb',
+                        color: '#fff',
+                        border: 'none',
+                        borderRadius: '8px',
+                        fontWeight: 'bold',
+                        cursor: 'pointer',
+                        fontSize: '0.9rem'
+                      }}
+                    >
+                      保存
+                    </button>
+                    <button
+                      onClick={() => {
+                        setIsEditing(false);
+                        setEditCollege(course.college || '');
+                      }}
+                      style={{
+                        padding: '8px 16px',
+                        background: '#a1a1aa',
+                        color: '#fff',
+                        border: 'none',
+                        borderRadius: '8px',
+                        fontWeight: 'bold',
+                        cursor: 'pointer',
+                        fontSize: '0.9rem'
+                      }}
+                    >
+                      キャンセル
+                    </button>
+                  </div>
+                ) : (
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                    <span>{course.college || 'カレッジ名未設定'}</span>
+                    <button
+                      onClick={() => setIsEditing(true)}
+                      style={{
+                        padding: '4px 8px',
+                        background: '#fbbf24',
+                        color: '#18181b',
+                        border: 'none',
+                        borderRadius: '6px',
+                        fontWeight: 'bold',
+                        cursor: 'pointer',
+                        fontSize: '0.8rem'
+                      }}
+                    >
+                      編集
+                    </button>
+                  </div>
+                )}
               </div>
 
               <div style={{ 
