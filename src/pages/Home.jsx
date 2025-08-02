@@ -44,9 +44,9 @@ function Home() {
 
   // サンプルデータ
   const sampleCourses = [
-    { id: 'ECON101', name: 'ECON 101（楽単・出席重視）', professor: 'Tanaka', description: '出席点が高く、テストも簡単。', college: 'Santa Monica College' },
-    { id: 'MATH010', name: 'MATH 010（ほぼ中学レベル）', professor: 'Smith', description: '内容が易しく、課題も少ない。', college: 'Santa Monica College' },
-    { id: 'ENG200', name: 'ENG 200（エッセイ中心）', professor: 'Lee', description: 'エッセイ提出のみで単位が取れる。', college: 'Santa Monica College' },
+    { id: 'ECON101', name: 'ECON 101（楽単・出席重視）', professor: 'Tanaka', description: '出席点が高く、テストも簡単。', college: 'Orange Coast College' },
+    { id: 'MATH010', name: 'MATH 010（ほぼ中学レベル）', professor: 'Smith', description: '内容が易しく、課題も少ない。', college: 'Orange Coast College' },
+    { id: 'ENG200', name: 'ENG 200（エッセイ中心）', professor: 'Lee', description: 'エッセイ提出のみで単位が取れる。', college: 'Orange Coast College' },
   ];
   const sampleComments = [
     { id: 1, name: '先輩A', text: 'この授業は本当に楽でした！' },
@@ -1222,7 +1222,7 @@ function Home() {
                     </label>
                     <input
                       type="text"
-                      placeholder="例：Santa Monica College"
+                      placeholder="例：Orange Coast College"
                       value={newCollege}
                       onChange={(e) => setNewCollege(e.target.value)}
                       required
