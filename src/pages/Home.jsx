@@ -439,15 +439,16 @@ function Home() {
           textAlign: 'center',
           marginBottom: '50px'
         }}>
-          <h1 style={{ 
-            color: '#2563eb', 
-            fontSize: '3.5rem', 
-            fontWeight: 'bold',
-            marginBottom: '16px',
-            textShadow: '0 4px 20px rgba(37, 99, 235, 0.3)'
-          }}>
-            Musashi
-          </h1>
+          <img 
+            src="/logo.png" 
+            alt="Musashi logo" 
+            style={{
+              height: '80px',
+              width: 'auto',
+              marginBottom: '16px',
+              filter: 'drop-shadow(0 4px 20px rgba(37, 99, 235, 0.3))'
+            }}
+          />
           <p style={{ 
             fontSize: '1.3rem', 
             color: '#a1a1aa',
