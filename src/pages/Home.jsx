@@ -446,7 +446,7 @@ function Home() {
             marginBottom: '16px',
             textShadow: '0 4px 20px rgba(37, 99, 235, 0.3)'
           }}>
-            Kimuchi
+            Musashi
           </h1>
           <p style={{ 
             fontSize: '1.3rem', 
@@ -1364,7 +1364,7 @@ function Home() {
             </Link>
           </div>
           <div style={{ fontSize: '0.9rem' }}>
-            &copy; 2025 Kimuchi. All rights reserved.
+            &copy; 2025 Musashi. All rights reserved.
           </div>
         </footer>
     </div>

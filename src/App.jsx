@@ -67,8 +67,8 @@ export default function App() {
         {/* サイト共通ヘッダー */}
         <header className="flex items-center justify-between px-8 py-4 bg-[#232326] border-b border-[#27272a] shadow-md">
           <Link to="/" className="flex items-center gap-4">
-            <img src="/logo.png" alt="Kimuchi logo" className="w-10 h-10 rounded-full shadow-lg border-2 border-[#fbbf24] bg-[#18181b]" />
-            <span className="text-2xl font-extrabold tracking-wide text-[#fbbf24] drop-shadow">Kimuchi</span>
+            <img src="/logo.png" alt="Musashi logo" className="w-10 h-10 rounded-full shadow-lg border-2 border-[#fbbf24] bg-[#18181b]" />
+            <span className="text-2xl font-extrabold tracking-wide text-[#fbbf24] drop-shadow">Musashi</span>
           </Link>
         </header>
         <main>

@@ -25,7 +25,7 @@ module.exports = async (req, res) => {
           price_data: {
             currency: 'usd',
             product_data: {
-              name: 'Kimuchi Admission Fee',
+              name: 'Musashi Admission Fee',
             },
             unit_amount: 5000, // 金額（セント単位）。$50.00なら5000
           },

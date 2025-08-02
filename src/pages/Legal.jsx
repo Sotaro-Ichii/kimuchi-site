@@ -8,7 +8,7 @@ function Legal() {
       <section style={{ marginBottom: '40px' }}>
         <h2 style={{ color: '#2563eb', fontSize: '1.5rem', marginBottom: '15px', fontWeight: 'bold' }}>利用規約</h2>
         <p>
-          当サイト「Kimuchi」は、学生を支援する目的で作成された非公式なサービスです。
+          当サイト「Musashi」は、学生を支援する目的で作成された非公式なサービスです。
           掲載されている情報は、あくまで参考としてご利用ください。
         </p>
       </section>

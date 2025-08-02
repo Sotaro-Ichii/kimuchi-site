@@ -96,8 +96,8 @@ function LandingPage() {
     <div className="min-h-screen flex flex-col items-center px-4 py-8" style={{ background: 'linear-gradient(to bottom, #f1f5f9, #e2e8f0 80%, #f1f5f9)', color: '#1e293b' }}>
       {/* ヒーローセクション（UI/UX最適化＋デモ体験ボタン） */}
       <section className="w-full max-w-xl flex flex-col items-center text-center mb-16 mx-auto animate-fadein" style={{paddingTop: '6vh', paddingBottom: '6vh', margin: '0 auto'}}> 
-        <img src="/logo.png" alt="Kimuchi logo" className="w-24 h-24 md:w-32 md:h-32 max-w-[130px] object-contain object-center rounded-full shadow-2xl border-4 border-[#fbbf24] bg-[#18181b] mb-8 animate-pop" style={{transition: 'box-shadow 0.3s'}} />
-        <h1 className="text-5xl md:text-6xl font-extrabold drop-shadow mb-4 tracking-tight animate-slidein" style={{ color: '#2563eb', letterSpacing: '0.04em', lineHeight: 1.1 }}>Kimuchi</h1>
+        <img src="/logo.png" alt="Musashi logo" className="w-24 h-24 md:w-32 md:h-32 max-w-[130px] object-contain object-center rounded-full shadow-2xl border-4 border-[#fbbf24] bg-[#18181b] mb-8 animate-pop" style={{transition: 'box-shadow 0.3s'}} />
+        <h1 className="text-5xl md:text-6xl font-extrabold drop-shadow mb-4 tracking-tight animate-slidein" style={{ color: '#2563eb', letterSpacing: '0.04em', lineHeight: 1.1 }}>Musashi</h1>
         <p className="text-xl md:text-2xl mb-10 font-light leading-relaxed max-w-xl mx-auto text-center animate-fadein" style={{ color: '#334155', lineHeight: 1.6 }}>
           とある大学の、完全非公開の授業評価コミュニティ。<br />
           編入成功者たちからの楽単情報を、圧倒的に安い入会金で手に入れることができます。
@@ -151,7 +151,7 @@ function LandingPage() {
       <div className="flex flex-wrap justify-center gap-4 mb-10">
         {/* X（Twitter） */}
         <a
-          href={`https://twitter.com/intent/tweet?text=${encodeURIComponent('Kimuchi｜先輩直伝の楽単・授業情報コミュニティ')}&url=${encodeURIComponent(window.location.origin)}`}
+          href={`https://twitter.com/intent/tweet?text=${encodeURIComponent('Musashi｜先輩直伝の楽単・授業情報コミュニティ')}&url=${encodeURIComponent(window.location.origin)}`}
           target="_blank"
           rel="noopener noreferrer"
           style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#1da1f2', color: '#fff', borderRadius: 9999, padding: '0.7rem 1.5rem', fontWeight: 'bold', textDecoration: 'none', fontSize: '1rem' }}
@@ -171,7 +171,7 @@ function LandingPage() {
         </a>
         {/* Facebook */}
         <a
-          href="https://www.instagram.com/kimuchi.official/"
+          href="https://www.instagram.com/musashi.official/"
           target="_blank"
           rel="noopener noreferrer"
           style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'linear-gradient(135deg, #f9a8d4, #fbbf24)', color: '#fff', borderRadius: 9999, padding: '0.7rem 1.5rem', fontWeight: 'bold', textDecoration: 'none', fontSize: '1rem' }}
@@ -189,13 +189,13 @@ function LandingPage() {
         </button>
       </div>
 
-      {/* なぜKimuchiなのかセクション（中央寄せ） */}
+      {/* なぜMusashiなのかセクション（中央寄せ） */}
       <section className="w-full max-w-xl mx-auto mb-12 p-6 bg-white rounded-2xl shadow-lg border border-[#e0e7ef] text-center">
-        <h2 className="text-2xl font-bold mb-4 text-[#2563eb]">なぜKimuchiなのか？</h2>
+        <h2 className="text-2xl font-bold mb-4 text-[#2563eb]">なぜMusashiなのか？</h2>
         <p className="text-lg text-[#334155] leading-relaxed">
           他に同じようなサービスは存在しません。<br />
           留学エージェントに何十万円も支払うよりも、実際に現地で学んだ先輩たちから最新・リアルな授業情報や体験談を、圧倒的に安い入会金で手に入れることができます。<br />
-          Kimuchiは、信頼できるコミュニティだからこそ、ネットやSNSでは得られない「本当に役立つ情報」だけを厳選して提供しています。
+          Musashiは、信頼できるコミュニティだからこそ、ネットやSNSでは得られない「本当に役立つ情報」だけを厳選して提供しています。
         </p>
       </section>
 
@@ -444,7 +444,7 @@ function LandingPage() {
           ))}
         </div>
         <a
-          href="https://form.run/@kimuchi"
+          href="https://form.run/@musashi"
           target="_blank"
           rel="noopener noreferrer"
           style={{
@@ -636,7 +636,7 @@ function LandingPage() {
       </section>
 
       <footer className="text-[#64748b] text-sm mt-10 mb-4">
-        &copy; 2025 Kimuchi. All rights reserved.
+        &copy; 2025 Musashi. All rights reserved.
       </footer>
     </div>
   );

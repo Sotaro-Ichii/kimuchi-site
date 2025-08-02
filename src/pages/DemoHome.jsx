@@ -18,7 +18,7 @@ export default function DemoHome() {
   return (
     <div style={{ background: '#f1f5f9', minHeight: '100vh', color: '#1e293b', padding: '32px 0' }}>
       <div style={{ maxWidth: 600, margin: '0 auto', background: '#fff', borderRadius: 24, boxShadow: '0 4px 24px rgba(30,41,59,0.10)', padding: 32, border: '1.5px solid #e0e7ef' }}>
-        <h1 style={{ color: '#2563eb', fontWeight: 'bold', fontSize: '2.2rem', marginBottom: 16, textAlign: 'center' }}>Kimuchi デモ体験</h1>
+        <h1 style={{ color: '#2563eb', fontWeight: 'bold', fontSize: '2.2rem', marginBottom: 16, textAlign: 'center' }}>Musashi デモ体験</h1>
         <div style={{ textAlign: 'center', marginBottom: 32 }}>
           <span style={{ background: '#22d3ee', color: '#fff', borderRadius: 9999, padding: '6px 18px', fontWeight: 'bold', fontSize: '1.1rem' }}>ゲストモード（サンプルのみ表示）</span>
         </div>

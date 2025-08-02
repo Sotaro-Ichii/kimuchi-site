@@ -1,6 +1,6 @@
-# Kimuchi
+# Musashi
 
-Kimuchi is a private, invite-only university course review community platform. It helps students share and discover easy and high-quality courses, manage their GPA, and connect with trusted peers. This project is built with React, Vite, Firebase, and Tailwind CSS.
+Musashi is a private, invite-only university course review community platform. It helps students share and discover easy and high-quality courses, manage their GPA, and connect with trusted peers. This project is built with React, Vite, Firebase, and Tailwind CSS.
 
 ## Features
 
