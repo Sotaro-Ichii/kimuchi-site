@@ -340,7 +340,31 @@ function Home() {
           </div>
 
           {/* ログイン・ログアウトボタン */}
-          <div>
+          <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+            {/* LPに戻るボタン */}
+            <Link to="/">
+              <button 
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  padding: '10px 16px',
+                  background: 'linear-gradient(135deg, #059669, #10b981)',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '12px',
+                  fontWeight: '600',
+                  cursor: 'pointer',
+                  transition: 'transform 0.2s',
+                  textDecoration: 'none'
+                }}
+                onMouseOver={e => e.target.style.transform = 'scale(1.05)'}
+                onMouseOut={e => e.target.style.transform = 'scale(1)'}
+              >
+                <FaArrowRight style={{ transform: 'rotate(180deg)' }} /> LPに戻る
+              </button>
+            </Link>
+            
             {user ? (
               <button 
                 onClick={logout}
