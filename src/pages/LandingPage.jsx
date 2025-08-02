@@ -1,7 +1,7 @@
 // ✅ 完成版 LandingPage.jsx
 
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import {
   loginWithGoogle,
@@ -635,7 +635,31 @@ function LandingPage() {
         </button>
       </section>
 
-      <footer className="text-[#64748b] text-sm mt-10 mb-4">
+      <footer className="text-[#64748b] text-sm mt-10 mb-4" style={{ textAlign: 'center' }}>
+        <div style={{ marginBottom: '1rem' }}>
+          <Link to="/legal" style={{
+            display: 'inline-block',
+            background: 'linear-gradient(90deg, #64748b, #94a3b8)',
+            color: '#fff',
+            borderRadius: '9999px',
+            padding: '0.5rem 1.5rem',
+            fontWeight: 'bold',
+            fontSize: '0.9rem',
+            textDecoration: 'none',
+            boxShadow: '0 2px 8px rgba(100, 116, 139, 0.2)',
+            transition: 'transform 0.2s, box-shadow 0.2s',
+          }}
+          onMouseOver={e => {
+            e.currentTarget.style.transform = 'scale(1.05)';
+            e.currentTarget.style.boxShadow = '0 4px 12px rgba(100, 116, 139, 0.3)';
+          }}
+          onMouseOut={e => {
+            e.currentTarget.style.transform = 'scale(1)';
+            e.currentTarget.style.boxShadow = '0 2px 8px rgba(100, 116, 139, 0.2)';
+          }}>
+            法的事項
+          </Link>
+        </div>
         &copy; 2025 Musashi. All rights reserved.
       </footer>
     </div>
