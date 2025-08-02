@@ -96,8 +96,7 @@ function LandingPage() {
     <div className="min-h-screen flex flex-col items-center px-4 py-8" style={{ background: 'linear-gradient(to bottom, #f1f5f9, #e2e8f0 80%, #f1f5f9)', color: '#1e293b' }}>
       {/* ヒーローセクション（UI/UX最適化＋デモ体験ボタン） */}
       <section className="w-full max-w-xl flex flex-col items-center text-center mb-16 mx-auto animate-fadein" style={{paddingTop: '6vh', paddingBottom: '6vh', margin: '0 auto'}}> 
-        <img src="/logo.png" alt="Musashi logo" className="w-24 h-24 md:w-32 md:h-32 max-w-[130px] object-contain object-center rounded-full shadow-2xl border-4 border-[#fbbf24] bg-[#18181b] mb-8 animate-pop" style={{transition: 'box-shadow 0.3s'}} />
-        <h1 className="text-5xl md:text-6xl font-extrabold drop-shadow mb-4 tracking-tight animate-slidein" style={{ color: '#2563eb', letterSpacing: '0.04em', lineHeight: 1.1 }}>Musashi</h1>
+        <img src="/logo.png" alt="Musashi logo" className="w-32 h-32 md:w-40 md:h-40 max-w-[160px] object-contain object-center mb-8 animate-pop" style={{transition: 'box-shadow 0.3s'}} />
         <p className="text-xl md:text-2xl mb-10 font-light leading-relaxed max-w-xl mx-auto text-center animate-fadein" style={{ color: '#334155', lineHeight: 1.6 }}>
           とある大学の、完全非公開の授業評価コミュニティ。<br />
           編入成功者たちからの楽単情報を、圧倒的に安い入会金で手に入れることができます。
