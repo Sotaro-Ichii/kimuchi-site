@@ -537,7 +537,6 @@ function LandingPage() {
             </a>
             <button
               onClick={() => {
-                console.log('Demo login button clicked');
                 navigate('/home');
               }}
               style={{
@@ -1273,7 +1272,6 @@ function LandingPage() {
               </a>
               <button
                 onClick={() => {
-                  console.log('Demo experience button clicked');
                   navigate('/home');
                 }}
                 style={{
@@ -1333,7 +1331,6 @@ function LandingPage() {
           }}>
             <button
               onClick={() => {
-                console.log('Legal button clicked');
                 navigate('/legal');
               }}
               style={{
@@ -1372,7 +1369,6 @@ function LandingPage() {
             </button>
             <button
               onClick={() => {
-                console.log('Contact button clicked');
                 navigate('/contact');
               }}
               style={{
