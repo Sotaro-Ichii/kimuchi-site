@@ -1,5 +1,5 @@
 // src/App.jsx
-import { BrowserRouter as Router, Routes, Route, Navigate, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 
 import LandingPage from './pages/LandingPage';
@@ -64,13 +64,6 @@ export default function App() {
   return (
     <AuthProvider>
       <Router>
-        {/* サイト共通ヘッダー */}
-        <header className="flex items-center justify-between px-8 py-4 bg-[#232326] border-b border-[#27272a] shadow-md">
-          <Link to="/" className="flex items-center gap-4">
-            <img src="/logo.png" alt="Musashi logo" className="w-10 h-10 rounded-full shadow-lg border-2 border-[#fbbf24] bg-[#18181b]" />
-            <span className="text-2xl font-extrabold tracking-wide text-[#fbbf24] drop-shadow">Musashi</span>
-          </Link>
-        </header>
         <main>
           <AppRoutes />
         </main>
