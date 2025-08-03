@@ -118,7 +118,7 @@ function LandingPage() {
       minHeight: '100vh',
       position: 'relative',
       overflow: 'hidden',
-      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%)',
+      background: 'linear-gradient(135deg, #ffffff 0%, #f0f8ff 25%, #e6f3ff 50%, #cce7ff 75%, #b3d9ff 100%)',
       backgroundSize: '400% 400%',
       animation: 'gradientShift 15s ease infinite'
     }}>
@@ -130,7 +130,7 @@ function LandingPage() {
           left: '40px',
           width: '128px',
           height: '128px',
-          backgroundColor: 'rgba(255, 255, 255, 0.1)',
+          backgroundColor: 'rgba(59, 130, 246, 0.1)',
           borderRadius: '50%',
           filter: 'blur(24px)',
           animation: 'pulse 2s ease-in-out infinite'
@@ -141,7 +141,7 @@ function LandingPage() {
           right: '80px',
           width: '96px',
           height: '96px',
-          backgroundColor: 'rgba(250, 204, 21, 0.2)',
+          backgroundColor: 'rgba(37, 99, 235, 0.15)',
           borderRadius: '50%',
           filter: 'blur(16px)',
           animation: 'bounce 2s ease-in-out infinite'
@@ -152,7 +152,7 @@ function LandingPage() {
           left: '80px',
           width: '160px',
           height: '160px',
-          backgroundColor: 'rgba(168, 85, 247, 0.15)',
+          backgroundColor: 'rgba(29, 78, 216, 0.1)',
           borderRadius: '50%',
           filter: 'blur(24px)',
           animation: 'pulse 2s ease-in-out infinite 1s'
@@ -163,7 +163,7 @@ function LandingPage() {
           right: '40px',
           width: '112px',
           height: '112px',
-          backgroundColor: 'rgba(236, 72, 153, 0.2)',
+          backgroundColor: 'rgba(30, 64, 175, 0.12)',
           borderRadius: '50%',
           filter: 'blur(16px)',
           animation: 'bounce 2s ease-in-out infinite 0.5s'
@@ -202,7 +202,7 @@ function LandingPage() {
                   right: '-8px',
                   width: '32px',
                   height: '32px',
-                  background: 'linear-gradient(to right, #fbbf24, #f59e0b)',
+                  background: 'linear-gradient(to right, #3b82f6, #1d4ed8)',
                   borderRadius: '50%',
                   display: 'flex',
                   alignItems: 'center',
@@ -218,7 +218,7 @@ function LandingPage() {
                   left: '-8px',
                   width: '24px',
                   height: '24px',
-                  background: 'linear-gradient(to right, #a855f7, #ec4899)',
+                  background: 'linear-gradient(to right, #1e40af, #1d4ed8)',
                   borderRadius: '50%',
                   display: 'flex',
                   alignItems: 'center',
@@ -233,10 +233,10 @@ function LandingPage() {
             <h1 style={{
               fontSize: '48px',
               fontWeight: 'bold',
-              color: 'white',
+              color: '#1e40af',
               marginBottom: '16px',
-              textShadow: '0 4px 8px rgba(0,0,0,0.5)',
-              background: 'linear-gradient(45deg, #fff, #f0f0f0, #fff)',
+              textShadow: '0 4px 8px rgba(0,0,0,0.3)',
+              background: 'linear-gradient(45deg, #1e40af, #3b82f6, #1e40af)',
               backgroundSize: '200% 200%',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
@@ -266,11 +266,11 @@ function LandingPage() {
               lineHeight: '1.8',
               maxWidth: '800px',
               margin: '0 auto 32px',
-              color: 'white',
-              textShadow: '0 2px 4px rgba(0,0,0,0.5)'
+              color: '#1e293b',
+              textShadow: '0 2px 4px rgba(0,0,0,0.1)'
             }}>
-              とある大学の、<span style={{ fontWeight: 'bold', color: '#fbbf24' }}>完全非公開</span>の授業評価コミュニティ。<br />
-              編入成功者たちからの楽単情報を、<span style={{ fontWeight: 'bold', color: '#fbbf24' }}>圧倒的に安い入会金</span>で手に入れることができます。
+              とある大学の、<span style={{ fontWeight: 'bold', color: '#1e40af' }}>完全非公開</span>の授業評価コミュニティ。<br />
+              編入成功者たちからの楽単情報を、<span style={{ fontWeight: 'bold', color: '#1e40af' }}>圧倒的に安い入会金</span>で手に入れることができます。
             </p>
           </div>
           
@@ -280,17 +280,17 @@ function LandingPage() {
             alignItems: 'center',
             justifyContent: 'center',
             gap: '16px',
-            backgroundColor: 'rgba(255, 255, 255, 0.2)',
+            backgroundColor: 'rgba(59, 130, 246, 0.1)',
             backdropFilter: 'blur(12px)',
-            border: '1px solid rgba(255, 255, 255, 0.3)',
+            border: '1px solid rgba(59, 130, 246, 0.3)',
             borderRadius: '50px',
             padding: '20px 32px',
             marginBottom: '40px',
-            color: 'white',
+            color: '#1e40af',
             fontWeight: 'bold',
             width: 'fit-content',
             margin: '0 auto 40px',
-            boxShadow: '0 20px 40px rgba(0,0,0,0.2)',
+            boxShadow: '0 20px 40px rgba(0,0,0,0.1)',
             transition: 'all 0.3s ease'
           }}>
             <FaUsers style={{ fontSize: '24px' }} />
@@ -313,8 +313,8 @@ function LandingPage() {
             backdropFilter: 'blur(24px)',
             borderRadius: '24px',
             padding: '32px',
-            boxShadow: '0 20px 40px rgba(0,0,0,0.2)',
-            border: '1px solid rgba(255, 255, 255, 0.3)',
+            boxShadow: '0 20px 40px rgba(0,0,0,0.1)',
+            border: '1px solid rgba(59, 130, 246, 0.2)',
             marginBottom: '40px',
             maxWidth: '480px',
             margin: '0 auto 40px',
@@ -330,7 +330,7 @@ function LandingPage() {
               <div style={{
                 width: '48px',
                 height: '48px',
-                background: 'linear-gradient(to right, #3b82f6, #8b5cf6)',
+                background: 'linear-gradient(to right, #3b82f6, #1d4ed8)',
                 borderRadius: '50%',
                 display: 'flex',
                 alignItems: 'center',
@@ -342,7 +342,7 @@ function LandingPage() {
               <h2 style={{
                 fontSize: '24px',
                 fontWeight: 'bold',
-                background: 'linear-gradient(to right, #2563eb, #7c3aed)',
+                background: 'linear-gradient(to right, #1e40af, #1d4ed8)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent'
               }}>ログイン / 登録</h2>
@@ -405,7 +405,7 @@ function LandingPage() {
                 onClick={handleEmailAuth}
                 style={{
                   width: '100%',
-                  background: 'linear-gradient(to right, #2563eb, #7c3aed)',
+                  background: 'linear-gradient(to right, #1e40af, #1d4ed8)',
                   color: 'white',
                   padding: '16px',
                   borderRadius: '16px',
@@ -432,7 +432,7 @@ function LandingPage() {
                 onClick={() => setIsRegistering(!isRegistering)}
                 style={{
                   width: '100%',
-                  color: '#2563eb',
+                  color: '#1e40af',
                   fontSize: '14px',
                   fontWeight: '500',
                   background: 'none',
@@ -507,14 +507,14 @@ function LandingPage() {
             marginBottom: '48px'
           }}>
             <a
-              href="https://forms.gle/your-application-form-url"
+              href="https://form.run/@musashi"
               target="_blank"
               rel="noopener noreferrer"
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '16px',
-                background: 'linear-gradient(to right, #fbbf24, #f59e0b)',
+                background: 'linear-gradient(to right, #1e40af, #1d4ed8)',
                 color: 'white',
                 borderRadius: '50px',
                 padding: '16px 32px',
@@ -535,7 +535,7 @@ function LandingPage() {
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '12px',
-                background: 'linear-gradient(to right, #8b5cf6, #ec4899)',
+                background: 'linear-gradient(to right, #3b82f6, #1d4ed8)',
                 color: 'white',
                 borderRadius: '50px',
                 padding: '16px 32px',
@@ -573,14 +573,14 @@ function LandingPage() {
             borderRadius: '24px',
             padding: '32px',
             textAlign: 'center',
-            border: '1px solid rgba(255, 255, 255, 0.3)',
-            boxShadow: '0 20px 40px rgba(0,0,0,0.2)',
+            border: '1px solid rgba(59, 130, 246, 0.2)',
+            boxShadow: '0 20px 40px rgba(0,0,0,0.1)',
             transition: 'all 0.5s ease'
           }}>
             <div style={{
               width: '80px',
               height: '80px',
-              background: 'linear-gradient(to right, #3b82f6, #4f46e5)',
+              background: 'linear-gradient(to right, #3b82f6, #1d4ed8)',
               borderRadius: '50%',
               display: 'flex',
               alignItems: 'center',
@@ -616,14 +616,14 @@ function LandingPage() {
             borderRadius: '24px',
             padding: '32px',
             textAlign: 'center',
-            border: '1px solid rgba(255, 255, 255, 0.3)',
-            boxShadow: '0 20px 40px rgba(0,0,0,0.2)',
+            border: '1px solid rgba(59, 130, 246, 0.2)',
+            boxShadow: '0 20px 40px rgba(0,0,0,0.1)',
             transition: 'all 0.5s ease'
           }}>
             <div style={{
               width: '80px',
               height: '80px',
-              background: 'linear-gradient(to right, #8b5cf6, #ec4899)',
+              background: 'linear-gradient(to right, #1e40af, #1d4ed8)',
               borderRadius: '50%',
               display: 'flex',
               alignItems: 'center',
@@ -659,8 +659,8 @@ function LandingPage() {
             borderRadius: '24px',
             padding: '32px',
             textAlign: 'center',
-            border: '1px solid rgba(255, 255, 255, 0.3)',
-            boxShadow: '0 20px 40px rgba(0,0,0,0.2)',
+            border: '1px solid rgba(59, 130, 246, 0.2)',
+            boxShadow: '0 20px 40px rgba(0,0,0,0.1)',
             transition: 'all 0.5s ease'
           }}>
             <div style={{
@@ -811,8 +811,8 @@ function LandingPage() {
           borderRadius: '24px',
           padding: '32px',
           textAlign: 'center',
-          border: '1px solid rgba(255, 255, 255, 0.3)',
-          boxShadow: '0 20px 40px rgba(0,0,0,0.2)',
+          border: '1px solid rgba(59, 130, 246, 0.2)',
+          boxShadow: '0 20px 40px rgba(0,0,0,0.1)',
           transition: 'all 0.5s ease'
         }}>
           <div style={{
@@ -870,8 +870,8 @@ function LandingPage() {
           borderRadius: '24px',
           padding: '32px',
           textAlign: 'center',
-          border: '1px solid rgba(255, 255, 255, 0.3)',
-          boxShadow: '0 20px 40px rgba(0,0,0,0.2)',
+          border: '1px solid rgba(59, 130, 246, 0.2)',
+          boxShadow: '0 20px 40px rgba(0,0,0,0.1)',
           transition: 'all 0.5s ease'
         }}>
           <div style={{
@@ -1002,8 +1002,8 @@ function LandingPage() {
           borderRadius: '24px',
           padding: '32px',
           textAlign: 'center',
-          border: '1px solid rgba(255, 255, 255, 0.3)',
-          boxShadow: '0 20px 40px rgba(0,0,0,0.2)',
+          border: '1px solid rgba(59, 130, 246, 0.2)',
+          boxShadow: '0 20px 40px rgba(0,0,0,0.1)',
           transition: 'all 0.5s ease'
         }}>
           <div style={{
@@ -1114,7 +1114,7 @@ function LandingPage() {
         marginBottom: '80px'
       }}>
         <div style={{
-          background: 'linear-gradient(to right, #2563eb, #7c3aed)',
+          background: 'linear-gradient(to right, #1e40af, #1d4ed8)',
           borderRadius: '24px',
           padding: '32px',
           textAlign: 'center',
@@ -1126,7 +1126,7 @@ function LandingPage() {
           <div style={{
             position: 'absolute',
             inset: 0,
-            backgroundColor: 'rgba(0, 0, 0, 0.2)'
+            backgroundColor: 'rgba(0, 0, 0, 0.1)'
           }}></div>
           <div style={{
             position: 'relative',
@@ -1170,12 +1170,12 @@ function LandingPage() {
               justifyContent: 'center'
             }}>
               <a
-                href="https://forms.gle/your-application-form-url"
+                href="https://form.run/@musashi"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
                   backgroundColor: 'white',
-                  color: '#2563eb',
+                  color: '#1e40af',
                   padding: '16px 32px',
                   borderRadius: '16px',
                   fontWeight: 'bold',
@@ -1191,15 +1191,16 @@ function LandingPage() {
               <button 
                 onClick={handleDemoLogin}
                 style={{
-                  backgroundColor: 'white',
-                  color: '#2563eb',
+                  backgroundColor: 'transparent',
+                  color: 'white',
                   padding: '16px 32px',
                   borderRadius: '16px',
                   fontWeight: 'bold',
                   fontSize: '16px',
-                  border: 'none',
+                  border: '2px solid white',
                   boxShadow: '0 8px 16px rgba(0,0,0,0.1)',
-                  transition: 'all 0.3s ease'
+                  transition: 'all 0.3s ease',
+                  cursor: 'pointer'
                 }}
               >
                 デモ体験
@@ -1211,7 +1212,7 @@ function LandingPage() {
 
       {/* フッター */}
       <footer style={{
-        backgroundColor: '#111827',
+        backgroundColor: '#1e293b',
         color: 'white',
         padding: '48px 16px',
         textAlign: 'center'
