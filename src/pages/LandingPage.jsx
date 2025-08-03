@@ -151,8 +151,8 @@ function LandingPage() {
                 </div>
               </div>
             </div>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 animate-fade-in" style={{
-              textShadow: '0 4px 8px rgba(0,0,0,0.3)',
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-4 animate-fade-in" style={{
+              textShadow: '0 4px 8px rgba(0,0,0,0.5)',
               background: 'linear-gradient(45deg, #fff, #f0f0f0, #fff)',
               backgroundSize: '200% 200%',
               WebkitBackgroundClip: 'text',
@@ -161,27 +161,31 @@ function LandingPage() {
             }}>
               Musashi
             </h1>
-            <div className="flex items-center justify-center gap-2 mb-4">
-              <FaCrown className="text-yellow-400 text-xl animate-pulse" />
-              <span className="text-yellow-300 font-semibold text-sm sm:text-base">Premium Community</span>
-              <FaCrown className="text-yellow-400 text-xl animate-pulse" />
+            <div className="flex items-center justify-center gap-3 mb-6">
+              <FaCrown className="text-yellow-400 text-2xl sm:text-3xl animate-pulse" />
+              <span className="text-yellow-300 font-bold text-lg sm:text-xl md:text-2xl">Premium Community</span>
+              <FaCrown className="text-yellow-400 text-2xl sm:text-3xl animate-pulse" />
             </div>
-            <p className="text-base sm:text-lg md:text-xl mb-6 font-light leading-relaxed max-w-4xl mx-auto text-white" style={{ textShadow: '0 2px 4px rgba(0,0,0,0.3)' }}>
+            <p className="text-lg sm:text-xl md:text-2xl mb-8 font-medium leading-relaxed max-w-4xl mx-auto text-white" style={{ 
+              textShadow: '0 2px 4px rgba(0,0,0,0.5)',
+              lineHeight: '1.8'
+            }}>
               とある大学の、<span className="font-bold text-yellow-300 bg-gradient-to-r from-yellow-300 to-orange-300 bg-clip-text text-transparent">完全非公開</span>の授業評価コミュニティ。<br />
               編入成功者たちからの楽単情報を、<span className="font-bold text-yellow-300 bg-gradient-to-r from-yellow-300 to-orange-300 bg-clip-text text-transparent">圧倒的に安い入会金</span>で手に入れることができます。
             </p>
           </div>
           
           {/* 会員数表示 */}
-          <div className="flex items-center justify-center gap-3 bg-white bg-opacity-20 backdrop-blur-md border border-white border-opacity-30 rounded-full px-6 sm:px-8 py-4 mb-8 text-white font-bold w-fit mx-auto shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105">
-            <FaUsers className="text-lg sm:text-xl" />
-            <span className="font-mono text-lg sm:text-xl">{approvedUserCount}</span>名が参加中
-            <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse shadow-lg"></div>
-            <FaFire className="text-orange-400 text-lg sm:text-xl animate-pulse" />
+          <div className="flex items-center justify-center gap-4 bg-white bg-opacity-20 backdrop-blur-md border border-white border-opacity-30 rounded-full px-8 sm:px-10 py-5 mb-10 text-white font-bold w-fit mx-auto shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105">
+            <FaUsers className="text-2xl sm:text-3xl" />
+            <span className="font-mono text-2xl sm:text-3xl">{approvedUserCount}</span>
+            <span className="text-xl sm:text-2xl">名が参加中</span>
+            <div className="w-4 h-4 bg-green-400 rounded-full animate-pulse shadow-lg"></div>
+            <FaFire className="text-orange-400 text-2xl sm:text-3xl animate-pulse" />
           </div>
           
           {/* ログインフォーム */}
-          <div className="bg-white bg-opacity-95 backdrop-blur-xl rounded-3xl sm:rounded-4xl p-8 sm:p-10 md:p-12 shadow-2xl border border-white border-opacity-30 mb-8 max-w-lg mx-auto hover:shadow-3xl transition-all duration-500 hover:scale-105">
+          <div className="bg-white bg-opacity-95 backdrop-blur-xl rounded-3xl sm:rounded-4xl p-8 sm:p-10 md:p-12 shadow-2xl border border-white border-opacity-30 mb-10 max-w-lg mx-auto hover:shadow-3xl transition-all duration-500 hover:scale-105">
             <div className="flex items-center justify-center gap-3 mb-8">
               <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center shadow-lg">
                 <FaUserShield className="text-white text-2xl" />
@@ -258,7 +262,7 @@ function LandingPage() {
               href="https://forms.gle/your-application-form-url"
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-4 bg-gradient-to-r from-yellow-400 to-orange-500 text-white rounded-full px-8 sm:px-10 py-4 sm:py-5 text-base sm:text-lg font-bold shadow-2xl no-underline transition-all duration-300 hover:scale-110 hover:shadow-3xl hover:from-yellow-500 hover:to-orange-600 transform hover:-translate-y-1"
+              className="group inline-flex items-center gap-4 bg-gradient-to-r from-yellow-400 to-orange-500 text-white rounded-full px-8 sm:px-10 py-4 sm:py-5 text-lg sm:text-xl font-bold shadow-2xl no-underline transition-all duration-300 hover:scale-110 hover:shadow-3xl hover:from-yellow-500 hover:to-orange-600 transform hover:-translate-y-1"
             >
               <FaRocket className="text-xl group-hover:rotate-12 transition-transform duration-300" />
               まずは申請する 
@@ -266,7 +270,7 @@ function LandingPage() {
             </a>
             <button
               onClick={handleDemoLogin}
-              className="group inline-flex items-center gap-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full px-8 sm:px-10 py-4 sm:py-5 text-sm sm:text-base font-bold shadow-2xl transition-all duration-300 hover:scale-110 hover:shadow-3xl hover:from-purple-600 hover:to-pink-600 transform hover:-translate-y-1"
+              className="group inline-flex items-center gap-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full px-8 sm:px-10 py-4 sm:py-5 text-base sm:text-lg font-bold shadow-2xl transition-all duration-300 hover:scale-110 hover:shadow-3xl hover:from-purple-600 hover:to-pink-600 transform hover:-translate-y-1"
             >
               <FaStar className="text-lg group-hover:rotate-180 transition-transform duration-500" />
               デモ体験（ゲスト）
