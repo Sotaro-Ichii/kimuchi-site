@@ -113,6 +113,15 @@ function LandingPage() {
     navigate("/home");
   };
 
+  // フッターリンク用の関数
+  const handleLegalClick = () => {
+    navigate("/legal");
+  };
+
+  const handleContactClick = () => {
+    navigate("/contact");
+  };
+
   return (
     <div style={{ 
       minHeight: '100vh',
@@ -1281,8 +1290,8 @@ function LandingPage() {
             gap: '32px',
             fontSize: '16px'
           }}>
-            <a 
-              href="/legal" 
+            <button 
+              onClick={handleLegalClick}
               style={{
                 color: '#d1d5db',
                 textDecoration: 'none',
@@ -1291,7 +1300,9 @@ function LandingPage() {
                 cursor: 'pointer',
                 padding: '8px 16px',
                 borderRadius: '8px',
-                border: '1px solid transparent'
+                border: '1px solid transparent',
+                backgroundColor: 'transparent',
+                fontSize: '16px'
               }}
               onMouseEnter={(e) => {
                 e.target.style.color = '#ffffff';
@@ -1305,9 +1316,9 @@ function LandingPage() {
               }}
             >
               利用規約
-            </a>
-            <a 
-              href="/contact" 
+            </button>
+            <button 
+              onClick={handleContactClick}
               style={{
                 color: '#d1d5db',
                 textDecoration: 'none',
@@ -1316,7 +1327,9 @@ function LandingPage() {
                 cursor: 'pointer',
                 padding: '8px 16px',
                 borderRadius: '8px',
-                border: '1px solid transparent'
+                border: '1px solid transparent',
+                backgroundColor: 'transparent',
+                fontSize: '16px'
               }}
               onMouseEnter={(e) => {
                 e.target.style.color = '#ffffff';
@@ -1330,7 +1343,7 @@ function LandingPage() {
               }}
             >
               お問い合わせ
-            </a>
+            </button>
           </div>
         </div>
       </footer>
