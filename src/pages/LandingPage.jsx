@@ -746,7 +746,10 @@ function LandingPage() {
             textDecoration: 'none',
             boxShadow: '0 8px 16px rgba(0,0,0,0.1)',
             transition: 'all 0.3s ease',
-            cursor: 'pointer'
+            cursor: 'pointer',
+            position: 'relative',
+            zIndex: 10,
+            pointerEvents: 'auto'
           }}
           onMouseEnter={(e) => {
             e.target.style.transform = 'translateY(-2px)';
@@ -777,7 +780,10 @@ function LandingPage() {
             textDecoration: 'none',
             boxShadow: '0 8px 16px rgba(0,0,0,0.1)',
             transition: 'all 0.3s ease',
-            cursor: 'pointer'
+            cursor: 'pointer',
+            position: 'relative',
+            zIndex: 10,
+            pointerEvents: 'auto'
           }}
           onMouseEnter={(e) => {
             e.target.style.transform = 'translateY(-2px)';
@@ -792,14 +798,14 @@ function LandingPage() {
           LINEでシェア
         </a>
         <a
-          href="https://www.instagram.com/musashi.official/"
+          href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.origin)}`}
           target="_blank"
           rel="noopener noreferrer"
           style={{
             display: 'inline-flex',
             alignItems: 'center',
             gap: '12px',
-            background: 'linear-gradient(to right, #e1306c, #833ab4)',
+            background: 'linear-gradient(to right, #1877f2, #0d6efd)',
             color: 'white',
             borderRadius: '50px',
             padding: '12px 24px',
@@ -808,7 +814,10 @@ function LandingPage() {
             textDecoration: 'none',
             boxShadow: '0 8px 16px rgba(0,0,0,0.1)',
             transition: 'all 0.3s ease',
-            cursor: 'pointer'
+            cursor: 'pointer',
+            position: 'relative',
+            zIndex: 10,
+            pointerEvents: 'auto'
           }}
           onMouseEnter={(e) => {
             e.target.style.transform = 'translateY(-2px)';
@@ -819,8 +828,8 @@ function LandingPage() {
             e.target.style.boxShadow = '0 8px 16px rgba(0,0,0,0.1)';
           }}
         >
-          <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.334 3.608 1.308.974.974 1.246 2.241 1.308 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.334 2.633-1.308 3.608-.974.974-2.241 1.246-3.608 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.334-3.608-1.308-.974-.974-1.246-2.241-1.308-3.608C2.175 15.647 2.163 15.267 2.163 12s.012-3.584.07-4.85c.062-1.366.334-2.633 1.308-3.608C4.515 2.567 5.782 2.295 7.148 2.233 8.414 2.175 8.794 2.163 12 2.163zm0-2.163C8.741 0 8.332.013 7.052.072 5.771.131 4.659.363 3.678 1.344c-.98.98-1.213 2.092-1.272 3.373C2.013 5.668 2 6.077 2 12c0 5.923.013 6.332.072 7.613.059 1.281.292 2.393 1.272 3.373.98.98 2.092 1.213 3.373 1.272C8.332 23.987 8.741 24 12 24s3.668-.013 4.948-.072c1.281-.059 2.393-.292 3.373-1.272.98-.98 1.213-2.092 1.272-3.373.059-1.281.072-1.69.072-7.613 0-5.923-.013-6.332-.072-7.613-.059-1.281-.292-2.393-1.272-3.373-.98-.98-2.092-1.213-3.373-1.272C15.668.013 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a3.999 3.999 0 1 1 0-7.998 3.999 3.999 0 0 1 0 7.998zm6.406-11.845a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z"/></svg>
-          Instagramでシェア
+          <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          Facebookでシェア
         </a>
         <button
           onClick={async () => {
@@ -852,7 +861,10 @@ function LandingPage() {
             boxShadow: '0 8px 16px rgba(0,0,0,0.1)',
             transition: 'all 0.3s ease',
             border: 'none',
-            cursor: 'pointer'
+            cursor: 'pointer',
+            position: 'relative',
+            zIndex: 10,
+            pointerEvents: 'auto'
           }}
           onMouseEnter={(e) => {
             e.target.style.transform = 'translateY(-2px)';
