@@ -43,7 +43,7 @@ function AppRoutes() {
       {/* 認証が必要なルート */}
       {initialized && !loading && (
         <>
-          <Route path="/home" element={<PrivateRoute><Home /></PrivateRoute>} />
+          <Route path="/home" element={<Home />} />
           <Route path="/semester/:id" element={<PrivateRoute><Semester /></PrivateRoute>} />
           <Route path="/comments" element={<PrivateRoute><Comments /></PrivateRoute>} />
           <Route path="/course/:id" element={<PrivateRoute><CourseDetail /></PrivateRoute>} />
