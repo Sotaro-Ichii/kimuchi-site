@@ -553,7 +553,20 @@ function LandingPage() {
                 boxShadow: '0 20px 40px rgba(0,0,0,0.2)',
                 transition: 'all 0.3s ease',
                 border: 'none',
-                cursor: 'pointer'
+                cursor: 'pointer',
+                position: 'relative',
+                zIndex: 10,
+                pointerEvents: 'auto'
+              }}
+              onMouseEnter={(e) => {
+                e.target.style.transform = 'translateY(-3px)';
+                e.target.style.boxShadow = '0 25px 50px rgba(0,0,0,0.3)';
+                e.target.style.background = 'linear-gradient(to right, #2563eb, #1e40af)';
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.transform = 'translateY(0)';
+                e.target.style.boxShadow = '0 20px 40px rgba(0,0,0,0.2)';
+                e.target.style.background = 'linear-gradient(to right, #3b82f6, #1d4ed8)';
               }}
             >
               <FaStar style={{ fontSize: '18px' }} />
@@ -1261,7 +1274,20 @@ function LandingPage() {
                   border: '2px solid white',
                   boxShadow: '0 8px 16px rgba(0,0,0,0.1)',
                   transition: 'all 0.3s ease',
-                  cursor: 'pointer'
+                  cursor: 'pointer',
+                  position: 'relative',
+                  zIndex: 10,
+                  pointerEvents: 'auto'
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+                  e.target.style.transform = 'translateY(-2px)';
+                  e.target.style.boxShadow = '0 12px 24px rgba(0,0,0,0.2)';
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.backgroundColor = 'transparent';
+                  e.target.style.transform = 'translateY(0)';
+                  e.target.style.boxShadow = '0 8px 16px rgba(0,0,0,0.1)';
                 }}
               >
                 デモ体験
@@ -1299,27 +1325,35 @@ function LandingPage() {
                 navigate('/legal');
               }}
               style={{
-                color: '#d1d5db',
+                color: '#ffffff',
                 textDecoration: 'none',
-                fontWeight: '500',
-                transition: 'color 0.3s ease',
+                fontWeight: '600',
+                transition: 'all 0.3s ease',
                 cursor: 'pointer',
-                padding: '8px 16px',
+                padding: '12px 20px',
                 borderRadius: '8px',
-                border: '1px solid transparent',
-                backgroundColor: 'transparent',
+                border: '2px solid #ffffff',
+                backgroundColor: 'rgba(255, 255, 255, 0.1)',
                 fontSize: '16px',
-                display: 'inline-block'
+                display: 'inline-block',
+                position: 'relative',
+                zIndex: 10,
+                pointerEvents: 'auto',
+                minWidth: '120px'
               }}
               onMouseEnter={(e) => {
-                e.target.style.color = '#ffffff';
-                e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
-                e.target.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                e.target.style.color = '#1e293b';
+                e.target.style.backgroundColor = '#ffffff';
+                e.target.style.borderColor = '#ffffff';
+                e.target.style.transform = 'translateY(-2px)';
+                e.target.style.boxShadow = '0 8px 16px rgba(255, 255, 255, 0.3)';
               }}
               onMouseLeave={(e) => {
-                e.target.style.color = '#d1d5db';
-                e.target.style.backgroundColor = 'transparent';
-                e.target.style.borderColor = 'transparent';
+                e.target.style.color = '#ffffff';
+                e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+                e.target.style.borderColor = '#ffffff';
+                e.target.style.transform = 'translateY(0)';
+                e.target.style.boxShadow = 'none';
               }}
             >
               利用規約
@@ -1330,27 +1364,35 @@ function LandingPage() {
                 navigate('/contact');
               }}
               style={{
-                color: '#d1d5db',
+                color: '#ffffff',
                 textDecoration: 'none',
-                fontWeight: '500',
-                transition: 'color 0.3s ease',
+                fontWeight: '600',
+                transition: 'all 0.3s ease',
                 cursor: 'pointer',
-                padding: '8px 16px',
+                padding: '12px 20px',
                 borderRadius: '8px',
-                border: '1px solid transparent',
-                backgroundColor: 'transparent',
+                border: '2px solid #ffffff',
+                backgroundColor: 'rgba(255, 255, 255, 0.1)',
                 fontSize: '16px',
-                display: 'inline-block'
+                display: 'inline-block',
+                position: 'relative',
+                zIndex: 10,
+                pointerEvents: 'auto',
+                minWidth: '120px'
               }}
               onMouseEnter={(e) => {
-                e.target.style.color = '#ffffff';
-                e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
-                e.target.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                e.target.style.color = '#1e293b';
+                e.target.style.backgroundColor = '#ffffff';
+                e.target.style.borderColor = '#ffffff';
+                e.target.style.transform = 'translateY(-2px)';
+                e.target.style.boxShadow = '0 8px 16px rgba(255, 255, 255, 0.3)';
               }}
               onMouseLeave={(e) => {
-                e.target.style.color = '#d1d5db';
-                e.target.style.backgroundColor = 'transparent';
-                e.target.style.borderColor = 'transparent';
+                e.target.style.color = '#ffffff';
+                e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+                e.target.style.borderColor = '#ffffff';
+                e.target.style.transform = 'translateY(0)';
+                e.target.style.boxShadow = 'none';
               }}
             >
               お問い合わせ
