@@ -93,32 +93,85 @@ function LandingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-slate-800">
+    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white text-slate-800">
       {/* ヒーローセクション */}
       <section className="w-full max-w-4xl mx-auto px-4 py-8 text-center">
-        <img src="/logo.png" alt="Musashi logo" className="w-24 h-24 md:w-32 md:h-32 mx-auto mb-6 object-contain" />
-        <p className="text-lg md:text-xl mb-8 font-light leading-relaxed max-w-2xl mx-auto text-slate-700">
+        <img src="/logo.png" alt="Musashi logo" className="w-20 h-20 md:w-28 md:h-28 mx-auto mb-6 object-contain" />
+        <p className="text-base md:text-lg mb-8 font-light leading-relaxed max-w-2xl mx-auto text-slate-700">
           とある大学の、完全非公開の授業評価コミュニティ。<br />
           編入成功者たちからの楽単情報を、圧倒的に安い入会金で手に入れることができます。
         </p>
         
         {/* 会員数表示 */}
         <div className="flex items-center justify-center gap-2 bg-cyan-50 border border-cyan-200 rounded-full px-4 py-2 mb-8 text-cyan-600 font-bold w-fit mx-auto">
-          <FaUsers className="text-base" />
-          <span className="font-mono text-lg">{approvedUserCount}</span>名が参加中
+          <FaUsers className="text-sm" />
+          <span className="font-mono text-base">{approvedUserCount}</span>名が参加中
+        </div>
+        
+        {/* ログインフォーム */}
+        <div className="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-slate-200 mb-8 max-w-md mx-auto">
+          <h2 className="text-xl font-bold mb-6 text-slate-800">ログイン / 登録</h2>
+          
+          <div className="space-y-4">
+            <input
+              type="email"
+              placeholder="メールアドレス"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            />
+            <input
+              type="password"
+              placeholder="パスワード"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            />
+            
+            <button
+              onClick={handleEmailAuth}
+              className="w-full bg-blue-600 text-white py-3 rounded-lg font-bold hover:bg-blue-700 transition-colors"
+            >
+              {isRegistering ? "登録" : "ログイン"}
+            </button>
+            
+            <button
+              onClick={() => setIsRegistering(!isRegistering)}
+              className="w-full text-blue-600 hover:text-blue-700 text-sm"
+            >
+              {isRegistering ? "既にアカウントをお持ちの方はこちら" : "新規登録はこちら"}
+            </button>
+            
+            <div className="relative">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t border-slate-300"></div>
+              </div>
+              <div className="relative flex justify-center text-sm">
+                <span className="px-2 bg-white text-slate-500">または</span>
+              </div>
+            </div>
+            
+            <button
+              onClick={loginWithGoogle}
+              className="w-full flex items-center justify-center gap-3 bg-white border border-slate-300 text-slate-700 py-3 rounded-lg font-bold hover:bg-slate-50 transition-colors"
+            >
+              <FaGoogle className="text-red-500" />
+              Googleでログイン
+            </button>
+          </div>
         </div>
         
         {/* CTAボタン */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
           <a
             href="#apply"
-            className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-full px-8 py-4 text-lg font-bold shadow-lg no-underline transition-all duration-200 hover:scale-105 hover:shadow-xl"
+            className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-full px-6 py-3 text-base font-bold shadow-lg no-underline transition-all duration-200 hover:scale-105 hover:shadow-xl"
           >
-            まずは申請する <FaArrowRight className="text-xl" />
+            まずは申請する <FaArrowRight className="text-lg" />
           </a>
           <button
             onClick={handleDemoLogin}
-            className="inline-flex items-center gap-3 bg-gradient-to-r from-cyan-400 to-blue-500 text-white rounded-full px-8 py-4 text-base font-bold shadow-md transition-all duration-200 hover:scale-105 hover:shadow-lg"
+            className="inline-flex items-center gap-3 bg-gradient-to-r from-cyan-400 to-blue-500 text-white rounded-full px-6 py-3 text-sm font-bold shadow-md transition-all duration-200 hover:scale-105 hover:shadow-lg"
           >
             デモ体験（ゲスト）
           </button>
@@ -166,8 +219,8 @@ function LandingPage() {
       {/* なぜMusashiなのかセクション */}
       <section className="w-full max-w-4xl mx-auto px-4 mb-12">
         <div className="bg-slate-50 rounded-2xl p-6 md:p-8 text-center border border-slate-200">
-          <h2 className="text-2xl font-bold mb-4 text-blue-600">なぜMusashiなのか？</h2>
-          <p className="text-base md:text-lg text-slate-700 leading-relaxed">
+          <h2 className="text-xl md:text-2xl font-bold mb-4 text-blue-600">なぜMusashiなのか？</h2>
+          <p className="text-sm md:text-base text-slate-700 leading-relaxed">
             他に同じようなサービスは存在しません。<br />
             留学エージェントに何十万円も支払うよりも、実際に現地で学んだ先輩たちから最新・リアルな授業情報や体験談を、圧倒的に安い入会金で手に入れることができます。<br />
             Musashiは、信頼できるコミュニティだからこそ、ネットやSNSでは得られない「本当に役立つ情報」だけを厳選して提供しています。
@@ -178,22 +231,22 @@ function LandingPage() {
       {/* 会員の声セクション */}
       <section className="w-full max-w-4xl mx-auto px-4 mb-12">
         <div className="bg-slate-50 rounded-2xl p-6 md:p-8 text-center border border-slate-200">
-          <h2 className="text-2xl font-bold mb-6 text-cyan-600">会員の声</h2>
+          <h2 className="text-xl md:text-2xl font-bold mb-6 text-cyan-600">会員の声</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-white rounded-xl p-6 shadow-sm">
-              <div className="text-yellow-400 text-2xl mb-3">★★★★★</div>
-              <p className="text-slate-700 mb-3">"先輩の体験談が本当に役立ちました！"</p>
-              <p className="text-sm text-slate-500">- 匿名会員</p>
+              <div className="text-yellow-400 text-xl md:text-2xl mb-3">★★★★★</div>
+              <p className="text-sm md:text-base text-slate-700 mb-3">"先輩の体験談が本当に役立ちました！"</p>
+              <p className="text-xs md:text-sm text-slate-500">- 匿名会員</p>
             </div>
             <div className="bg-white rounded-xl p-6 shadow-sm">
-              <div className="text-yellow-400 text-2xl mb-3">★★★★★</div>
-              <p className="text-slate-700 mb-3">"楽単情報で単位取得が楽になりました"</p>
-              <p className="text-sm text-slate-500">- 編入生A</p>
+              <div className="text-yellow-400 text-xl md:text-2xl mb-3">★★★★★</div>
+              <p className="text-sm md:text-base text-slate-700 mb-3">"楽単情報で単位取得が楽になりました"</p>
+              <p className="text-xs md:text-sm text-slate-500">- 編入生A</p>
             </div>
             <div className="bg-white rounded-xl p-6 shadow-sm">
-              <div className="text-yellow-400 text-2xl mb-3">★★★★★</div>
-              <p className="text-slate-700 mb-3">"コミュニティがとても温かいです"</p>
-              <p className="text-sm text-slate-500">- 留学生B</p>
+              <div className="text-yellow-400 text-xl md:text-2xl mb-3">★★★★★</div>
+              <p className="text-sm md:text-base text-slate-700 mb-3">"コミュニティがとても温かいです"</p>
+              <p className="text-xs md:text-sm text-slate-500">- 留学生B</p>
             </div>
           </div>
         </div>
@@ -202,19 +255,19 @@ function LandingPage() {
       {/* よくある質問セクション */}
       <section className="w-full max-w-4xl mx-auto px-4 mb-12">
         <div className="bg-slate-50 rounded-2xl p-6 md:p-8 border border-slate-200">
-          <h2 className="text-2xl font-bold mb-6 text-blue-600 text-center">よくある質問</h2>
+          <h2 className="text-xl md:text-2xl font-bold mb-6 text-blue-600 text-center">よくある質問</h2>
           <div className="space-y-4">
             <div className="bg-white rounded-xl p-6 shadow-sm">
-              <h3 className="font-semibold text-slate-800 mb-2">Q: 入会金はいくらですか？</h3>
-              <p className="text-slate-700">A: 現在特別価格で$50です。通常価格より大幅に割引しています。</p>
+              <h3 className="font-semibold text-sm md:text-base text-slate-800 mb-2">Q: 入会金はいくらですか？</h3>
+              <p className="text-sm md:text-base text-slate-700">A: 現在特別価格で$50です。通常価格より大幅に割引しています。</p>
             </div>
             <div className="bg-white rounded-xl p-6 shadow-sm">
-              <h3 className="font-semibold text-slate-800 mb-2">Q: どのような情報が得られますか？</h3>
-              <p className="text-slate-700">A: 楽単情報、授業評価、教授の特徴、試験対策など、実際の体験談を中心とした情報を提供しています。</p>
+              <h3 className="font-semibold text-sm md:text-base text-slate-800 mb-2">Q: どのような情報が得られますか？</h3>
+              <p className="text-sm md:text-base text-slate-700">A: 楽単情報、授業評価、教授の特徴、試験対策など、実際の体験談を中心とした情報を提供しています。</p>
             </div>
             <div className="bg-white rounded-xl p-6 shadow-sm">
-              <h3 className="font-semibold text-slate-800 mb-2">Q: 退会はいつでもできますか？</h3>
-              <p className="text-slate-700">A: はい、いつでも退会可能です。ただし、入会金の返金はできません。</p>
+              <h3 className="font-semibold text-sm md:text-base text-slate-800 mb-2">Q: 退会はいつでもできますか？</h3>
+              <p className="text-sm md:text-base text-slate-700">A: はい、いつでも退会可能です。ただし、入会金の返金はできません。</p>
             </div>
           </div>
         </div>
@@ -223,15 +276,15 @@ function LandingPage() {
       {/* 申請フォームセクション */}
       <section id="apply" className="w-full max-w-4xl mx-auto px-4 mb-12">
         <div className="bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl p-6 md:p-8 text-center text-white">
-          <h2 className="text-2xl font-bold mb-4">今すぐ申請する</h2>
-          <p className="text-blue-100 mb-6">限定価格で先輩たちの貴重な情報を手に入れましょう</p>
+          <h2 className="text-xl md:text-2xl font-bold mb-4">今すぐ申請する</h2>
+          <p className="text-sm md:text-base text-blue-100 mb-6">限定価格で先輩たちの貴重な情報を手に入れましょう</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-white text-blue-600 px-8 py-3 rounded-full font-bold hover:bg-blue-50 transition-colors">
+            <button className="bg-white text-blue-600 px-6 md:px-8 py-3 rounded-full font-bold hover:bg-blue-50 transition-colors text-sm md:text-base">
               申請フォームへ
             </button>
             <button 
               onClick={handleDemoLogin}
-              className="border-2 border-white text-white px-8 py-3 rounded-full font-bold hover:bg-white hover:text-blue-600 transition-colors"
+              className="border-2 border-white text-white px-6 md:px-8 py-3 rounded-full font-bold hover:bg-white hover:text-blue-600 transition-colors text-sm md:text-base"
             >
               デモ体験
             </button>
@@ -242,7 +295,7 @@ function LandingPage() {
       {/* フッター */}
       <footer className="bg-slate-800 text-white py-8">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <p className="text-slate-300 mb-4">© 2024 Musashi. All rights reserved.</p>
+          <p className="text-sm md:text-base text-slate-300 mb-4">© 2024 Musashi. All rights reserved.</p>
           <div className="flex justify-center gap-6 text-sm">
             <Link to="/legal" className="text-slate-300 hover:text-white transition-colors">利用規約</Link>
             <Link to="/contact" className="text-slate-300 hover:text-white transition-colors">お問い合わせ</Link>
