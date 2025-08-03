@@ -1232,18 +1232,56 @@ function LandingPage() {
             gap: '32px',
             fontSize: '16px'
           }}>
-            <Link to="/legal" style={{
-              color: '#d1d5db',
-              textDecoration: 'none',
-              fontWeight: '500',
-              transition: 'color 0.3s ease'
-            }}>利用規約</Link>
-            <Link to="/contact" style={{
-              color: '#d1d5db',
-              textDecoration: 'none',
-              fontWeight: '500',
-              transition: 'color 0.3s ease'
-            }}>お問い合わせ</Link>
+            <Link 
+              to="/legal" 
+              style={{
+                color: '#d1d5db',
+                textDecoration: 'none',
+                fontWeight: '500',
+                transition: 'color 0.3s ease',
+                cursor: 'pointer',
+                padding: '8px 16px',
+                borderRadius: '8px',
+                border: '1px solid transparent'
+              }}
+              onMouseEnter={(e) => {
+                e.target.style.color = '#ffffff';
+                e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+                e.target.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.color = '#d1d5db';
+                e.target.style.backgroundColor = 'transparent';
+                e.target.style.borderColor = 'transparent';
+              }}
+            >
+              利用規約
+            </Link>
+            <Link 
+              to="/contact" 
+              style={{
+                color: '#d1d5db',
+                textDecoration: 'none',
+                fontWeight: '500',
+                transition: 'color 0.3s ease',
+                cursor: 'pointer',
+                padding: '8px 16px',
+                borderRadius: '8px',
+                border: '1px solid transparent'
+              }}
+              onMouseEnter={(e) => {
+                e.target.style.color = '#ffffff';
+                e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+                e.target.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.color = '#d1d5db';
+                e.target.style.backgroundColor = 'transparent';
+                e.target.style.borderColor = 'transparent';
+              }}
+            >
+              お問い合わせ
+            </Link>
           </div>
         </div>
       </footer>
