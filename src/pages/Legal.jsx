@@ -79,6 +79,24 @@ function Legal() {
             fontWeight: 'bold',
             color: '#2563eb',
             marginBottom: '16px'
+          }}>運営主体について</h2>
+          <p style={{
+            fontSize: '16px',
+            lineHeight: '1.6',
+            color: '#374151'
+          }}>
+            本サービスは日本国内で運営されており、日本の法令に準拠してサービスを提供しています。
+            運営者は日本の法律に従い、適切な個人情報保護とセキュリティ対策を実施しています。
+            本サービスに関する一切の法的紛争については、日本の法律に基づいて解決されるものとします。
+          </p>
+        </section>
+
+        <section style={{ marginBottom: '32px' }}>
+          <h2 style={{
+            fontSize: '24px',
+            fontWeight: 'bold',
+            color: '#2563eb',
+            marginBottom: '16px'
           }}>無断模倣に関する注意事項</h2>
           <p style={{
             fontSize: '16px',
