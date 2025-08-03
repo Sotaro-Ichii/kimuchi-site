@@ -6,8 +6,8 @@
 
 /* ✅ 既存のカスタムCSSを上書きされないように最後に追加 */
 body {
-  background-color: #18181b !important;
-  color: #f4f4f5 !important;
+  background-color: #ffffff !important;
+  color: #1e293b !important;
   font-family: 'Inter', 'Noto Sans JP', sans-serif;
   margin: 0;
   padding: 0;

@@ -96,7 +96,7 @@ function LandingPage() {
     <div className="min-h-screen bg-white text-slate-800">
       {/* ヒーローセクション */}
       <section className="w-full max-w-4xl mx-auto px-4 py-8 text-center">
-        <img src="/logo.png" alt="Musashi logo" className="w-32 h-32 md:w-48 md:h-48 mx-auto mb-6 object-contain" />
+        <img src="/logo.png" alt="Musashi logo" className="w-24 h-24 md:w-32 md:h-32 mx-auto mb-6 object-contain" />
         <p className="text-lg md:text-xl mb-8 font-light leading-relaxed max-w-2xl mx-auto text-slate-700">
           とある大学の、完全非公開の授業評価コミュニティ。<br />
           編入成功者たちからの楽単情報を、圧倒的に安い入会金で手に入れることができます。
