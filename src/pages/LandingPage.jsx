@@ -93,53 +93,30 @@ function LandingPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center px-4 py-8" style={{ background: 'linear-gradient(to bottom, #f1f5f9, #e2e8f0 80%, #f1f5f9)', color: '#1e293b' }}>
-      {/* ヒーローセクション（UI/UX最適化＋デモ体験ボタン） */}
-      <section className="w-full max-w-xl flex flex-col items-center text-center mb-16 mx-auto animate-fadein" style={{paddingTop: '6vh', paddingBottom: '6vh', margin: '0 auto'}}> 
-        <img src="/logo.png" alt="Musashi logo" className="w-64 h-64 md:w-80 md:h-80 max-w-[320px] object-contain object-center mb-8 animate-pop" style={{transition: 'box-shadow 0.3s'}} />
-        <p className="text-xl md:text-2xl mb-10 font-light leading-relaxed max-w-xl mx-auto text-center animate-fadein" style={{ color: '#334155', lineHeight: 1.6 }}>
+    <div className="min-h-screen flex flex-col items-center px-4 py-8 bg-gradient-to-b from-slate-100 via-slate-200 to-slate-100 text-slate-800">
+      {/* ヒーローセクション */}
+      <section className="w-full max-w-2xl flex flex-col items-center text-center mb-16 mx-auto pt-12 pb-12">
+        <img src="/logo.png" alt="Musashi logo" className="w-40 h-40 md:w-56 md:h-56 max-w-xs object-contain object-center mb-8" />
+        <p className="text-lg md:text-2xl mb-10 font-light leading-relaxed max-w-2xl mx-auto text-center" style={{ color: '#334155', lineHeight: 1.6 }}>
           とある大学の、完全非公開の授業評価コミュニティ。<br />
           編入成功者たちからの楽単情報を、圧倒的に安い入会金で手に入れることができます。
         </p>
-        {/* 会員数表示（カウントアップ風） */}
-        <div id="member-count" style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: '0.5rem',
-          background: 'rgba(34, 211, 238, 0.1)',
-          border: '1px solid rgba(34, 211, 238, 0.3)',
-          borderRadius: '9999px',
-          padding: isMobile ? '0.4rem 0.8rem' : '0.5rem 1rem',
-          marginBottom: '1.5rem',
-          color: '#22d3ee',
-          fontSize: isMobile ? '1rem' : '1.1rem',
-          fontWeight: 'bold',
-          minWidth: 180,
-          justifyContent: 'center',
-          transition: 'background 0.3s',
-        }}>
-          <FaUsers style={{ fontSize: isMobile ? '1.1rem' : '1.2rem' }} />
-          <span style={{ fontVariantNumeric: 'tabular-nums', fontSize: '1.2em', transition: 'color 0.3s' }}>{approvedUserCount}</span>名が参加中
+        {/* 会員数表示 */}
+        <div className="flex items-center gap-2 bg-cyan-50 border border-cyan-200 rounded-full px-4 py-2 mb-6 text-cyan-500 font-bold min-w-[140px] justify-center">
+          <FaUsers className="text-base" />
+          <span className="font-mono text-lg">{approvedUserCount}</span>名が参加中
         </div>
-        {/* CTAボタン（ホバー演出強化） */}
-        <div className="flex flex-col md:flex-row gap-4 justify-center items-center w-full mb-2">
+        {/* CTAボタン */}
+        <div className="flex flex-col md:flex-row gap-4 justify-center items-center w-full max-w-md mx-auto mb-2">
           <a
             href="#apply"
-            style={{
-              display:'inline-flex',alignItems:'center',gap:'0.75rem',background:'linear-gradient(90deg,#2563eb,#1e40af)',color:'#fff',borderRadius:'9999px',padding:'1.25rem 2.5rem',fontSize:'1.3rem',fontWeight:'bold',boxShadow:'0 4px 24px rgba(30,41,59,0.12)',textDecoration:'none',transition:'transform 0.2s,box-shadow 0.2s,background 0.2s',letterSpacing:'0.02em',position:'relative',overflow:'hidden',border:'none',outline:'none',cursor:'pointer',willChange:'transform',
-            }}
-            onMouseOver={e=>{e.currentTarget.style.transform='scale(1.08)';e.currentTarget.style.background='linear-gradient(90deg,#1e40af,#2563eb)';e.currentTarget.style.boxShadow='0 8px 32px rgba(0,0,0,0.22)';}}
-            onMouseOut={e=>{e.currentTarget.style.transform='scale(1)';e.currentTarget.style.background='linear-gradient(90deg,#2563eb,#1e40af)';e.currentTarget.style.boxShadow='0 4px 24px rgba(0,0,0,0.18)';}}
+            className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-blue-900 text-white rounded-full px-8 py-4 text-lg font-bold shadow-lg no-underline transition-all duration-200 hover:scale-105 hover:from-blue-900 hover:to-blue-600 hover:shadow-xl"
           >
-            まずは申請する <FaArrowRight style={{fontSize:'1.3em'}} />
+            まずは申請する <FaArrowRight className="text-xl" />
           </a>
           <button
             onClick={handleDemoLogin}
-            style={{
-              display:'inline-flex',alignItems:'center',gap:'0.75rem',background:'linear-gradient(90deg,#22d3ee,#2563eb)',color:'#18181b',borderRadius:'9999px',padding:'1.25rem 2.5rem',fontSize:'1.1rem',fontWeight:'bold',boxShadow:'0 2px 8px rgba(30,41,59,0.10)',textDecoration:'none',transition:'transform 0.2s,box-shadow 0.2s,background 0.2s',letterSpacing:'0.02em',border:'none',outline:'none',cursor:'pointer',willChange:'transform',
-            }}
-            onMouseOver={e=>{e.currentTarget.style.transform='scale(1.06)';e.currentTarget.style.background='linear-gradient(90deg,#2563eb,#22d3ee)';e.currentTarget.style.boxShadow='0 6px 18px rgba(30,41,59,0.18)';}}
-            onMouseOut={e=>{e.currentTarget.style.transform='scale(1)';e.currentTarget.style.background='linear-gradient(90deg,#22d3ee,#2563eb)';e.currentTarget.style.boxShadow='0 2px 8px rgba(30,41,59,0.10)';}}
+            className="inline-flex items-center gap-3 bg-gradient-to-r from-cyan-400 to-blue-600 text-slate-900 rounded-full px-8 py-4 text-base font-bold shadow-md transition-all duration-200 hover:scale-105 hover:from-blue-600 hover:to-cyan-400 hover:shadow-lg"
           >
             デモ体験（ゲスト）
           </button>
@@ -147,13 +124,13 @@ function LandingPage() {
       </section>
 
       {/* SNSシェアボタン */}
-      <div className="flex flex-wrap justify-center gap-4 mb-10">
+      <div className="flex flex-wrap justify-center gap-4 mb-10 w-full max-w-2xl mx-auto">
         {/* X（Twitter） */}
         <a
           href={`https://twitter.com/intent/tweet?text=${encodeURIComponent('Musashi｜先輩直伝の楽単・授業情報コミュニティ')}&url=${encodeURIComponent(window.location.origin)}`}
           target="_blank"
           rel="noopener noreferrer"
-          style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#1da1f2', color: '#fff', borderRadius: 9999, padding: '0.7rem 1.5rem', fontWeight: 'bold', textDecoration: 'none', fontSize: '1rem' }}
+          className="inline-flex items-center gap-2 bg-[#1da1f2] text-white rounded-full px-6 py-3 font-bold no-underline text-base shadow hover:opacity-90 transition"
         >
           <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M22.46 5.924c-.793.352-1.645.59-2.54.697a4.48 4.48 0 0 0 1.963-2.475 8.94 8.94 0 0 1-2.828 1.082A4.48 4.48 0 0 0 11.07 9.03c0 .352.04.695.116 1.022C7.728 9.89 4.1 8.1 1.67 5.149a4.48 4.48 0 0 0-.606 2.254c0 1.555.792 2.927 2.002 3.732a4.48 4.48 0 0 1-2.03-.561v.057a4.48 4.48 0 0 0 3.6 4.393c-.193.053-.397.082-.607.082-.148 0-.292-.014-.432-.04a4.48 4.48 0 0 0 4.18 3.11A8.98 8.98 0 0 1 2 19.54a12.7 12.7 0 0 0 6.88 2.017c8.26 0 12.78-6.84 12.78-12.78 0-.195-.004-.39-.013-.583A9.14 9.14 0 0 0 24 4.59a8.98 8.98 0 0 1-2.54.697z"/></svg>
           Xでシェア
@@ -163,17 +140,17 @@ function LandingPage() {
           href={`https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(window.location.origin)}`}
           target="_blank"
           rel="noopener noreferrer"
-          style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#06c755', color: '#fff', borderRadius: 9999, padding: '0.7rem 1.5rem', fontWeight: 'bold', textDecoration: 'none', fontSize: '1rem' }}
+          className="inline-flex items-center gap-2 bg-[#06c755] text-white rounded-full px-6 py-3 font-bold no-underline text-base shadow hover:opacity-90 transition"
         >
           <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M19.615 3.184C17.413 1.13 14.13.013 10.66.013 4.77.013 0 4.13 0 9.22c0 2.92 1.68 5.53 4.36 7.23-.18.62-.98 3.36-1.02 3.56 0 .01-.01.05.02.07.03.02.07.01.08.01.11-.02 3.52-2.32 4.13-2.7.97.14 1.97.22 3.08.22 5.89 0 10.66-4.12 10.66-9.21 0-2.19-1.09-4.25-3.13-6.18z"/></svg>
           LINEでシェア
         </a>
-        {/* Facebook */}
+        {/* Instagram */}
         <a
           href="https://www.instagram.com/musashi.official/"
           target="_blank"
           rel="noopener noreferrer"
-          style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'linear-gradient(135deg, #f9a8d4, #fbbf24)', color: '#fff', borderRadius: 9999, padding: '0.7rem 1.5rem', fontWeight: 'bold', textDecoration: 'none', fontSize: '1rem' }}
+          className="inline-flex items-center gap-2 bg-gradient-to-r from-pink-300 via-yellow-300 to-pink-400 text-white rounded-full px-6 py-3 font-bold no-underline text-base shadow hover:opacity-90 transition"
         >
           <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.334 3.608 1.308.974.974 1.246 2.241 1.308 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.334 2.633-1.308 3.608-.974.974-2.241 1.246-3.608 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.334-3.608-1.308-.974-.974-1.246-2.241-1.308-3.608C2.175 15.647 2.163 15.267 2.163 12s.012-3.584.07-4.85c.062-1.366.334-2.633 1.308-3.608C4.515 2.567 5.782 2.295 7.148 2.233 8.414 2.175 8.794 2.163 12 2.163zm0-2.163C8.741 0 8.332.013 7.052.072 5.771.131 4.659.363 3.678 1.344c-.98.98-1.213 2.092-1.272 3.373C2.013 5.668 2 6.077 2 12c0 5.923.013 6.332.072 7.613.059 1.281.292 2.393 1.272 3.373.98.98 2.092 1.213 3.373 1.272C8.332 23.987 8.741 24 12 24s3.668-.013 4.948-.072c1.281-.059 2.393-.292 3.373-1.272.98-.98 1.213-2.092 1.272-3.373.059-1.281.072-1.69.072-7.613 0-5.923-.013-6.332-.072-7.613-.059-1.281-.292-2.393-1.272-3.373-.98-.98-2.092-1.213-3.373-1.272C15.668.013 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a3.999 3.999 0 1 1 0-7.998 3.999 3.999 0 0 1 0 7.998zm6.406-11.845a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z"/></svg>
           Instagramでシェア
@@ -181,17 +158,17 @@ function LandingPage() {
         {/* URLコピー */}
         <button
           onClick={() => {navigator.clipboard.writeText(window.location.origin); alert('URLをコピーしました！');}}
-          style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#334155', color: '#fff', borderRadius: 9999, padding: '0.7rem 1.5rem', fontWeight: 'bold', fontSize: '1rem', border: 'none', cursor: 'pointer' }}
+          className="inline-flex items-center gap-2 bg-slate-700 text-white rounded-full px-6 py-3 font-bold text-base border-none shadow hover:opacity-90 transition"
         >
           <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
           URLコピー
         </button>
       </div>
 
-      {/* なぜMusashiなのかセクション（中央寄せ） */}
-      <section className="w-full max-w-xl mx-auto mb-12 p-6 bg-white rounded-2xl shadow-lg border border-[#e0e7ef] text-center">
-        <h2 className="text-2xl font-bold mb-4 text-[#2563eb]">なぜMusashiなのか？</h2>
-        <p className="text-lg text-[#334155] leading-relaxed">
+      {/* なぜMusashiなのかセクション */}
+      <section className="w-full max-w-2xl mx-auto mb-12 p-6 bg-white rounded-2xl shadow-lg border border-slate-200 text-center">
+        <h2 className="text-2xl font-bold mb-4 text-blue-600">なぜMusashiなのか？</h2>
+        <p className="text-base md:text-lg text-slate-700 leading-relaxed">
           他に同じようなサービスは存在しません。<br />
           留学エージェントに何十万円も支払うよりも、実際に現地で学んだ先輩たちから最新・リアルな授業情報や体験談を、圧倒的に安い入会金で手に入れることができます。<br />
           Musashiは、信頼できるコミュニティだからこそ、ネットやSNSでは得られない「本当に役立つ情報」だけを厳選して提供しています。
@@ -199,7 +176,7 @@ function LandingPage() {
       </section>
 
       {/* 会員の声セクション（中央寄せ・カード修正） */}
-      <section className="w-full max-w-xl mx-auto mb-12 p-6 bg-[#f1f5f9] rounded-2xl shadow border border-[#e0e7ef] text-center">
+      <section className="w-full max-w-2xl mx-auto mb-12 p-6 bg-[#f1f5f9] rounded-2xl shadow border border-[#e0e7ef] text-center">
         <h2 className="text-xl font-bold mb-4 text-[#22d3ee]">会員の声</h2>
         <div style={{overflowX:'auto',whiteSpace:'nowrap',paddingBottom:8,margin:'0 auto',maxWidth:480}}>
           <div style={{display:'inline-flex',gap:24}}>

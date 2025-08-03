@@ -33,100 +33,38 @@ function Contact() {
   };
 
   return (
-    <div style={{ 
-      backgroundColor: '#f1f5f9', 
-      minHeight: '100vh', 
-      padding: '20px',
-      fontFamily: 'Inter, sans-serif',
-      color: '#1e293b'
-    }}>
-      {/* ヘッダー */}
-      <div style={{ 
-        maxWidth: '1200px', 
-        margin: '0 auto', 
-        padding: '20px 0'
-      }}>
-        <Link to="/home" style={{
-          display: 'inline-flex',
-          alignItems: 'center',
-          gap: '8px',
-          color: '#2563eb',
-          textDecoration: 'none',
-          fontSize: '1rem',
-          fontWeight: '600',
-          marginBottom: '40px'
-        }}>
-          <FaArrowLeft /> ホームに戻る
-        </Link>
+    <div className="bg-slate-100 min-h-screen px-4 sm:px-6 lg:px-8 py-6 sm:py-8 font-sans text-slate-800">
+      <div className="max-w-6xl mx-auto">
+        {/* ヘッダー */}
+        <div className="mb-8 sm:mb-12">
+          <Link to="/home" className="inline-flex items-center gap-2 text-blue-600 no-underline text-sm sm:text-base font-semibold mb-6 sm:mb-8 hover:text-blue-700 transition-colors">
+            <FaArrowLeft /> ホームに戻る
+          </Link>
 
-        <h1 style={{ 
-          color: '#2563eb', 
-          fontSize: '3rem', 
-          fontWeight: 'bold',
-          textAlign: 'center',
-          marginBottom: '10px'
-        }}>
-          お問い合わせ
-        </h1>
-        <p style={{ 
-          textAlign: 'center', 
-          fontSize: '1.2rem', 
-          color: '#64748b',
-          marginBottom: '60px'
-        }}>
-          ご質問・ご要望・バグ報告など、お気軽にお問い合わせください
-        </p>
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-blue-600 text-center mb-2 sm:mb-4">
+            お問い合わせ
+          </h1>
+          <p className="text-sm sm:text-base lg:text-lg text-center text-slate-600 mb-8 sm:mb-12">
+            ご質問・ご要望・バグ報告など、お気軽にお問い合わせください
+          </p>
+        </div>
 
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
-          gap: '60px',
-          maxWidth: '1000px',
-          margin: '0 auto',
-          ...(window.innerWidth <= 768 && { gridTemplateColumns: '1fr', gap: '40px' })
-        }}>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 max-w-5xl mx-auto">
           {/* 左側：お問い合わせフォーム */}
-          <div style={{
-            background: '#fff',
-            borderRadius: '20px',
-            padding: '40px',
-            border: '1.5px solid #cbd5e1',
-            boxShadow: '0 8px 32px rgba(30,41,59,0.10)'
-          }}>
-            <h2 style={{ 
-              color: '#2563eb', 
-              fontSize: '1.8rem', 
-              fontWeight: 'bold',
-              marginBottom: '30px',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '12px'
-            }}>
+          <div className="bg-white rounded-2xl p-6 sm:p-8 lg:p-10 border border-slate-200 shadow-lg">
+            <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-blue-600 mb-6 sm:mb-8 flex items-center gap-3">
               <FaEnvelope /> メッセージを送信
             </h2>
 
             {submitStatus === 'success' && (
-              <div style={{
-                background: '#2f9e44',
-                color: 'white',
-                padding: '16px',
-                borderRadius: '12px',
-                marginBottom: '24px',
-                textAlign: 'center',
-                fontWeight: '600'
-              }}>
+              <div className="bg-green-600 text-white p-4 rounded-xl mb-6 text-center font-semibold">
                 お問い合わせを送信しました。ありがとうございます！
               </div>
             )}
 
-            <form onSubmit={handleSubmit}>
-              <div style={{ marginBottom: '20px' }}>
-                <label style={{ 
-                  display: 'block', 
-                  marginBottom: '8px', 
-                  fontWeight: '600',
-                  color: '#1e293b'
-                }}>
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+              <div>
+                <label className="block mb-2 font-semibold text-slate-800 text-sm sm:text-base">
                   お名前 *
                 </label>
                 <input
@@ -135,29 +73,12 @@ function Contact() {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  style={{
-                    width: '100%',
-                    padding: '12px 16px',
-                    borderRadius: '12px',
-                    border: '1.5px solid #cbd5e1',
-                    background: '#fff',
-                    color: '#1e293b',
-                    fontSize: '1rem',
-                    outline: 'none',
-                    transition: 'border-color 0.2s'
-                  }}
-                  onFocus={(e) => e.target.style.borderColor = '#2563eb'}
-                  onBlur={(e) => e.target.style.borderColor = '#cbd5e1'}
+                  className="w-full px-4 py-3 rounded-xl border border-slate-300 bg-white text-slate-800 text-sm sm:text-base focus:border-blue-500 focus:outline-none transition-colors"
                 />
               </div>
 
-              <div style={{ marginBottom: '20px' }}>
-                <label style={{ 
-                  display: 'block', 
-                  marginBottom: '8px', 
-                  fontWeight: '600',
-                  color: '#1e293b'
-                }}>
+              <div>
+                <label className="block mb-2 font-semibold text-slate-800 text-sm sm:text-base">
                   メールアドレス *
                 </label>
                 <input
@@ -166,29 +87,12 @@ function Contact() {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  style={{
-                    width: '100%',
-                    padding: '12px 16px',
-                    borderRadius: '12px',
-                    border: '1.5px solid #cbd5e1',
-                    background: '#fff',
-                    color: '#1e293b',
-                    fontSize: '1rem',
-                    outline: 'none',
-                    transition: 'border-color 0.2s'
-                  }}
-                  onFocus={(e) => e.target.style.borderColor = '#2563eb'}
-                  onBlur={(e) => e.target.style.borderColor = '#cbd5e1'}
+                  className="w-full px-4 py-3 rounded-xl border border-slate-300 bg-white text-slate-800 text-sm sm:text-base focus:border-blue-500 focus:outline-none transition-colors"
                 />
               </div>
 
-              <div style={{ marginBottom: '20px' }}>
-                <label style={{ 
-                  display: 'block', 
-                  marginBottom: '8px', 
-                  fontWeight: '600',
-                  color: '#1e293b'
-                }}>
+              <div>
+                <label className="block mb-2 font-semibold text-slate-800 text-sm sm:text-base">
                   件名 *
                 </label>
                 <input
@@ -197,29 +101,12 @@ function Contact() {
                   value={formData.subject}
                   onChange={handleChange}
                   required
-                  style={{
-                    width: '100%',
-                    padding: '12px 16px',
-                    borderRadius: '12px',
-                    border: '1.5px solid #cbd5e1',
-                    background: '#fff',
-                    color: '#1e293b',
-                    fontSize: '1rem',
-                    outline: 'none',
-                    transition: 'border-color 0.2s'
-                  }}
-                  onFocus={(e) => e.target.style.borderColor = '#2563eb'}
-                  onBlur={(e) => e.target.style.borderColor = '#cbd5e1'}
+                  className="w-full px-4 py-3 rounded-xl border border-slate-300 bg-white text-slate-800 text-sm sm:text-base focus:border-blue-500 focus:outline-none transition-colors"
                 />
               </div>
 
-              <div style={{ marginBottom: '30px' }}>
-                <label style={{ 
-                  display: 'block', 
-                  marginBottom: '8px', 
-                  fontWeight: '600',
-                  color: '#1e293b'
-                }}>
+              <div>
+                <label className="block mb-2 font-semibold text-slate-800 text-sm sm:text-base">
                   メッセージ *
                 </label>
                 <textarea
@@ -228,41 +115,14 @@ function Contact() {
                   onChange={handleChange}
                   required
                   rows="6"
-                  style={{
-                    width: '100%',
-                    padding: '12px 16px',
-                    borderRadius: '12px',
-                    border: '1.5px solid #cbd5e1',
-                    background: '#fff',
-                    color: '#1e293b',
-                    fontSize: '1rem',
-                    outline: 'none',
-                    resize: 'vertical',
-                    transition: 'border-color 0.2s'
-                  }}
-                  onFocus={(e) => e.target.style.borderColor = '#2563eb'}
-                  onBlur={(e) => e.target.style.borderColor = '#cbd5e1'}
+                  className="w-full px-4 py-3 rounded-xl border border-slate-300 bg-white text-slate-800 text-sm sm:text-base focus:border-blue-500 focus:outline-none transition-colors resize-vertical"
                 />
               </div>
 
               <button
                 type="submit"
                 disabled={isSubmitting}
-                style={{
-                  width: '100%',
-                  padding: '16px 24px',
-                  background: isSubmitting ? '#6366f1' : 'linear-gradient(90deg, #22d3ee, #6366f1)',
-                  color: 'white',
-                  border: 'none',
-                  borderRadius: '12px',
-                  fontSize: '1.1rem',
-                  fontWeight: 'bold',
-                  cursor: isSubmitting ? 'not-allowed' : 'pointer',
-                  transition: 'transform 0.2s, box-shadow 0.2s',
-                  opacity: isSubmitting ? 0.7 : 1
-                }}
-                onMouseOver={e => !isSubmitting && (e.target.style.transform = 'scale(1.02)')}
-                onMouseOut={e => !isSubmitting && (e.target.style.transform = 'scale(1)')}
+                className="w-full py-4 px-6 bg-gradient-to-r from-cyan-400 to-indigo-500 hover:from-cyan-500 hover:to-indigo-600 disabled:opacity-70 disabled:cursor-not-allowed text-white border-none rounded-xl text-sm sm:text-base font-bold transition-all duration-200 transform hover:scale-[1.02] active:scale-[0.98]"
               >
                 {isSubmitting ? '送信中...' : 'メッセージを送信'}
               </button>
@@ -270,104 +130,47 @@ function Contact() {
           </div>
 
           {/* 右側：連絡先情報 */}
-          <div style={{
-            background: '#fff',
-            borderRadius: '20px',
-            padding: '40px',
-            border: '1.5px solid #cbd5e1',
-            boxShadow: '0 8px 32px rgba(30,41,59,0.10)',
-            height: 'fit-content'
-          }}>
-            <h2 style={{ 
-              color: '#2563eb', 
-              fontSize: '1.8rem', 
-              fontWeight: 'bold',
-              marginBottom: '30px'
-            }}>
+          <div className="bg-white rounded-2xl p-6 sm:p-8 lg:p-10 border border-slate-200 shadow-lg h-fit">
+            <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-blue-600 mb-6 sm:mb-8">
               連絡先情報
             </h2>
 
-            <div style={{ marginBottom: '30px' }}>
-              <h3 style={{ 
-                color: '#2563eb', 
-                fontSize: '1.2rem', 
-                fontWeight: '600',
-                marginBottom: '15px',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '10px'
-              }}>
-                <FaEnvelope /> メール
-              </h3>
-              <p style={{ 
-                color: '#1e293b', 
-                fontSize: '1.1rem',
-                marginBottom: '8px'
-              }}>
-                sotta.san17@gmail.com
-              </p>
-              <p style={{ 
-                color: '#64748b', 
-                fontSize: '0.95rem',
-                lineHeight: '1.5'
-              }}>
-                通常24時間以内に返信いたします
-              </p>
-            </div>
+            <div className="space-y-6 sm:space-y-8">
+              <div>
+                <h3 className="text-base sm:text-lg font-semibold text-blue-600 mb-3 sm:mb-4 flex items-center gap-2 sm:gap-3">
+                  <FaEnvelope /> メール
+                </h3>
+                <p className="text-sm sm:text-base text-slate-800 mb-2">
+                  sotta.san17@gmail.com
+                </p>
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                  通常24時間以内に返信いたします
+                </p>
+              </div>
 
-            <div style={{ marginBottom: '30px' }}>
-              <h3 style={{ 
-                color: '#2563eb', 
-                fontSize: '1.2rem', 
-                fontWeight: '600',
-                marginBottom: '15px',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '10px'
-              }}>
-                <FaPhone /> 電話番号
-              </h3>
-              <p style={{ 
-                color: '#1e293b', 
-                fontSize: '1.1rem',
-                marginBottom: '8px'
-              }}>
-                657-709-1289
-              </p>
-              <p style={{ 
-                color: '#64748b', 
-                fontSize: '0.95rem',
-                lineHeight: '1.5'
-              }}>
-                緊急時のみ。平日9:00-18:00
-              </p>
-            </div>
+              <div>
+                <h3 className="text-base sm:text-lg font-semibold text-blue-600 mb-3 sm:mb-4 flex items-center gap-2 sm:gap-3">
+                  <FaPhone /> 電話番号
+                </h3>
+                <p className="text-sm sm:text-base text-slate-800 mb-2">
+                  657-709-1289
+                </p>
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                  緊急時のみ。平日9:00-18:00
+                </p>
+              </div>
 
-            <div style={{
-              background: '#f1f5f9',
-              borderRadius: '12px',
-              padding: '20px',
-              border: '1px solid #cbd5e1'
-            }}>
-              <h3 style={{ 
-                color: '#2563eb', 
-                fontSize: '1.1rem', 
-                fontWeight: '600',
-                marginBottom: '12px'
-              }}>
-                よくある質問
-              </h3>
-              <ul style={{ 
-                color: '#64748b', 
-                fontSize: '0.95rem',
-                lineHeight: '1.6',
-                paddingLeft: '20px'
-              }}>
-                <li>アカウントの承認について</li>
-                <li>支払い方法の変更</li>
-                <li>バグ報告・改善提案</li>
-                <li>新しい機能のリクエスト</li>
-              </ul>
+              <div className="bg-slate-50 rounded-xl p-4 sm:p-6 border border-slate-200">
+                <h3 className="text-sm sm:text-base font-semibold text-blue-600 mb-3 sm:mb-4">
+                  よくある質問
+                </h3>
+                <ul className="text-xs sm:text-sm text-slate-600 leading-relaxed space-y-1 pl-4">
+                  <li>• アカウントの承認について</li>
+                  <li>• 支払い方法の変更</li>
+                  <li>• バグ報告・改善提案</li>
+                  <li>• 新しい機能のリクエスト</li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
