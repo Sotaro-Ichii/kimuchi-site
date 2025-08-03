@@ -85,7 +85,7 @@ function LandingPage() {
             navigate("/home");
           } else {
             await logout();
-            alert("まだ承認されていません。Zelle送金と申請が完了しているかご確認ください。");
+            alert("まだ承認されていません");
           }
         } catch (error) {
           console.error("Firestore読み取りエラー:", error);
