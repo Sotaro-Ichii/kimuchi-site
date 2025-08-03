@@ -33,28 +33,23 @@ function PrivateRoute({ children }) {
 function AppRoutes() {
   const { loading, initialized } = useAuth();
 
-  // 初期化が完了していない場合はローディング表示
-  if (!initialized || loading) {
-    return (
-      <div className="flex justify-center items-center h-screen text-gray-600 text-lg">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#fbbf24] mx-auto mb-4"></div>
-          読み込み中...
-        </div>
-      </div>
-    );
-  }
-
   return (
     <Routes>
       <Route path="/" element={<LandingPage />} />
-      <Route path="/home" element={<PrivateRoute><Home /></PrivateRoute>} />
-      <Route path="/semester/:id" element={<PrivateRoute><Semester /></PrivateRoute>} />
-      <Route path="/comments" element={<PrivateRoute><Comments /></PrivateRoute>} />
-      <Route path="/course/:id" element={<PrivateRoute><CourseDetail /></PrivateRoute>} />
       <Route path="/legal" element={<Legal />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/demo" element={<DemoHome />} />
+      
+      {/* 認証が必要なルート */}
+      {initialized && !loading && (
+        <>
+          <Route path="/home" element={<PrivateRoute><Home /></PrivateRoute>} />
+          <Route path="/semester/:id" element={<PrivateRoute><Semester /></PrivateRoute>} />
+          <Route path="/comments" element={<PrivateRoute><Comments /></PrivateRoute>} />
+          <Route path="/course/:id" element={<PrivateRoute><CourseDetail /></PrivateRoute>} />
+        </>
+      )}
+      
       <Route path="*" element={<div className="text-center py-10 text-gray-500">404 Not Found</div>} />
     </Routes>
   );

@@ -110,16 +110,34 @@ function LandingPage() {
 
   // デモログイン（Firebase認証なしでデモページへ遷移）
   const handleDemoLogin = () => {
-    navigate("/home");
+    console.log('Demo login button clicked');
+    try {
+      navigate("/home");
+    } catch (error) {
+      console.log('Navigate failed, using window.location');
+      window.location.href = "/home";
+    }
   };
 
   // フッターリンク用の関数
   const handleLegalClick = () => {
-    navigate("/legal");
+    console.log('Legal button clicked');
+    try {
+      navigate("/legal");
+    } catch (error) {
+      console.log('Navigate failed, using window.location');
+      window.location.href = "/legal";
+    }
   };
 
   const handleContactClick = () => {
-    navigate("/contact");
+    console.log('Contact button clicked');
+    try {
+      navigate("/contact");
+    } catch (error) {
+      console.log('Navigate failed, using window.location');
+      window.location.href = "/contact";
+    }
   };
 
   return (
