@@ -100,43 +100,22 @@ function LandingPage() {
     try {
       if (isRegistering) {
         await registerWithEmail(email, password);
+        alert("登録が完了しました！");
       } else {
         await loginWithEmail(email, password);
       }
     } catch (error) {
-      alert("ログイン/登録エラー: " + error.message);
+      console.error("認証エラー:", error);
+      alert(error.message);
     }
   };
 
-  // デモログイン（Firebase認証なしでデモページへ遷移）
-  const handleDemoLogin = () => {
-    console.log('Demo login button clicked');
+  const handleGoogleAuth = async () => {
     try {
-      navigate("/home");
+      await loginWithGoogle();
     } catch (error) {
-      console.log('Navigate failed, using window.location');
-      window.location.href = "/home";
-    }
-  };
-
-  // フッターリンク用の関数
-  const handleLegalClick = () => {
-    console.log('Legal button clicked');
-    try {
-      navigate("/legal");
-    } catch (error) {
-      console.log('Navigate failed, using window.location');
-      window.location.href = "/legal";
-    }
-  };
-
-  const handleContactClick = () => {
-    console.log('Contact button clicked');
-    try {
-      navigate("/contact");
-    } catch (error) {
-      console.log('Navigate failed, using window.location');
-      window.location.href = "/contact";
+      console.error("Google認証エラー:", error);
+      alert(error.message);
     }
   };
 
@@ -499,7 +478,7 @@ function LandingPage() {
               </div>
               
               <button
-                onClick={loginWithGoogle}
+                onClick={handleGoogleAuth}
                 style={{
                   width: '100%',
                   display: 'flex',
@@ -556,8 +535,8 @@ function LandingPage() {
               まずは申請する 
               <FaArrowRight style={{ fontSize: '18px' }} />
             </a>
-            <button
-              onClick={handleDemoLogin}
+            <Link
+              to="/home"
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
@@ -571,12 +550,13 @@ function LandingPage() {
                 boxShadow: '0 20px 40px rgba(0,0,0,0.2)',
                 transition: 'all 0.3s ease',
                 border: 'none',
-                cursor: 'pointer'
+                cursor: 'pointer',
+                textDecoration: 'none'
               }}
             >
               <FaStar style={{ fontSize: '18px' }} />
               デモ体験（ゲスト）
-            </button>
+            </Link>
           </div>
         </div>
       </section>
@@ -1264,8 +1244,8 @@ function LandingPage() {
               >
                 申請フォームへ
               </a>
-              <button 
-                onClick={handleDemoLogin}
+              <Link 
+                to="/home"
                 style={{
                   backgroundColor: 'transparent',
                   color: 'white',
@@ -1276,11 +1256,13 @@ function LandingPage() {
                   border: '2px solid white',
                   boxShadow: '0 8px 16px rgba(0,0,0,0.1)',
                   transition: 'all 0.3s ease',
-                  cursor: 'pointer'
+                  cursor: 'pointer',
+                  textDecoration: 'none',
+                  display: 'inline-block'
                 }}
               >
                 デモ体験
-              </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -1308,8 +1290,8 @@ function LandingPage() {
             gap: '32px',
             fontSize: '16px'
           }}>
-            <button 
-              onClick={handleLegalClick}
+            <Link 
+              to="/legal"
               style={{
                 color: '#d1d5db',
                 textDecoration: 'none',
@@ -1320,7 +1302,8 @@ function LandingPage() {
                 borderRadius: '8px',
                 border: '1px solid transparent',
                 backgroundColor: 'transparent',
-                fontSize: '16px'
+                fontSize: '16px',
+                display: 'inline-block'
               }}
               onMouseEnter={(e) => {
                 e.target.style.color = '#ffffff';
@@ -1334,9 +1317,9 @@ function LandingPage() {
               }}
             >
               利用規約
-            </button>
-            <button 
-              onClick={handleContactClick}
+            </Link>
+            <Link 
+              to="/contact"
               style={{
                 color: '#d1d5db',
                 textDecoration: 'none',
@@ -1347,7 +1330,8 @@ function LandingPage() {
                 borderRadius: '8px',
                 border: '1px solid transparent',
                 backgroundColor: 'transparent',
-                fontSize: '16px'
+                fontSize: '16px',
+                display: 'inline-block'
               }}
               onMouseEnter={(e) => {
                 e.target.style.color = '#ffffff';
@@ -1361,7 +1345,7 @@ function LandingPage() {
               }}
             >
               お問い合わせ
-            </button>
+            </Link>
           </div>
         </div>
       </footer>
