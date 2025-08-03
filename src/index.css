@@ -242,3 +242,17 @@ body .course-detail-comment-form textarea:focus {
   border-color: #2563eb !important;
   outline: none !important;
 }
+
+/* ===== アニメーション ===== */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
