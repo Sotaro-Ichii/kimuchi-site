@@ -96,7 +96,7 @@ function LandingPage() {
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white text-slate-800">
       {/* ヒーローセクション */}
       <section className="w-full max-w-4xl mx-auto px-4 py-8 text-center">
-        <img src="/logo.png" alt="Musashi logo" className="w-20 h-20 md:w-28 md:h-28 mx-auto mb-6 object-contain" />
+        <img src="/logo.png" alt="Musashi logo" className="w-24 h-24 md:w-32 md:h-32 mx-auto mb-6 object-contain shadow-lg" />
         <p className="text-base md:text-lg mb-8 font-light leading-relaxed max-w-2xl mx-auto text-slate-700">
           とある大学の、完全非公開の授業評価コミュニティ。<br />
           編入成功者たちからの楽単情報を、圧倒的に安い入会金で手に入れることができます。
@@ -164,7 +164,9 @@ function LandingPage() {
         {/* CTAボタン */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
           <a
-            href="#apply"
+            href="https://forms.gle/your-application-form-url"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-full px-6 py-3 text-base font-bold shadow-lg no-underline transition-all duration-200 hover:scale-105 hover:shadow-xl"
           >
             まずは申請する <FaArrowRight className="text-lg" />
@@ -279,9 +281,14 @@ function LandingPage() {
           <h2 className="text-xl md:text-2xl font-bold mb-4">今すぐ申請する</h2>
           <p className="text-sm md:text-base text-blue-100 mb-6">限定価格で先輩たちの貴重な情報を手に入れましょう</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-white text-blue-600 px-6 md:px-8 py-3 rounded-full font-bold hover:bg-blue-50 transition-colors text-sm md:text-base">
+            <a
+              href="https://forms.gle/your-application-form-url"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white text-blue-600 px-6 md:px-8 py-3 rounded-full font-bold hover:bg-blue-50 transition-colors text-sm md:text-base inline-block text-center"
+            >
               申請フォームへ
-            </button>
+            </a>
             <button 
               onClick={handleDemoLogin}
               className="border-2 border-white text-white px-6 md:px-8 py-3 rounded-full font-bold hover:bg-white hover:text-blue-600 transition-colors text-sm md:text-base"

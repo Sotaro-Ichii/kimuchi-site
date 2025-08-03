@@ -172,12 +172,12 @@ footer a:hover {
 
 /* --- 優先度を最大化するため、ファイル末尾にも再定義 --- */
 body {
-  background-color: #18181b !important;
-  color: #f4f4f5 !important;
+  background-color: #ffffff !important;
+  color: #1e293b !important;
 }
 
 #root {
-  background-color: #18181b !important;
+  background-color: #ffffff !important;
 }
 
 /* コメント投稿フォーム専用 明るい入力欄（セレクタ強化） */
