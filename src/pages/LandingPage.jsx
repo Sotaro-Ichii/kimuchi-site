@@ -535,8 +535,11 @@ function LandingPage() {
               まずは申請する 
               <FaArrowRight style={{ fontSize: '18px' }} />
             </a>
-            <Link
-              to="/home"
+            <button
+              onClick={() => {
+                console.log('Demo login button clicked');
+                navigate('/home');
+              }}
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
@@ -550,13 +553,12 @@ function LandingPage() {
                 boxShadow: '0 20px 40px rgba(0,0,0,0.2)',
                 transition: 'all 0.3s ease',
                 border: 'none',
-                cursor: 'pointer',
-                textDecoration: 'none'
+                cursor: 'pointer'
               }}
             >
               <FaStar style={{ fontSize: '18px' }} />
               デモ体験（ゲスト）
-            </Link>
+            </button>
           </div>
         </div>
       </section>
@@ -1244,8 +1246,11 @@ function LandingPage() {
               >
                 申請フォームへ
               </a>
-              <Link 
-                to="/home"
+              <button
+                onClick={() => {
+                  console.log('Demo experience button clicked');
+                  navigate('/home');
+                }}
                 style={{
                   backgroundColor: 'transparent',
                   color: 'white',
@@ -1256,13 +1261,11 @@ function LandingPage() {
                   border: '2px solid white',
                   boxShadow: '0 8px 16px rgba(0,0,0,0.1)',
                   transition: 'all 0.3s ease',
-                  cursor: 'pointer',
-                  textDecoration: 'none',
-                  display: 'inline-block'
+                  cursor: 'pointer'
                 }}
               >
                 デモ体験
-              </Link>
+              </button>
             </div>
           </div>
         </div>
@@ -1290,8 +1293,11 @@ function LandingPage() {
             gap: '32px',
             fontSize: '16px'
           }}>
-            <Link 
-              to="/legal"
+            <button
+              onClick={() => {
+                console.log('Legal button clicked');
+                navigate('/legal');
+              }}
               style={{
                 color: '#d1d5db',
                 textDecoration: 'none',
@@ -1317,9 +1323,12 @@ function LandingPage() {
               }}
             >
               利用規約
-            </Link>
-            <Link 
-              to="/contact"
+            </button>
+            <button
+              onClick={() => {
+                console.log('Contact button clicked');
+                navigate('/contact');
+              }}
               style={{
                 color: '#d1d5db',
                 textDecoration: 'none',
@@ -1345,7 +1354,7 @@ function LandingPage() {
               }}
             >
               お問い合わせ
-            </Link>
+            </button>
           </div>
         </div>
       </footer>
