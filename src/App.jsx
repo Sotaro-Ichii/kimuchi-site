@@ -4,8 +4,8 @@ import { AuthProvider, useAuth } from './contexts/AuthContext';
 
 import LandingPage from './pages/LandingPage';
 import Home from './pages/Home';
-import SemesterPage from './pages/SemesterPage';
-import CommentsPage from './pages/CommentsPage';
+import Semester from './pages/Semester';
+import Comments from './pages/Comments';
 import Legal from './pages/Legal';
 import Contact from './pages/Contact';
 import CourseDetail from './pages/CourseDetail';
@@ -49,8 +49,8 @@ function AppRoutes() {
     <Routes>
       <Route path="/" element={<LandingPage />} />
       <Route path="/home" element={<PrivateRoute><Home /></PrivateRoute>} />
-      <Route path="/semester/:id" element={<PrivateRoute><SemesterPage /></PrivateRoute>} />
-      <Route path="/comments" element={<PrivateRoute><CommentsPage /></PrivateRoute>} />
+      <Route path="/semester/:id" element={<PrivateRoute><Semester /></PrivateRoute>} />
+      <Route path="/comments" element={<PrivateRoute><Comments /></PrivateRoute>} />
       <Route path="/course/:id" element={<PrivateRoute><CourseDetail /></PrivateRoute>} />
       <Route path="/legal" element={<Legal />} />
       <Route path="/contact" element={<Contact />} />
