@@ -186,38 +186,28 @@ function Home() {
   };
 
   const performSearch = () => {
-    console.log('検索実行:', { searchInput, professorSearch, selectedCategory, sortBy });
-    console.log('検索対象コース数:', courses.length);
-    
     let filtered = [...courses];
 
     // 授業名検索
     if (searchInput.trim()) {
       const normalized = normalize(searchInput);
-      console.log('授業名検索:', normalized);
       filtered = filtered.filter(c => {
         const courseNameNormalized = normalize(c.name);
-        const includes = courseNameNormalized.includes(normalized);
-        console.log(`コース: ${c.name} (${courseNameNormalized}) -> ${includes ? '含む' : '含まない'}`);
-        return includes;
+        return courseNameNormalized.includes(normalized);
       });
     }
 
     // 教授名検索
     if (professorSearch.trim()) {
       const normalized = normalize(professorSearch);
-      console.log('教授名検索:', normalized);
       filtered = filtered.filter(c => {
         const professorNormalized = normalize(c.professor);
-        const includes = professorNormalized.includes(normalized);
-        console.log(`教授: ${c.professor} (${professorNormalized}) -> ${includes ? '含む' : '含まない'}`);
-        return includes;
+        return professorNormalized.includes(normalized);
       });
     }
 
     // カテゴリフィルター
     if (selectedCategory !== 'all') {
-      console.log('カテゴリフィルター:', selectedCategory);
       filtered = filtered.filter(c => {
         const courseName = c.name.toLowerCase();
         let matches = false;
@@ -226,7 +216,6 @@ function Home() {
         if (selectedCategory === 'eng') matches = courseName.includes('eng');
         if (selectedCategory === 'sci') matches = courseName.includes('sci') || courseName.includes('bio') || courseName.includes('chem');
         if (selectedCategory === 'hum') matches = courseName.includes('hum') || courseName.includes('hist') || courseName.includes('phil');
-        console.log(`コース: ${c.name} -> カテゴリ ${selectedCategory}: ${matches ? '一致' : '不一致'}`);
         return matches;
       });
     }
@@ -247,7 +236,6 @@ function Home() {
       }
     });
 
-    console.log('検索結果数:', filtered.length);
     setResultCourses(filtered);
   };
 
@@ -581,22 +569,7 @@ function Home() {
                 <FaSearch /> 授業を検索
               </h2>
               
-              {/* デバッグ情報表示 */}
-              <div style={{
-                background: '#f8fafc',
-                border: '1px solid #e2e8f0',
-                borderRadius: '12px',
-                padding: '16px',
-                marginBottom: '20px',
-                fontSize: '14px',
-                color: '#64748b'
-              }}>
-                <p><strong>デバッグ情報:</strong></p>
-                <p>コース数: {courses.length}</p>
-                <p>検索結果数: {resultCourses.length}</p>
-                <p>検索入力: "{searchInput}" | 教授: "{professorSearch}"</p>
-                <p>カテゴリ: {selectedCategory} | 並び替え: {sortBy}</p>
-              </div>
+              
               {/* 未ログイン時はサンプルのみ表示 */}
               {!user ? (
                 <>
