@@ -55,6 +55,12 @@ function Home() {
   ];
 
   useEffect(() => {
+    // 初期データとしてサンプルデータを設定
+    setCourses(sampleCourses);
+    setComments(sampleComments);
+    setResultCourses(sampleCourses);
+    
+    // Firestoreからデータを取得（非同期）
     fetchCourses();
     fetchComments();
     onAuthChange(setUser);
@@ -71,14 +77,42 @@ function Home() {
   }, [courses]);
 
   const fetchCourses = async () => {
-    const snapshot = await getDocs(collection(db, 'courses'));
-    setCourses(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
+    try {
+      const snapshot = await getDocs(collection(db, 'courses'));
+      const firestoreCourses = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      
+      // Firestoreにデータがない場合はサンプルデータを使用
+      if (firestoreCourses.length === 0) {
+        console.log('Firestoreにデータがないため、サンプルデータを使用します');
+        setCourses(sampleCourses);
+      } else {
+        setCourses(firestoreCourses);
+      }
+    } catch (error) {
+      console.error('コースデータ取得エラー:', error);
+      console.log('エラーが発生したため、サンプルデータを使用します');
+      setCourses(sampleCourses);
+    }
   };
 
   const fetchComments = async () => {
-    const q = query(collection(db, 'comments'), orderBy('timestamp', 'desc'));
-    const snapshot = await getDocs(q);
-    setComments(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
+    try {
+      const q = query(collection(db, 'comments'), orderBy('timestamp', 'desc'));
+      const snapshot = await getDocs(q);
+      const firestoreComments = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      
+      // Firestoreにデータがない場合はサンプルデータを使用
+      if (firestoreComments.length === 0) {
+        console.log('Firestoreにコメントデータがないため、サンプルデータを使用します');
+        setComments(sampleComments);
+      } else {
+        setComments(firestoreComments);
+      }
+    } catch (error) {
+      console.error('コメントデータ取得エラー:', error);
+      console.log('エラーが発生したため、サンプルデータを使用します');
+      setComments(sampleComments);
+    }
   };
 
   const fetchUserEnrollments = async () => {
@@ -152,30 +186,48 @@ function Home() {
   };
 
   const performSearch = () => {
+    console.log('検索実行:', { searchInput, professorSearch, selectedCategory, sortBy });
+    console.log('検索対象コース数:', courses.length);
+    
     let filtered = [...courses];
 
     // 授業名検索
     if (searchInput.trim()) {
       const normalized = normalize(searchInput);
-      filtered = filtered.filter(c => normalize(c.name).includes(normalized));
+      console.log('授業名検索:', normalized);
+      filtered = filtered.filter(c => {
+        const courseNameNormalized = normalize(c.name);
+        const includes = courseNameNormalized.includes(normalized);
+        console.log(`コース: ${c.name} (${courseNameNormalized}) -> ${includes ? '含む' : '含まない'}`);
+        return includes;
+      });
     }
 
     // 教授名検索
     if (professorSearch.trim()) {
       const normalized = normalize(professorSearch);
-      filtered = filtered.filter(c => normalize(c.professor).includes(normalized));
+      console.log('教授名検索:', normalized);
+      filtered = filtered.filter(c => {
+        const professorNormalized = normalize(c.professor);
+        const includes = professorNormalized.includes(normalized);
+        console.log(`教授: ${c.professor} (${professorNormalized}) -> ${includes ? '含む' : '含まない'}`);
+        return includes;
+      });
     }
 
     // カテゴリフィルター
     if (selectedCategory !== 'all') {
+      console.log('カテゴリフィルター:', selectedCategory);
       filtered = filtered.filter(c => {
         const courseName = c.name.toLowerCase();
-        if (selectedCategory === 'econ') return courseName.includes('econ');
-        if (selectedCategory === 'math') return courseName.includes('math');
-        if (selectedCategory === 'eng') return courseName.includes('eng');
-        if (selectedCategory === 'sci') return courseName.includes('sci') || courseName.includes('bio') || courseName.includes('chem');
-        if (selectedCategory === 'hum') return courseName.includes('hum') || courseName.includes('hist') || courseName.includes('phil');
-        return true;
+        let matches = false;
+        if (selectedCategory === 'econ') matches = courseName.includes('econ');
+        if (selectedCategory === 'math') matches = courseName.includes('math');
+        if (selectedCategory === 'eng') matches = courseName.includes('eng');
+        if (selectedCategory === 'sci') matches = courseName.includes('sci') || courseName.includes('bio') || courseName.includes('chem');
+        if (selectedCategory === 'hum') matches = courseName.includes('hum') || courseName.includes('hist') || courseName.includes('phil');
+        console.log(`コース: ${c.name} -> カテゴリ ${selectedCategory}: ${matches ? '一致' : '不一致'}`);
+        return matches;
       });
     }
 
@@ -195,6 +247,7 @@ function Home() {
       }
     });
 
+    console.log('検索結果数:', filtered.length);
     setResultCourses(filtered);
   };
 
@@ -527,6 +580,23 @@ function Home() {
               }}>
                 <FaSearch /> 授業を検索
               </h2>
+              
+              {/* デバッグ情報表示 */}
+              <div style={{
+                background: '#f8fafc',
+                border: '1px solid #e2e8f0',
+                borderRadius: '12px',
+                padding: '16px',
+                marginBottom: '20px',
+                fontSize: '14px',
+                color: '#64748b'
+              }}>
+                <p><strong>デバッグ情報:</strong></p>
+                <p>コース数: {courses.length}</p>
+                <p>検索結果数: {resultCourses.length}</p>
+                <p>検索入力: "{searchInput}" | 教授: "{professorSearch}"</p>
+                <p>カテゴリ: {selectedCategory} | 並び替え: {sortBy}</p>
+              </div>
               {/* 未ログイン時はサンプルのみ表示 */}
               {!user ? (
                 <>
@@ -961,17 +1031,28 @@ function Home() {
                     </div>
                   )}
 
-                  {resultCourses.length === 0 && courses.length > 0 && (
+                  {resultCourses.length === 0 && (
                     <div style={{
                       textAlign: 'center',
                       padding: '40px',
                       color: '#a1a1aa'
                     }}>
                       <FaSearch style={{ fontSize: '3rem', marginBottom: '16px', opacity: 0.5 }} />
-                      <p>条件に一致する授業が見つかりませんでした</p>
-                      <p style={{ fontSize: '0.9rem', marginTop: '8px' }}>
-                        検索条件を変更してお試しください
-                      </p>
+                      {courses.length > 0 ? (
+                        <>
+                          <p>条件に一致する授業が見つかりませんでした</p>
+                          <p style={{ fontSize: '0.9rem', marginTop: '8px' }}>
+                            検索条件を変更してお試しください
+                          </p>
+                        </>
+                      ) : (
+                        <>
+                          <p>データの読み込み中です...</p>
+                          <p style={{ fontSize: '0.9rem', marginTop: '8px' }}>
+                            しばらくお待ちください
+                          </p>
+                        </>
+                      )}
                     </div>
                   )}
                 </>

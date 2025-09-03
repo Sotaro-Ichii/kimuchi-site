@@ -1,0 +1,73 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // 認証済みユーザーのみアクセス可能
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    // 自分のデータのみアクセス可能
+    function isOwner(userId) {
+      return request.auth.uid == userId;
+    }
+    
+
+    
+    // 管理者かチェック（バッジがAdminの場合）
+    function isAdmin() {
+      return get(/databases/$(database)/documents/userBadges/$(request.auth.uid)).data.badge == 'Admin';
+    }
+    
+    // コメントコレクション
+    match /comments/{commentId} {
+      // 読み取り：認証済みユーザーのみ
+      allow read: if isAuthenticated();
+      // 作成：認証済みユーザーのみ
+      allow create: if isAuthenticated() && 
+        request.resource.data.userId == request.auth.uid &&
+        request.resource.data.userEmail == request.auth.token.email;
+      // 更新・削除：自分のコメントのみ
+      allow update, delete: if isAuthenticated() && 
+        resource.data.userId == request.auth.uid;
+    }
+    
+    // コースコレクション
+    match /courses/{courseId} {
+      // 読み取り：認証済みユーザーのみ
+      allow read: if isAuthenticated();
+      // 作成・更新・削除：管理者のみ
+      allow create, update, delete: if isAuthenticated() && isAdmin();
+    }
+    
+    // ユーザーバッジコレクション
+    match /userBadges/{userId} {
+      // 読み取り：自分のバッジのみ
+      allow read: if isAuthenticated() && isOwner(userId);
+      // 作成・更新：管理者のみ
+      allow create, update: if isAuthenticated() && isAdmin();
+    }
+    
+    // ユーザー受講登録コレクション
+    match /userEnrollments/{userId} {
+      // 読み取り・更新：自分の登録のみ
+      allow read, write: if isAuthenticated() && isOwner(userId);
+    }
+    
+    // コース統計コレクション
+    match /courseStats/{courseId} {
+      // 読み取り：認証済みユーザーのみ
+      allow read: if isAuthenticated();
+      // 更新：認証済みユーザーのみ（受講登録時に更新）
+      allow update: if isAuthenticated();
+    }
+    
+    // 承認済みユーザーコレクション
+    match /approvedUsers/{userEmail} {
+      // 読み取り：認証済みユーザーのみ（自分の承認状況を確認するため）
+      allow read: if isAuthenticated() && 
+        (request.auth.token.email == userEmail || isAdmin());
+      // 作成・更新・削除：管理者のみ
+      allow create, update, delete: if isAuthenticated() && isAdmin();
+    }
+  }
+}
